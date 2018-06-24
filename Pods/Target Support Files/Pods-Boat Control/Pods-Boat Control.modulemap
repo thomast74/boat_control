@@ -1,0 +1,6 @@
+framework module Pods_Boat_Control {
+  umbrella header "Pods-Boat Control-umbrella.h"
+
+  export *
+  module * { export * }
+}
