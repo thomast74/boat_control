@@ -19,6 +19,8 @@
 		D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC9E20DFD567004CBB9D /* QueueTests.swift */; };
 		D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */; };
 		D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */; };
+		D3B3ECA620DFDF65004CBB9D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3B3ECA520DFDF65004CBB9D /* Settings.bundle */; };
+		D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		D3B3EC9E20DFD567004CBB9D /* QueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
 		D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NmeaLogViewController.swift; sourceTree = "<group>"; };
+		D3B3ECA520DFDF65004CBB9D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				D3B3EC9720DED7CA004CBB9D /* Resources */,
 				D3B3EC9620DED7AE004CBB9D /* Storyboards */,
 				D3B3EC7220DED757004CBB9D /* AppDelegate.swift */,
+				D3B3ECA520DFDF65004CBB9D /* Settings.bundle */,
 			);
 			path = "Boat Control";
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			children = (
 				D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */,
 				D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */,
+				D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B3ECA620DFDF65004CBB9D /* Settings.bundle in Resources */,
 				D3B3EC9920DED841004CBB9D /* Flat-it - StereoGothic-800.otf in Resources */,
 				D3B3EC8120DED75B004CBB9D /* LaunchScreen.storyboard in Resources */,
 				D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */,
@@ -345,6 +352,7 @@
 				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
 				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
+				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
 				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

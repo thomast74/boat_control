@@ -24,4 +24,10 @@ class NmeaLogViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    @IBAction func btnSettingsTownDown(_ sender: Any) {
+        print("Settings page requested")
+        let settingsVC = self.storyboard!.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        self.present(settingsVC, animated: true, completion: nil)
+    }
+    
 }

@@ -21,7 +21,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="foG-sq-Pt7" userLabel="Root View Controller" customClass="RootViewController" customModule="Boat_Control" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHc-Qb-TI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-49" y="159"/>
+            <point key="canvasLocation" x="-58" y="259"/>
         </scene>
         <!--NMEA Log-->
         <scene sceneID="2lJ-2y-IyQ">
@@ -31,26 +31,168 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NMEA Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-fM-7Tw" userLabel="PageName">
-                                <rect key="frame" x="15" y="35" width="994" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NMEA Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-fM-7Tw" userLabel="fldPageName">
+                                <rect key="frame" x="15" y="35" width="945" height="24"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xb0-oM-5SC" userLabel="btnSettings">
+                                <rect key="frame" x="975" y="30" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="qe8-Tf-Ybp"/>
+                                    <constraint firstAttribute="width" constant="34" id="srC-KI-daK"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="CogIcon"/>
+                                <connections>
+                                    <action selector="btnSettingsTownDown:" destination="vQG-KL-dta" eventType="touchDown" id="zww-Pe-PcV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iiJ-fM-7Tw" firstAttribute="leading" secondItem="zxO-AS-2BX" secondAttribute="leading" constant="15" id="0Ej-Tg-uWG"/>
-                            <constraint firstItem="iiJ-fM-7Tw" firstAttribute="trailing" secondItem="zxO-AS-2BX" secondAttribute="trailing" constant="-15" id="8VV-XO-yt2"/>
-                            <constraint firstItem="iiJ-fM-7Tw" firstAttribute="width" secondItem="zxO-AS-2BX" secondAttribute="width" constant="-30" id="fHT-nB-ObB"/>
+                            <constraint firstItem="iiJ-fM-7Tw" firstAttribute="trailing" secondItem="xb0-oM-5SC" secondAttribute="leading" constant="-15" id="8VV-XO-yt2"/>
+                            <constraint firstItem="xb0-oM-5SC" firstAttribute="trailing" secondItem="zxO-AS-2BX" secondAttribute="trailing" constant="-15" id="8Xu-rS-daN"/>
                             <constraint firstItem="iiJ-fM-7Tw" firstAttribute="top" secondItem="zxO-AS-2BX" secondAttribute="top" constant="15" id="h12-iO-KBd"/>
+                            <constraint firstItem="xb0-oM-5SC" firstAttribute="centerY" secondItem="iiJ-fM-7Tw" secondAttribute="centerY" id="o1t-5g-cfh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zxO-AS-2BX"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DH-bk-WFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-49" y="844"/>
+            <point key="canvasLocation" x="-58" y="944"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="xmF-dI-dC9">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="WG9-yx-CJY" userLabel="Settings" customClass="SettingsViewController" customModule="Boat_Control" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u5W-Aq-ZsJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-DK-Sgr" userLabel="lblPageName">
+                                <rect key="frame" x="15" y="35" width="904" height="24"/>
+                                <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnA-mL-Tmb" userLabel="btnSave">
+                                <rect key="frame" x="934" y="26.5" width="75" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="75" id="ai0-4R-Vz5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSaveTouchDown:" destination="WG9-yx-CJY" eventType="touchDown" id="ssm-z0-cip"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NMEA Server" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7i-uP-qgY" userLabel="lblNMEAServer">
+                                <rect key="frame" x="115" y="134" width="729" height="16"/>
+                                <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8w-Ug-rMj" userLabel="lblConnectionType">
+                                <rect key="frame" x="115" y="170" width="200" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="x9O-JM-p5j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IP Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etu-eM-3qP" userLabel="lblIPAddress">
+                                <rect key="frame" x="115" y="210" width="200" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="rhe-Ik-2on"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcB-ah-DXe" userLabel="lblPort">
+                                <rect key="frame" x="115" y="251" width="200" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Ssr-1l-0bB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3y1-YE-WKL" userLabel="fldConnectionType">
+                                <rect key="frame" x="315" y="166" width="85" height="29"/>
+                                <segments>
+                                    <segment title="TCP"/>
+                                    <segment title="UDP"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="connectionTypeValueChanged:" destination="WG9-yx-CJY" eventType="valueChanged" id="yW8-xJ-D4u"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="555.555.555.555" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uum-Ru-F9K" userLabel="fldIPAddress">
+                                <rect key="frame" x="315" y="205.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="HzT-Yi-FFQ"/>
+                                </constraints>
+                                <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZzT-Ay-gAo" userLabel="fldPort">
+                                <rect key="frame" x="315" y="246.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="aqW-We-87Z"/>
+                                </constraints>
+                                <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F8w-Ug-rMj" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="7Rb-jY-PzT"/>
+                            <constraint firstItem="3y1-YE-WKL" firstAttribute="centerY" secondItem="F8w-Ug-rMj" secondAttribute="centerY" id="94o-cB-2fI"/>
+                            <constraint firstItem="Etu-eM-3qP" firstAttribute="top" secondItem="F8w-Ug-rMj" secondAttribute="bottom" constant="20" id="C9I-Qo-Nk7"/>
+                            <constraint firstItem="uum-Ru-F9K" firstAttribute="centerY" secondItem="Etu-eM-3qP" secondAttribute="centerY" id="GeF-ap-gEU"/>
+                            <constraint firstItem="C7i-uP-qgY" firstAttribute="trailing" secondItem="BxG-DK-Sgr" secondAttribute="trailing" constant="-75" id="HEu-9v-zF9"/>
+                            <constraint firstItem="uum-Ru-F9K" firstAttribute="leading" secondItem="Etu-eM-3qP" secondAttribute="trailing" id="Hgb-oD-oLi"/>
+                            <constraint firstItem="3y1-YE-WKL" firstAttribute="leading" secondItem="F8w-Ug-rMj" secondAttribute="trailing" id="J5l-jB-Al1"/>
+                            <constraint firstItem="BxG-DK-Sgr" firstAttribute="top" secondItem="I4c-bs-pyU" secondAttribute="top" constant="15" id="Jvb-mf-rh9"/>
+                            <constraint firstItem="C7i-uP-qgY" firstAttribute="leading" secondItem="BxG-DK-Sgr" secondAttribute="leading" constant="100" id="TxI-iF-Pht"/>
+                            <constraint firstItem="ZzT-Ay-gAo" firstAttribute="centerY" secondItem="fcB-ah-DXe" secondAttribute="centerY" id="Ufd-0K-8DG"/>
+                            <constraint firstItem="Etu-eM-3qP" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="VT3-2T-617"/>
+                            <constraint firstItem="HnA-mL-Tmb" firstAttribute="trailing" secondItem="I4c-bs-pyU" secondAttribute="trailing" constant="-15" id="Ved-ci-emR"/>
+                            <constraint firstItem="BxG-DK-Sgr" firstAttribute="trailing" secondItem="HnA-mL-Tmb" secondAttribute="leading" constant="-15" id="WjQ-gP-kBY"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3y1-YE-WKL" secondAttribute="trailing" constant="20" symbolic="YES" id="bQC-Dc-3VN"/>
+                            <constraint firstItem="fcB-ah-DXe" firstAttribute="top" secondItem="Etu-eM-3qP" secondAttribute="bottom" constant="20" id="bzW-8s-eM4"/>
+                            <constraint firstItem="BxG-DK-Sgr" firstAttribute="leading" secondItem="I4c-bs-pyU" secondAttribute="leading" constant="15" id="eYT-Mv-yQr"/>
+                            <constraint firstItem="ZzT-Ay-gAo" firstAttribute="leading" secondItem="fcB-ah-DXe" secondAttribute="trailing" id="eyl-dd-B1E"/>
+                            <constraint firstItem="fcB-ah-DXe" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="ngD-Vl-Npw"/>
+                            <constraint firstItem="C7i-uP-qgY" firstAttribute="top" secondItem="BxG-DK-Sgr" secondAttribute="bottom" constant="75" id="teM-a1-iSo"/>
+                            <constraint firstItem="HnA-mL-Tmb" firstAttribute="centerY" secondItem="BxG-DK-Sgr" secondAttribute="centerY" id="wbe-KH-UjP"/>
+                            <constraint firstItem="F8w-Ug-rMj" firstAttribute="top" secondItem="C7i-uP-qgY" secondAttribute="bottom" constant="20" id="yYh-JY-YpM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I4c-bs-pyU"/>
+                    </view>
+                    <connections>
+                        <outlet property="fldConnectionType" destination="3y1-YE-WKL" id="ckB-ed-cFH"/>
+                        <outlet property="fldIPAddress" destination="uum-Ru-F9K" id="xe0-yG-mI5"/>
+                        <outlet property="fldPort" destination="ZzT-Ay-gAo" id="rPd-qB-xMb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Id-z8-Q3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603" y="259"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CogIcon" width="32" height="32"/>
+    </resources>
 </document>
