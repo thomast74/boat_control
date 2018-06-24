@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E894751CDF425426F6FA828 /* Pods_Boat_ControlTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */; };
+		22EAA1E8E8A459E138D7608B /* Pods_Boat_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D2E29E850C5AA6085ACE3F /* Pods_Boat_Control.framework */; };
 		D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7220DED757004CBB9D /* AppDelegate.swift */; };
-		D3B3EC7520DED758004CBB9D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7420DED758004CBB9D /* RootViewController.swift */; };
-		D3B3EC7720DED758004CBB9D /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7620DED758004CBB9D /* DataViewController.swift */; };
-		D3B3EC7920DED758004CBB9D /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7820DED758004CBB9D /* ModelController.swift */; };
 		D3B3EC7C20DED758004CBB9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7A20DED758004CBB9D /* Main.storyboard */; };
 		D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */; };
 		D3B3EC8120DED75B004CBB9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7F20DED75B004CBB9D /* LaunchScreen.storyboard */; };
 		D3B3EC8C20DED75B004CBB9D /* Boat_ControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC8B20DED75B004CBB9D /* Boat_ControlTests.swift */; };
+		D3B3EC9920DED841004CBB9D /* Flat-it - StereoGothic-800.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC9820DED841004CBB9D /* Flat-it - StereoGothic-800.otf */; };
+		D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */; };
+		D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC9E20DFD567004CBB9D /* QueueTests.swift */; };
+		D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */; };
+		D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,11 +32,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C4E67BC5D8EBEAD462D819B /* Pods-Boat ControlTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat ControlTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Boat ControlTests/Pods-Boat ControlTests.debug.xcconfig"; sourceTree = "<group>"; };
+		19D2E29E850C5AA6085ACE3F /* Pods_Boat_Control.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Boat_Control.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7200835B283086B924912F /* Pods-Boat ControlTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat ControlTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Boat ControlTests/Pods-Boat ControlTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D2FD4FE348E2FE17026DEE6 /* Pods-Boat Control.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat Control.release.xcconfig"; path = "Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control.release.xcconfig"; sourceTree = "<group>"; };
+		BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Boat_ControlTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFA2FD59736DA70A91F60C8E /* Pods-Boat Control.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat Control.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control.debug.xcconfig"; sourceTree = "<group>"; };
 		D3B3EC6F20DED757004CBB9D /* Boat Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boat Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B3EC7220DED757004CBB9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3B3EC7420DED758004CBB9D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		D3B3EC7620DED758004CBB9D /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
-		D3B3EC7820DED758004CBB9D /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		D3B3EC7B20DED758004CBB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3B3EC8020DED75B004CBB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +47,11 @@
 		D3B3EC8720DED75B004CBB9D /* Boat ControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Boat ControlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B3EC8B20DED75B004CBB9D /* Boat_ControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boat_ControlTests.swift; sourceTree = "<group>"; };
 		D3B3EC8D20DED75B004CBB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3B3EC9820DED841004CBB9D /* Flat-it - StereoGothic-800.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flat-it - StereoGothic-800.otf"; sourceTree = "<group>"; };
+		D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		D3B3EC9E20DFD567004CBB9D /* QueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
+		D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NmeaLogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22EAA1E8E8A459E138D7608B /* Pods_Boat_Control.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +67,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E894751CDF425426F6FA828 /* Pods_Boat_ControlTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FA2E0606488EC3D9358A51B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19D2E29E850C5AA6085ACE3F /* Pods_Boat_Control.framework */,
+				BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D3B3EC6620DED757004CBB9D = {
 			isa = PBXGroup;
 			children = (
 				D3B3EC7120DED757004CBB9D /* Boat Control */,
 				D3B3EC8A20DED75B004CBB9D /* Boat ControlTests */,
 				D3B3EC7020DED757004CBB9D /* Products */,
+				FE2C0C5B49AE398AA1E81F3F /* Pods */,
+				9FA2E0606488EC3D9358A51B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,14 +106,11 @@
 		D3B3EC7120DED757004CBB9D /* Boat Control */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3ECA020DFDA06004CBB9D /* ViewControllers */,
+				D3B3EC9A20DFD4B2004CBB9D /* Helpers */,
+				D3B3EC9720DED7CA004CBB9D /* Resources */,
+				D3B3EC9620DED7AE004CBB9D /* Storyboards */,
 				D3B3EC7220DED757004CBB9D /* AppDelegate.swift */,
-				D3B3EC7420DED758004CBB9D /* RootViewController.swift */,
-				D3B3EC7620DED758004CBB9D /* DataViewController.swift */,
-				D3B3EC7820DED758004CBB9D /* ModelController.swift */,
-				D3B3EC7A20DED758004CBB9D /* Main.storyboard */,
-				D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */,
-				D3B3EC7F20DED75B004CBB9D /* LaunchScreen.storyboard */,
-				D3B3EC8220DED75B004CBB9D /* Info.plist */,
 			);
 			path = "Boat Control";
 			sourceTree = "<group>";
@@ -96,10 +118,66 @@
 		D3B3EC8A20DED75B004CBB9D /* Boat ControlTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3EC9D20DFD531004CBB9D /* Helpers */,
 				D3B3EC8B20DED75B004CBB9D /* Boat_ControlTests.swift */,
 				D3B3EC8D20DED75B004CBB9D /* Info.plist */,
 			);
 			path = "Boat ControlTests";
+			sourceTree = "<group>";
+		};
+		D3B3EC9620DED7AE004CBB9D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3EC7F20DED75B004CBB9D /* LaunchScreen.storyboard */,
+				D3B3EC7A20DED758004CBB9D /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		D3B3EC9720DED7CA004CBB9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3EC9820DED841004CBB9D /* Flat-it - StereoGothic-800.otf */,
+				D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */,
+				D3B3EC8220DED75B004CBB9D /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D3B3EC9A20DFD4B2004CBB9D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D3B3EC9D20DFD531004CBB9D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3EC9E20DFD567004CBB9D /* QueueTests.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D3B3ECA020DFDA06004CBB9D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3ECA120DFDA25004CBB9D /* RootViewController.swift */,
+				D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FE2C0C5B49AE398AA1E81F3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CFA2FD59736DA70A91F60C8E /* Pods-Boat Control.debug.xcconfig */,
+				6D2FD4FE348E2FE17026DEE6 /* Pods-Boat Control.release.xcconfig */,
+				0C4E67BC5D8EBEAD462D819B /* Pods-Boat ControlTests.debug.xcconfig */,
+				1D7200835B283086B924912F /* Pods-Boat ControlTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3B3EC9020DED75B004CBB9D /* Build configuration list for PBXNativeTarget "Boat Control" */;
 			buildPhases = (
+				6DE261DF72F8FA81E9B638BD /* [CP] Check Pods Manifest.lock */,
 				D3B3EC6B20DED757004CBB9D /* Sources */,
 				D3B3EC6C20DED757004CBB9D /* Frameworks */,
 				D3B3EC6D20DED757004CBB9D /* Resources */,
+				86EC39CBCE0577D7AEB96FA9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,6 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3B3EC9320DED75B004CBB9D /* Build configuration list for PBXNativeTarget "Boat ControlTests" */;
 			buildPhases = (
+				84B767D8DF1672C48F5A9C83 /* [CP] Check Pods Manifest.lock */,
 				D3B3EC8320DED75B004CBB9D /* Sources */,
 				D3B3EC8420DED75B004CBB9D /* Frameworks */,
 				D3B3EC8520DED75B004CBB9D /* Resources */,
@@ -183,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B3EC9920DED841004CBB9D /* Flat-it - StereoGothic-800.otf in Resources */,
 				D3B3EC8120DED75B004CBB9D /* LaunchScreen.storyboard in Resources */,
 				D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */,
 				D3B3EC7C20DED758004CBB9D /* Main.storyboard in Resources */,
@@ -198,15 +280,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DE261DF72F8FA81E9B638BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Boat Control-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84B767D8DF1672C48F5A9C83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Boat ControlTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86EC39CBCE0577D7AEB96FA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D3B3EC6B20DED757004CBB9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3B3EC7520DED758004CBB9D /* RootViewController.swift in Sources */,
-				D3B3EC7920DED758004CBB9D /* ModelController.swift in Sources */,
-				D3B3EC7720DED758004CBB9D /* DataViewController.swift in Sources */,
+				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
+				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
+				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B3EC8C20DED75B004CBB9D /* Boat_ControlTests.swift in Sources */,
+				D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,10 +504,12 @@
 		};
 		D3B3EC9120DED75B004CBB9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFA2FD59736DA70A91F60C8E /* Pods-Boat Control.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Boat Control/Info.plist";
+				INFOPLIST_FILE = "Boat Control/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,16 +517,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arohanui.Boat-Control";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		D3B3EC9220DED75B004CBB9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D2FD4FE348E2FE17026DEE6 /* Pods-Boat Control.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Boat Control/Info.plist";
+				INFOPLIST_FILE = "Boat Control/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,12 +536,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arohanui.Boat-Control";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
 		D3B3EC9420DED75B004CBB9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C4E67BC5D8EBEAD462D819B /* Pods-Boat ControlTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +563,7 @@
 		};
 		D3B3EC9520DED75B004CBB9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D7200835B283086B924912F /* Pods-Boat ControlTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
