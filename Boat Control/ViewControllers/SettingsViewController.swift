@@ -69,6 +69,8 @@ class SettingsViewController: UIViewController {
         UserDefaults.standard.set(fldIPAddress.text!, forKey: "nmea_ip_address")
         UserDefaults.standard.set(fldPort.text!, forKey: "nmea_port")
 
+        NotificationCenter.default.post(name: NotificationNames.SETTINGS_UPDATED, object: nil)
+        
         dismiss(animated: true, completion: nil)
     }
     

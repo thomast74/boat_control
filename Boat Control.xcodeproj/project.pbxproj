@@ -21,6 +21,17 @@
 		D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */; };
 		D3B3ECA620DFDF65004CBB9D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3B3ECA520DFDF65004CBB9D /* Settings.bundle */; };
 		D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */; };
+		D3B3ECAB20E23FCE004CBB9D /* NMEAReceiverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECAA20E23FCE004CBB9D /* NMEAReceiverManager.swift */; };
+		D3B3ECAD20E25908004CBB9D /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B3ECAC20E25908004CBB9D /* CocoaAsyncSocket.framework */; };
+		D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */; };
+		D3B3ECB220E2C824004CBB9D /* NMEAParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */; };
+		D3B3ECB420E2C846004CBB9D /* NMEA_MWV.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */; };
+		D3B3ECB620E2C86E004CBB9D /* NMEA_BASE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECB520E2C86E004CBB9D /* NMEA_BASE.swift */; };
+		D3B3ECB820E41F3E004CBB9D /* NMEA_RMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */; };
+		D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECB920E41F73004CBB9D /* NMEA_GGA.swift */; };
+		D3B3ECBC20E41FA6004CBB9D /* NMEA_GLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */; };
+		D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */; };
+		D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +67,17 @@
 		D3B3ECA320DFDC53004CBB9D /* NmeaLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NmeaLogViewController.swift; sourceTree = "<group>"; };
 		D3B3ECA520DFDF65004CBB9D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D3B3ECAA20E23FCE004CBB9D /* NMEAReceiverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEAReceiverManager.swift; sourceTree = "<group>"; };
+		D3B3ECAC20E25908004CBB9D /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEAParser.swift; sourceTree = "<group>"; };
+		D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_MWV.swift; sourceTree = "<group>"; };
+		D3B3ECB520E2C86E004CBB9D /* NMEA_BASE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_BASE.swift; sourceTree = "<group>"; };
+		D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_RMC.swift; sourceTree = "<group>"; };
+		D3B3ECB920E41F73004CBB9D /* NMEA_GGA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_GGA.swift; sourceTree = "<group>"; };
+		D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_GLL.swift; sourceTree = "<group>"; };
+		D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSQualityIndicator.swift; sourceTree = "<group>"; };
+		D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindSpeedUnits.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B3ECAD20E25908004CBB9D /* CocoaAsyncSocket.framework in Frameworks */,
 				22EAA1E8E8A459E138D7608B /* Pods_Boat_Control.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +104,7 @@
 		9FA2E0606488EC3D9358A51B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3ECAC20E25908004CBB9D /* CocoaAsyncSocket.framework */,
 				19D2E29E850C5AA6085ACE3F /* Pods_Boat_Control.framework */,
 				BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */,
 			);
@@ -110,6 +134,8 @@
 		D3B3EC7120DED757004CBB9D /* Boat Control */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3ECB020E2C80F004CBB9D /* NMEA */,
+				D3B3ECA920E23FA1004CBB9D /* NMEAReceiver */,
 				D3B3ECA020DFDA06004CBB9D /* ViewControllers */,
 				D3B3EC9A20DFD4B2004CBB9D /* Helpers */,
 				D3B3EC9720DED7CA004CBB9D /* Resources */,
@@ -153,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */,
+				D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -173,6 +200,29 @@
 				D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D3B3ECA920E23FA1004CBB9D /* NMEAReceiver */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3ECAA20E23FCE004CBB9D /* NMEAReceiverManager.swift */,
+			);
+			path = NMEAReceiver;
+			sourceTree = "<group>";
+		};
+		D3B3ECB020E2C80F004CBB9D /* NMEA */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */,
+				D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */,
+				D3B3ECB520E2C86E004CBB9D /* NMEA_BASE.swift */,
+				D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */,
+				D3B3ECB920E41F73004CBB9D /* NMEA_GGA.swift */,
+				D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */,
+				D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */,
+				D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */,
+			);
+			path = NMEA;
 			sourceTree = "<group>";
 		};
 		FE2C0C5B49AE398AA1E81F3F /* Pods */ = {
@@ -350,10 +400,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
+				D3B3ECB220E2C824004CBB9D /* NMEAParser.swift in Sources */,
+				D3B3ECAB20E23FCE004CBB9D /* NMEAReceiverManager.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
+				D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */,
 				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
+				D3B3ECB420E2C846004CBB9D /* NMEA_MWV.swift in Sources */,
+				D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */,
 				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
+				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,
+				D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */,
 				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
+				D3B3ECB820E41F3E004CBB9D /* NMEA_RMC.swift in Sources */,
+				D3B3ECB620E2C86E004CBB9D /* NMEA_BASE.swift in Sources */,
+				D3B3ECBC20E41FA6004CBB9D /* NMEA_GLL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33592VW889;
 				INFOPLIST_FILE = "Boat Control/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33592VW889;
 				INFOPLIST_FILE = "Boat Control/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (

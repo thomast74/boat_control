@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NMEA Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-fM-7Tw" userLabel="fldPageName">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NMEA Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-fM-7Tw" userLabel="lblPageName">
                                 <rect key="frame" x="15" y="35" width="945" height="24"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,17 +49,49 @@
                                     <action selector="btnSettingsTownDown:" destination="vQG-KL-dta" eventType="touchDown" id="zww-Pe-PcV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="System Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o99-g4-bMx" userLabel="lblErrorMessage">
+                                <rect key="frame" x="15" y="74" width="142.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygZ-xj-vae" userLabel="txtErrorMessage">
+                                <rect key="frame" x="167.5" y="74" width="841.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfv-uZ-DyN" userLabel="txtSentences">
+                                <rect key="frame" x="15" y="110" width="994" height="643"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iiJ-fM-7Tw" firstAttribute="leading" secondItem="zxO-AS-2BX" secondAttribute="leading" constant="15" id="0Ej-Tg-uWG"/>
+                            <constraint firstItem="ygZ-xj-vae" firstAttribute="leading" secondItem="o99-g4-bMx" secondAttribute="trailing" constant="10" id="4SX-Md-V71"/>
+                            <constraint firstItem="o99-g4-bMx" firstAttribute="leading" secondItem="zxO-AS-2BX" secondAttribute="leading" constant="15" id="6pL-os-NKm"/>
                             <constraint firstItem="iiJ-fM-7Tw" firstAttribute="trailing" secondItem="xb0-oM-5SC" secondAttribute="leading" constant="-15" id="8VV-XO-yt2"/>
                             <constraint firstItem="xb0-oM-5SC" firstAttribute="trailing" secondItem="zxO-AS-2BX" secondAttribute="trailing" constant="-15" id="8Xu-rS-daN"/>
+                            <constraint firstItem="o99-g4-bMx" firstAttribute="top" secondItem="iiJ-fM-7Tw" secondAttribute="bottom" constant="15" id="InR-yR-B0f"/>
+                            <constraint firstItem="ygZ-xj-vae" firstAttribute="centerY" secondItem="o99-g4-bMx" secondAttribute="centerY" id="YHr-fQ-a9e"/>
                             <constraint firstItem="iiJ-fM-7Tw" firstAttribute="top" secondItem="zxO-AS-2BX" secondAttribute="top" constant="15" id="h12-iO-KBd"/>
+                            <constraint firstItem="ygZ-xj-vae" firstAttribute="trailing" secondItem="zxO-AS-2BX" secondAttribute="trailing" constant="-15" id="i6K-3z-PvM"/>
+                            <constraint firstItem="Pfv-uZ-DyN" firstAttribute="trailing" secondItem="zxO-AS-2BX" secondAttribute="trailing" constant="-15" id="iZx-nW-xj0"/>
                             <constraint firstItem="xb0-oM-5SC" firstAttribute="centerY" secondItem="iiJ-fM-7Tw" secondAttribute="centerY" id="o1t-5g-cfh"/>
+                            <constraint firstItem="Pfv-uZ-DyN" firstAttribute="bottom" secondItem="zxO-AS-2BX" secondAttribute="bottom" constant="-15" id="p2S-a9-Kfh"/>
+                            <constraint firstItem="Pfv-uZ-DyN" firstAttribute="top" secondItem="o99-g4-bMx" secondAttribute="bottom" constant="15" id="q66-Rl-oA1"/>
+                            <constraint firstItem="Pfv-uZ-DyN" firstAttribute="leading" secondItem="zxO-AS-2BX" secondAttribute="leading" constant="15" id="xK1-i3-Rij"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zxO-AS-2BX"/>
                     </view>
+                    <connections>
+                        <outlet property="txtErrorMessage" destination="ygZ-xj-vae" id="1iQ-3O-gju"/>
+                        <outlet property="txtSentences" destination="Pfv-uZ-DyN" id="NPr-ev-k1a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DH-bk-WFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,8 +105,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-DK-Sgr" userLabel="lblPageName">
-                                <rect key="frame" x="15" y="35" width="904" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-DK-Sgr" userLabel="lblPageName">
+                                <rect key="frame" x="14" y="35" width="904" height="24"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

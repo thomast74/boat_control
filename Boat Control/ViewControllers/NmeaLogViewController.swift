@@ -10,6 +10,10 @@ import UIKit
 
 class NmeaLogViewController: UIViewController {
     
+    @IBOutlet weak var txtErrorMessage: UILabel!
+    @IBOutlet weak var txtSentences: UITextView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
