@@ -13,6 +13,6 @@ class NotificationNames {
     static let SETTINGS_UPDATED = NSNotification.Name("Settings.Updated")
 
     static let NMEA_CONNECTION_ERROR = NSNotification.Name("NMEA.Connection.Error")
-    static let NMEA_RECEIVED_SENTENCE = NSNotification.Name("NMEA.Received.Sentence")
+    static let NMEA_NEW_SENTENCE = NSNotification.Name("NMEA.New.Sentence")
 }
 

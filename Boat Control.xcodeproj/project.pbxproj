@@ -32,6 +32,7 @@
 		D3B3ECBC20E41FA6004CBB9D /* NMEA_GLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */; };
 		D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */; };
 		D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */; };
+		D3B3ECC220E7BD83004CBB9D /* NMEASentences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_GLL.swift; sourceTree = "<group>"; };
 		D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSQualityIndicator.swift; sourceTree = "<group>"; };
 		D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindSpeedUnits.swift; sourceTree = "<group>"; };
+		D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEASentences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,13 +215,14 @@
 		D3B3ECB020E2C80F004CBB9D /* NMEA */ = {
 			isa = PBXGroup;
 			children = (
-				D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */,
-				D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */,
+				D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */,
 				D3B3ECB520E2C86E004CBB9D /* NMEA_BASE.swift */,
-				D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */,
 				D3B3ECB920E41F73004CBB9D /* NMEA_GGA.swift */,
 				D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */,
-				D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */,
+				D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */,
+				D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */,
+				D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */,
+				D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */,
 				D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */,
 			);
 			path = NMEA;
@@ -406,6 +409,7 @@
 				D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */,
 				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
 				D3B3ECB420E2C846004CBB9D /* NMEA_MWV.swift in Sources */,
+				D3B3ECC220E7BD83004CBB9D /* NMEASentences.swift in Sources */,
 				D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */,
 				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
 				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,

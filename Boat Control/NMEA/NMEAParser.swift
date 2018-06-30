@@ -15,15 +15,18 @@ class NMEAParser {
         // get identifier
         let identifierRange = sentence.index(sentence.startIndex, offsetBy: 3)..<sentence.index(sentence.startIndex, offsetBy: 6)
         let identifier = String(sentence[identifierRange])
-
-        let nmeaClass = classFromIdentifier(identifier) as! NMEA_BASE.Type
-        let nmeaObj = nmeaClass.init(sentence: sentence)
         
-        return nmeaObj
+        if NMEASentences.ALL.contains(identifier) {
+            let nmeaClass = classFromIdentifier(identifier) as! NMEA_BASE.Type
+            let nmeaObj = nmeaClass.init(sentence: sentence)
+            return nmeaObj
+        } else {
+            return NMEA_BASE(sentence: sentence)
+        }
     }
     
     static func classFromIdentifier(_ identifier: String) -> AnyClass! {
-        print("Get class for Boat_Control.NMEA_\(identifier)")
+        //print("Get class for Boat_Control.NMEA_\(identifier)")
         let cls: AnyClass = NSClassFromString("Boat_Control.NMEA_" + identifier)!
         
         return cls
