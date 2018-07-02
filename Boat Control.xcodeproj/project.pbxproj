@@ -33,6 +33,16 @@
 		D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */; };
 		D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */; };
 		D3B3ECC220E7BD83004CBB9D /* NMEASentences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */; };
+		D3B3ECC520E8235C004CBB9D /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECC420E8235C004CBB9D /* Wind.swift */; };
+		D3B3ECC720E8244A004CBB9D /* WindHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECC620E8244A004CBB9D /* WindHistory.swift */; };
+		D3B3ECC920E8326D004CBB9D /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECC820E8326D004CBB9D /* ModelManager.swift */; };
+		D3B3ECCC20E95333004CBB9D /* WindAWATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECCB20E95333004CBB9D /* WindAWATests.swift */; };
+		D3B3ECCE20E95728004CBB9D /* WindAWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECCD20E95728004CBB9D /* WindAWSTests.swift */; };
+		D3B3ECD020E95789004CBB9D /* WindAWDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECCF20E95789004CBB9D /* WindAWDTests.swift */; };
+		D3B3ECD220E95972004CBB9D /* WindTWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD120E95972004CBB9D /* WindTWSTests.swift */; };
+		D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */; };
+		D3B3ECD620E95C93004CBB9D /* WindTWDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */; };
+		D3B3ECD820E95FBD004CBB9D /* WindTWATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +90,16 @@
 		D3B3ECBD20E56B97004CBB9D /* GPSQualityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSQualityIndicator.swift; sourceTree = "<group>"; };
 		D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindSpeedUnits.swift; sourceTree = "<group>"; };
 		D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEASentences.swift; sourceTree = "<group>"; };
+		D3B3ECC420E8235C004CBB9D /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
+		D3B3ECC620E8244A004CBB9D /* WindHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindHistory.swift; sourceTree = "<group>"; };
+		D3B3ECC820E8326D004CBB9D /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
+		D3B3ECCB20E95333004CBB9D /* WindAWATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindAWATests.swift; sourceTree = "<group>"; };
+		D3B3ECCD20E95728004CBB9D /* WindAWSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindAWSTests.swift; sourceTree = "<group>"; };
+		D3B3ECCF20E95789004CBB9D /* WindAWDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindAWDTests.swift; sourceTree = "<group>"; };
+		D3B3ECD120E95972004CBB9D /* WindTWSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTWSTests.swift; sourceTree = "<group>"; };
+		D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTWDTests.swift; sourceTree = "<group>"; };
+		D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTWATests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +156,7 @@
 		D3B3EC7120DED757004CBB9D /* Boat Control */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3ECC320E8233A004CBB9D /* DataModel */,
 				D3B3ECB020E2C80F004CBB9D /* NMEA */,
 				D3B3ECA920E23FA1004CBB9D /* NMEAReceiver */,
 				D3B3ECA020DFDA06004CBB9D /* ViewControllers */,
@@ -151,6 +172,7 @@
 		D3B3EC8A20DED75B004CBB9D /* Boat ControlTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3ECCA20E95321004CBB9D /* DataModel */,
 				D3B3EC9D20DFD531004CBB9D /* Helpers */,
 				D3B3EC8B20DED75B004CBB9D /* Boat_ControlTests.swift */,
 				D3B3EC8D20DED75B004CBB9D /* Info.plist */,
@@ -182,6 +204,7 @@
 			children = (
 				D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */,
 				D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */,
+				D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -226,6 +249,29 @@
 				D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */,
 			);
 			path = NMEA;
+			sourceTree = "<group>";
+		};
+		D3B3ECC320E8233A004CBB9D /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3ECC420E8235C004CBB9D /* Wind.swift */,
+				D3B3ECC620E8244A004CBB9D /* WindHistory.swift */,
+				D3B3ECC820E8326D004CBB9D /* ModelManager.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		D3B3ECCA20E95321004CBB9D /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3ECCB20E95333004CBB9D /* WindAWATests.swift */,
+				D3B3ECCD20E95728004CBB9D /* WindAWSTests.swift */,
+				D3B3ECCF20E95789004CBB9D /* WindAWDTests.swift */,
+				D3B3ECD120E95972004CBB9D /* WindTWSTests.swift */,
+				D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */,
+				D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		FE2C0C5B49AE398AA1E81F3F /* Pods */ = {
@@ -408,13 +454,17 @@
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
 				D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */,
 				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
+				D3B3ECC520E8235C004CBB9D /* Wind.swift in Sources */,
 				D3B3ECB420E2C846004CBB9D /* NMEA_MWV.swift in Sources */,
 				D3B3ECC220E7BD83004CBB9D /* NMEASentences.swift in Sources */,
+				D3B3ECC920E8326D004CBB9D /* ModelManager.swift in Sources */,
 				D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */,
 				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
+				D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */,
 				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,
 				D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */,
 				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
+				D3B3ECC720E8244A004CBB9D /* WindHistory.swift in Sources */,
 				D3B3ECB820E41F3E004CBB9D /* NMEA_RMC.swift in Sources */,
 				D3B3ECB620E2C86E004CBB9D /* NMEA_BASE.swift in Sources */,
 				D3B3ECBC20E41FA6004CBB9D /* NMEA_GLL.swift in Sources */,
@@ -426,7 +476,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B3EC8C20DED75B004CBB9D /* Boat_ControlTests.swift in Sources */,
+				D3B3ECD620E95C93004CBB9D /* WindTWDTests.swift in Sources */,
+				D3B3ECCE20E95728004CBB9D /* WindAWSTests.swift in Sources */,
+				D3B3ECD020E95789004CBB9D /* WindAWDTests.swift in Sources */,
 				D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */,
+				D3B3ECD220E95972004CBB9D /* WindTWSTests.swift in Sources */,
+				D3B3ECD820E95FBD004CBB9D /* WindTWATests.swift in Sources */,
+				D3B3ECCC20E95333004CBB9D /* WindAWATests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
