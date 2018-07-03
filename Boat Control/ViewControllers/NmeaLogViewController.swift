@@ -44,13 +44,13 @@ class NmeaLogViewController: UIViewController {
     }
     
     @objc func newNMEASentenceReceived(notificaiton: Notification) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .default).async {
             if notificaiton.object != nil {
                 let nmeaObj = notificaiton.object! as? NMEA_BASE
                 if nmeaObj != nil {
                     DispatchQueue.main.async {
                         var oldText = self.txtSentences.text ?? ""
-                        DispatchQueue.global(qos: .background).async {
+                        DispatchQueue.global(qos: .default).async {
                             oldText.append(nmeaObj!.raw + "\n")
                             
                             var lines = oldText.split(separator: "\n")
