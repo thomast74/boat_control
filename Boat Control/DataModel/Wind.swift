@@ -9,18 +9,20 @@
 import Foundation
 
 
-class Wind {
+public class Wind {
 
-    var timeStamp: Date
-    var _awa: Double
-    var _aws: Double
-    var _cog: Double
-    var _sog: Double
-    var _hdg: Double
+    private var _timeStamp: Date
+    private var _awa: Double
+    private var _aws: Double
+    private var _cog: Double
+    private var _sog: Double
+    private var _hdg: Double
     
-    init(windAngle: Double, windSpeed: Double, reference: String, cog: Double, sog: Double, hdg: Double) {
-        timeStamp = Date()
+    public init(windAngle: Double, windSpeed: Double, reference: String, cog: Double, sog: Double, hdg: Double) {
+        _timeStamp = Date()
         
+        
+        _aws = windSpeed
         _cog = cog
         _sog = sog
         _hdg = hdg
@@ -40,12 +42,10 @@ class Wind {
                 _awa -= 360.0
             }
         }
-        
-        _aws = windSpeed
     }
     
-    public var TimeStamp: Date {
-        return timeStamp
+    public var timeStamp: Date {
+        return _timeStamp
     }
     
     // get from NMEA MWV sentence
@@ -109,6 +109,14 @@ class Wind {
         print("A1=\(270 - (_hdg + AWA)); A2=\((90 - _cog)); Tv=\(tv); Tu=\(tu); atan2=\(atan2(tv, tu)) => \(twd)")
         
         return twd.rounded(toPlaces: 2)
+    }
+    
+    public func clone() -> Wind {
+        let clone = Wind(windAngle: 0.0, windSpeed: _aws, reference: "R", cog: _cog, sog: _sog, hdg: _hdg)
+        clone._awa = _awa
+        clone._timeStamp = _timeStamp
+        
+        return clone
     }
     
     private var tu: Double {

@@ -24,9 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print("Application Initialization")
         
-        nmeaReceiver = NMEAReceiverManager()
         modelManager = ModelManager()
-        nmeaReceiver!.setDelegate(modelManager!)
+
+        nmeaReceiver = NMEAReceiverManager()
+        nmeaReceiver?.setDelegate(modelManager!)
         
         return true
     }
