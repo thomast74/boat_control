@@ -9,9 +9,9 @@
 import Foundation
 
 
-class NMEA_GLL: NMEA_BASE {
+public class NMEA_GLL: NMEA_BASE {
     
-    required init(sentence: String) {
+    public required init(sentence: String) {
         super.init(sentence: sentence)
     }
     

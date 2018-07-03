@@ -35,6 +35,8 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     var ipAddress: String = "0.0.0.0"
     var port: UInt16 = 0
     
+    var delegate: NMEAReceiverDelegate?
+    
     override init() {
         super.init()
     }
@@ -115,6 +117,14 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
         }
     }
     
+    public func setDelegate(_ delegate: NMEAReceiverDelegate) {
+        self.delegate = delegate
+    }
+    
+    public func removeDelegate() {
+        self.delegate = nil
+    }
+    
     func filterNmeaData(_ sentence: String) -> Bool {
         if sentence.starts(with: "!AI") {
             return true
@@ -161,7 +171,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             //print(nmeaObj.toString())
             
             // send notification about type with dedicated object to dedicated Notiication Area
-            NotificationCenter.default.post(name: NotificationNames.NMEA_NEW_SENTENCE , object: nmeaObj)
+            delegate?.nmeaReceived(data: nmeaObj)
         }
         
     }

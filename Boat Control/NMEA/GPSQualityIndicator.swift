@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum GPSQualityIndicator: Int {
+public enum GPSQualityIndicator: Int {
     case FixNotAvailable = 0
     case GPSFix = 1
     case DifferentialGPSFix = 2

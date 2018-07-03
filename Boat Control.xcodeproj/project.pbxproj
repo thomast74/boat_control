@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E894751CDF425426F6FA828 /* Pods_Boat_ControlTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */; };
 		22EAA1E8E8A459E138D7608B /* Pods_Boat_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D2E29E850C5AA6085ACE3F /* Pods_Boat_Control.framework */; };
+		D33D0B8420EAC8680073527D /* NMEAReceiverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B8320EAC8680073527D /* NMEAReceiverDelegate.swift */; };
 		D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7220DED757004CBB9D /* AppDelegate.swift */; };
 		D3B3EC7C20DED758004CBB9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7A20DED758004CBB9D /* Main.storyboard */; };
 		D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */; };
@@ -43,6 +44,8 @@
 		D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */; };
 		D3B3ECD620E95C93004CBB9D /* WindTWDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */; };
 		D3B3ECD820E95FBD004CBB9D /* WindTWATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */; };
+		D3B3ECDA20EABDB0004CBB9D /* NMEA_HDG.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECD920EABDB0004CBB9D /* NMEA_HDG.swift */; };
+		D3B3ECDC20EAC4A1004CBB9D /* NMEA_VHW.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3ECDB20EAC4A1004CBB9D /* NMEA_VHW.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,7 @@
 		6D2FD4FE348E2FE17026DEE6 /* Pods-Boat Control.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat Control.release.xcconfig"; path = "Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control.release.xcconfig"; sourceTree = "<group>"; };
 		BDE0F4E09DA6378B6B316CFF /* Pods_Boat_ControlTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Boat_ControlTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA2FD59736DA70A91F60C8E /* Pods-Boat Control.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Boat Control.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control.debug.xcconfig"; sourceTree = "<group>"; };
+		D33D0B8320EAC8680073527D /* NMEAReceiverDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEAReceiverDelegate.swift; sourceTree = "<group>"; };
 		D3B3EC6F20DED757004CBB9D /* Boat Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boat Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B3EC7220DED757004CBB9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B3EC7B20DED758004CBB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTWDTests.swift; sourceTree = "<group>"; };
 		D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTWATests.swift; sourceTree = "<group>"; };
+		D3B3ECD920EABDB0004CBB9D /* NMEA_HDG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_HDG.swift; sourceTree = "<group>"; };
+		D3B3ECDB20EAC4A1004CBB9D /* NMEA_VHW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMEA_VHW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				D3B3ECAA20E23FCE004CBB9D /* NMEAReceiverManager.swift */,
+				D33D0B8320EAC8680073527D /* NMEAReceiverDelegate.swift */,
 			);
 			path = NMEAReceiver;
 			sourceTree = "<group>";
@@ -242,8 +249,10 @@
 				D3B3ECB520E2C86E004CBB9D /* NMEA_BASE.swift */,
 				D3B3ECB920E41F73004CBB9D /* NMEA_GGA.swift */,
 				D3B3ECBB20E41FA6004CBB9D /* NMEA_GLL.swift */,
+				D3B3ECD920EABDB0004CBB9D /* NMEA_HDG.swift */,
 				D3B3ECB320E2C846004CBB9D /* NMEA_MWV.swift */,
 				D3B3ECB720E41F3E004CBB9D /* NMEA_RMC.swift */,
+				D3B3ECDB20EAC4A1004CBB9D /* NMEA_VHW.swift */,
 				D3B3ECB120E2C824004CBB9D /* NMEAParser.swift */,
 				D3B3ECC120E7BD83004CBB9D /* NMEASentences.swift */,
 				D3B3ECBF20E578B4004CBB9D /* WindSpeedUnits.swift */,
@@ -449,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
+				D33D0B8420EAC8680073527D /* NMEAReceiverDelegate.swift in Sources */,
 				D3B3ECB220E2C824004CBB9D /* NMEAParser.swift in Sources */,
 				D3B3ECAB20E23FCE004CBB9D /* NMEAReceiverManager.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
@@ -460,11 +470,13 @@
 				D3B3ECC920E8326D004CBB9D /* ModelManager.swift in Sources */,
 				D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */,
 				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
+				D3B3ECDC20EAC4A1004CBB9D /* NMEA_VHW.swift in Sources */,
 				D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */,
 				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,
 				D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */,
 				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
 				D3B3ECC720E8244A004CBB9D /* WindHistory.swift in Sources */,
+				D3B3ECDA20EABDB0004CBB9D /* NMEA_HDG.swift in Sources */,
 				D3B3ECB820E41F3E004CBB9D /* NMEA_RMC.swift in Sources */,
 				D3B3ECB620E2C86E004CBB9D /* NMEA_BASE.swift in Sources */,
 				D3B3ECBC20E41FA6004CBB9D /* NMEA_GLL.swift in Sources */,

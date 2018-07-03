@@ -9,7 +9,7 @@
 import Foundation
 
 
-class NMEA_BASE {
+public class NMEA_BASE {
     
     var _sentence: String
     
@@ -18,7 +18,7 @@ class NMEA_BASE {
     var _data: [Substring.SubSequence]
     var _checksum: String
     
-    required init(sentence: String) {
+    public required init(sentence: String) {
         _sentence = sentence
 
         let talkerRange = _sentence.index(_sentence.startIndex, offsetBy: 1)..._sentence.index(_sentence.startIndex, offsetBy: 2)

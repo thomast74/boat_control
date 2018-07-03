@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WindSpeedUnits: String {
+public enum WindSpeedUnits: String {
     case KilometerPerHour = "K"
     case MeterPerSecond = "M"
     case Knots = "N"

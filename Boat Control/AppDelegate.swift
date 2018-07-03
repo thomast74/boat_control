@@ -12,14 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var modelManager: ModelManager?
     var nmeaReceiver: NMEAReceiverManager?
 
+    //
+    // inject into each ViewController the ModelManager
+    //
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print("Application Initialization")
         
         nmeaReceiver = NMEAReceiverManager()
+        modelManager = ModelManager()
+        nmeaReceiver!.setDelegate(modelManager!)
         
         return true
     }

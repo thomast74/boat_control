@@ -18,7 +18,7 @@ class WindHistory {
     // when a new wind object is generated it must be added to the history with a time stamp
     // everything that is older then x hours (from settings) will be deleted
     
-    public func add(wind: Wind) {
+    public func add(_ wind: Wind) {
         _history.append(wind)
     }
     
