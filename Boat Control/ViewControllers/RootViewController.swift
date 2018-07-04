@@ -22,6 +22,7 @@ class RootViewController: UIPageViewController {
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [
+            self.storyboard!.instantiateViewController(withIdentifier: "Wind History"),
             self.storyboard!.instantiateViewController(withIdentifier: "NMEA Log")
         ]
     }()

@@ -38,8 +38,6 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
         super.viewWillDisappear(animated)
         
         print("NmeaLogViewController: viewWillDisappear")
-        
-        modelManager?.removeDelegate()
     }
     
     @IBAction func btnSettingsTownDown(_ sender: Any) {

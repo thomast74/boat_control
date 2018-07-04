@@ -57,6 +57,7 @@ class ModelManager: NMEAReceiverDelegate {
     }
     
     public func setDelegate(_ delegate: ModelManagerDelegate) {
+        print("Received new deledate: \(type(of: delegate))")
         _delegate = delegate
     }
     

@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DH-bk-WFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="944"/>
+            <point key="canvasLocation" x="-58" y="1139"/>
         </scene>
         <!--Settings-->
         <scene sceneID="xmF-dI-dC9">
@@ -105,8 +105,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-DK-Sgr" userLabel="lblPageName">
-                                <rect key="frame" x="14" y="35" width="904" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-DK-Sgr" userLabel="lblPageName">
+                                <rect key="frame" x="15" y="35" width="904" height="24"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -221,7 +221,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Id-z8-Q3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="259"/>
+            <point key="canvasLocation" x="-58" y="1974"/>
+        </scene>
+        <!--Wind History-->
+        <scene sceneID="OH7-iq-G8h">
+            <objects>
+                <viewController storyboardIdentifier="Wind History" id="ftm-kz-IVh" userLabel="Wind History" customClass="WindHistoryViewController" customModule="Boat_Control" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YtA-z8-iOu">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSS-Xm-Tvd" userLabel="lblPageName">
+                                <rect key="frame" x="15" y="35" width="945" height="24"/>
+                                <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ak-5S-IPO" userLabel="btnSettings">
+                                <rect key="frame" x="975" y="30" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="vDW-7m-SNA"/>
+                                    <constraint firstAttribute="width" constant="34" id="xuB-BQ-YlL"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="CogIcon"/>
+                                <connections>
+                                    <action selector="btnSettingsTownDown:" destination="ftm-kz-IVh" eventType="touchDown" id="zxs-Bg-2eS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0ak-5S-IPO" firstAttribute="centerY" secondItem="WSS-Xm-Tvd" secondAttribute="centerY" id="2Ti-zn-KYG"/>
+                            <constraint firstItem="WSS-Xm-Tvd" firstAttribute="top" secondItem="F7o-eV-m83" secondAttribute="top" constant="15" id="Drz-6l-Bej"/>
+                            <constraint firstItem="WSS-Xm-Tvd" firstAttribute="trailing" secondItem="0ak-5S-IPO" secondAttribute="leading" constant="-15" id="W1z-KC-t9w"/>
+                            <constraint firstItem="WSS-Xm-Tvd" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="15" id="mGv-pY-HRy"/>
+                            <constraint firstItem="0ak-5S-IPO" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-15" id="pXO-01-HHB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F7o-eV-m83"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IdR-hh-zwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="1139"/>
         </scene>
     </scenes>
     <resources>
