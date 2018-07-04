@@ -18,7 +18,7 @@
         <!--Root View Controller-->
         <scene sceneID="LLo-w7-dY8">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="foG-sq-Pt7" userLabel="Root View Controller" customClass="RootViewController" customModule="Boat_Control" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="foG-sq-Pt7" userLabel="Root View Controller" customClass="RootViewController" customModule="Boat_Control" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHc-Qb-TI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-58" y="259"/>
@@ -249,21 +249,103 @@
                                     <action selector="btnSettingsTownDown:" destination="ftm-kz-IVh" eventType="touchDown" id="zxs-Bg-2eS"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCV-EA-jme" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="79" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="5Ne-tE-Xr1"/>
+                                    <constraint firstAttribute="height" constant="110" id="sov-8J-9bk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfg-RU-mPk" userLabel="Apparent Wind Direction" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="309" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="tOP-45-vsd"/>
+                                    <constraint firstAttribute="width" constant="240" id="uLc-aV-YBa"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h58-Gn-nFf" userLabel="True Wind Angle" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="424" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="X3a-ZI-HYh"/>
+                                    <constraint firstAttribute="height" constant="110" id="lub-wV-PXe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPe-fi-l61" userLabel="True Wind Speed" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="539" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="PJD-ZB-c1Y"/>
+                                    <constraint firstAttribute="width" constant="240" id="XgW-t4-uMB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UbI-xG-joy" userLabel="True Wind Direction" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="654" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="aEj-Ew-dRL"/>
+                                    <constraint firstAttribute="height" constant="110" id="px2-jb-PUm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSl-0f-flP" userLabel="Aparent Wind Speed" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                                <rect key="frame" x="10" y="194" width="240" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="Mvn-Ed-U8A"/>
+                                    <constraint firstAttribute="width" constant="240" id="r2w-Or-cDq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0ak-5S-IPO" firstAttribute="centerY" secondItem="WSS-Xm-Tvd" secondAttribute="centerY" id="2Ti-zn-KYG"/>
+                            <constraint firstItem="fCV-EA-jme" firstAttribute="top" secondItem="WSS-Xm-Tvd" secondAttribute="bottom" constant="20" id="32G-gH-2Qu"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="top" secondItem="F7o-eV-m83" secondAttribute="top" constant="15" id="Drz-6l-Bej"/>
+                            <constraint firstItem="kSl-0f-flP" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="J85-Cp-MR9"/>
+                            <constraint firstItem="Qfg-RU-mPk" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="JcA-Gm-A9m"/>
+                            <constraint firstItem="EPe-fi-l61" firstAttribute="top" secondItem="h58-Gn-nFf" secondAttribute="bottom" constant="5" id="KgB-DC-sXC"/>
+                            <constraint firstItem="Qfg-RU-mPk" firstAttribute="top" secondItem="kSl-0f-flP" secondAttribute="bottom" constant="5" id="RHd-aH-990"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="trailing" secondItem="0ak-5S-IPO" secondAttribute="leading" constant="-15" id="W1z-KC-t9w"/>
+                            <constraint firstItem="kSl-0f-flP" firstAttribute="top" secondItem="fCV-EA-jme" secondAttribute="bottom" constant="5" id="WQc-Lb-191"/>
+                            <constraint firstItem="h58-Gn-nFf" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="XTo-xc-m2j"/>
+                            <constraint firstItem="UbI-xG-joy" firstAttribute="top" secondItem="EPe-fi-l61" secondAttribute="bottom" constant="5" id="YEc-b1-mNn"/>
+                            <constraint firstItem="EPe-fi-l61" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="l7f-1f-whL"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="15" id="mGv-pY-HRy"/>
                             <constraint firstItem="0ak-5S-IPO" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-15" id="pXO-01-HHB"/>
+                            <constraint firstItem="fCV-EA-jme" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="10" id="pmH-mB-d7Y"/>
+                            <constraint firstItem="h58-Gn-nFf" firstAttribute="top" secondItem="Qfg-RU-mPk" secondAttribute="bottom" constant="5" id="pns-d4-og4"/>
+                            <constraint firstItem="UbI-xG-joy" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="y5V-tR-9dI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="F7o-eV-m83"/>
                     </view>
+                    <connections>
+                        <outlet property="aparentWindAngle" destination="fCV-EA-jme" id="KH6-a2-iGm"/>
+                        <outlet property="aparentWindDirection" destination="Qfg-RU-mPk" id="yzC-e6-Sfa"/>
+                        <outlet property="aparentWindSpeed" destination="kSl-0f-flP" id="0Pn-kV-cbd"/>
+                        <outlet property="trueWindAngle" destination="h58-Gn-nFf" id="f18-0t-Bgf"/>
+                        <outlet property="trueWindDirection" destination="UbI-xG-joy" id="af6-x2-oeD"/>
+                        <outlet property="trueWindSpeed" destination="EPe-fi-l61" id="B3R-DL-Iqm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdR-hh-zwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042" y="1139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Pbg-sD-WvD">
+            <objects>
+                <viewController id="cSd-Py-wH0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JhQ-eA-eey">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xMV-ZF-F6V"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfz-yr-dYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

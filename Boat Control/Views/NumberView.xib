@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Flat-it - StereoGothic-800.otf">
+            <string>StereoGothic-800</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+            <connections>
+                <outlet property="measurement" destination="wSK-I3-36w" id="hee-Ld-Meu"/>
+                <outlet property="number" destination="NKB-Mk-d7c" id="BOC-Rk-pVE"/>
+                <outlet property="type" destination="LtZ-YE-weT" id="Cg8-AX-RFx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtZ-YE-weT" userLabel="Type">
+                    <rect key="frame" x="10" y="10" width="295" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="LrV-YH-FM2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="18"/>
+                    <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="4"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSK-I3-36w" userLabel="Measurement">
+                    <rect key="frame" x="315" y="13.5" width="50" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="rWf-ur-2DX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="18"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKB-Mk-d7c" userLabel="Number">
+                    <rect key="frame" x="10" y="44" width="375" height="158"/>
+                    <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="28"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="LtZ-YE-weT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="JJl-EN-Wna"/>
+                <constraint firstItem="wSK-I3-36w" firstAttribute="leading" secondItem="LtZ-YE-weT" secondAttribute="trailing" constant="10" id="Mk8-ID-dMr"/>
+                <constraint firstItem="NKB-Mk-d7c" firstAttribute="top" secondItem="LtZ-YE-weT" secondAttribute="bottom" constant="10" id="OrU-YY-lwz"/>
+                <constraint firstItem="wSK-I3-36w" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-10" id="X5m-ot-bmR"/>
+                <constraint firstItem="NKB-Mk-d7c" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-10" id="YSW-Ho-V8T"/>
+                <constraint firstItem="NKB-Mk-d7c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="ZuM-YU-gu1"/>
+                <constraint firstItem="wSK-I3-36w" firstAttribute="centerY" secondItem="LtZ-YE-weT" secondAttribute="centerY" id="cSS-Av-ebR"/>
+                <constraint firstItem="LtZ-YE-weT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="rlp-rg-FMh"/>
+                <constraint firstItem="NKB-Mk-d7c" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="10" id="vDW-UY-QPF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="-133"/>
+        </view>
+    </objects>
+</document>

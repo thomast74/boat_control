@@ -16,7 +16,7 @@ class RootViewController: UIPageViewController {
         dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
-            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+            setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
         }
     }
     

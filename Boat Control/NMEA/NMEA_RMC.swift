@@ -39,7 +39,7 @@ public class NMEA_RMC: NMEA_BASE {
     }
     
     public var SpeedOverGround: Double {
-        return Double(_data[6])!
+        return (Double(_data[6].isEmpty ? "0.0" : _data[6])?.rounded(toPlaces: 1))!
     }
     
     public var CourseOverGround: Double {

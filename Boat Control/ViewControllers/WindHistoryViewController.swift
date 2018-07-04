@@ -12,10 +12,30 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     
     var modelManager: ModelManager?
     
+    @IBOutlet weak var aparentWindAngle: NumberView!
+    @IBOutlet weak var aparentWindSpeed: NumberView!
+    @IBOutlet weak var aparentWindDirection: NumberView!
+    @IBOutlet weak var trueWindAngle: NumberView!
+    @IBOutlet weak var trueWindSpeed: NumberView!
+    @IBOutlet weak var trueWindDirection: NumberView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("WindHistoryViewController: viewDidLoad")
+        aparentWindAngle.type.text = "AWA"
+        aparentWindAngle.measurement.text = "°"
+        aparentWindSpeed.type.text = "AWS"
+        aparentWindSpeed.measurement.text = "kn"
+        aparentWindDirection.type.text = "AWD"
+        aparentWindDirection.measurement.text = "°T"
+        trueWindAngle.type.text = "TWA"
+        trueWindAngle.measurement.text = "°"
+        trueWindSpeed.type.text = "TWS"
+        trueWindSpeed.measurement.text = "kn"
+        trueWindDirection.type.text = "TWD"
+        trueWindDirection.measurement.text = "°T"
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,6 +70,14 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     }
     
     func modelManager(didReceiveWind wind: Wind) {
+        DispatchQueue.main.async {
+            self.aparentWindAngle.number.text = "\(wind.AWA)"
+            self.aparentWindSpeed.number.text = "\(wind.AWS)"
+            self.aparentWindDirection.number.text = "\(wind.AWD)"
+            self.trueWindAngle.number.text = "\(wind.TWA)"
+            self.trueWindSpeed.number.text = "\(wind.TWS)"
+            self.trueWindDirection.number.text = "\(wind.TWD)"
+        }
     }
     
     func modelManager(didReceiveWindHistory windHistory: [Wind]) {
