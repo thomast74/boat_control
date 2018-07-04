@@ -13,25 +13,5 @@ public protocol ModelManagerDelegate {
     func modelManager(didReceiveWindHistory windHistory: [Wind])
     func modelManager(didReceiveNavigation navigation: Navigation)
     func modelManager(didReceiveSentence nmeaObj: NMEA_BASE)
-}
-
-
-public class ModelManagerDelegateImpl: ModelManagerDelegate {
-
-    public func modelManager(didReceiveWind wind: Wind) {
-
-    }
-    
-    public func modelManager(didReceiveWindHistory windHistory: [Wind]) {
-
-    }
-    
-    public func modelManager(didReceiveNavigation navigation: Navigation) {
-
-    }
-    
-    public func modelManager(didReceiveSentence nmeaObj: NMEA_BASE) {
-
-    }
-
+    func modelManager(didReceiveSystemMessage message: String, of type: MessageType)
 }

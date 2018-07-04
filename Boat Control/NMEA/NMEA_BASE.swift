@@ -20,7 +20,7 @@ public class NMEA_BASE {
     
     public required init(sentence: String) {
         _sentence = sentence
-
+        
         let talkerRange = _sentence.index(_sentence.startIndex, offsetBy: 1)..._sentence.index(_sentence.startIndex, offsetBy: 2)
         let identifierRange = _sentence.index(_sentence.startIndex, offsetBy: 3)..._sentence.index(_sentence.startIndex, offsetBy: 5)
         let endOfDataIndex = _sentence.index(of: "*")!

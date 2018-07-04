@@ -90,6 +90,11 @@ class ModelManager: NMEAReceiverDelegate {
         
         _delegate?.modelManager(didReceiveSentence: data)
     }
+    
+    public func socket(received message: String, of type: MessageType) {
+        _delegate?.modelManager(didReceiveSystemMessage: message, of: type)
+
+    }
 
     private func processNmea(data: NMEA_MWV) {
         concurrentNMEA_MWVQueue.async(flags: .barrier) {

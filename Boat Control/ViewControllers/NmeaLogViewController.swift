@@ -69,6 +69,21 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
         }
     }
     
+    func modelManager(didReceiveSystemMessage message: String, of type: MessageType) {
+        DispatchQueue.main.async {
+            self.txtErrorMessage.text = message
+            
+            switch (type) {
+            case .Information:
+                self.txtErrorMessage.textColor = UIColor.orange
+                break
+            case .Error:
+                self.txtErrorMessage.textColor = UIColor.red
+                break
+            }
+        }
+    }
+    
     func modelManager(didReceiveWind wind: Wind) {
     }
     

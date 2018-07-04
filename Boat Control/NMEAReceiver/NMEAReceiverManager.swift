@@ -72,6 +72,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             } catch {
                 print(error)
             }
+            delegate?.socket(received: "TCP did connect", of: .Information)
             print("TCP Socket ready for receiving")
             break;
         case 1: // UDP
@@ -92,6 +93,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             } catch {
                 print(error)
             }
+            delegate?.socket(received: "UDP did connect", of: .Information)
             print("UDP Socket ready for receiving")
             break
         default:
@@ -148,10 +150,17 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
         sentenceReceived(data)
     }
     
-    public func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-        NotificationCenter.default.post(name: NotificationNames.NMEA_CONNECTION_ERROR , object: error)
+    public func udpSocket(_ sock: GCDAsyncUdpSocket, didConnectToAddress address: Data) {
+        delegate?.socket(received: "UDP did connect to: \(String.init(data: address, encoding: .utf8) ?? "?"))", of: .Information)
     }
     
+    public func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
+        delegate?.socket(received: "UDP Connection Closed: " + (error != nil ? error!.localizedDescription : "No further details"), of: .Error)
+    }
+    
+    public func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        delegate?.socket(received: "Did connect to host \(host):\(port)", of: .Information)
+    }
     public func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         sentenceReceived(data)
         socketTcp!.readData(to: String("\r\n").data(using: .utf8)!, withTimeout: -1, tag: 0)
@@ -161,7 +170,11 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
         let rawData = String.init(data: data, encoding: .utf8) ?? "?"
         let sentencesSeq = rawData.split(separator: "\r\n")
         for sentenceSeq in sentencesSeq {
-            let sentence = String(sentenceSeq)
+            var sentence = String(sentenceSeq)
+            if sentence.starts(with: "*HELLO*") {
+                sentence = sentence.replacingOccurrences(of: "*HELLO*", with: "")
+            }
+
             if filterNmeaData(sentence) {
                 continue
             }
@@ -177,11 +190,6 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     }
     
     public func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        if err != nil {
-            NotificationCenter.default.post(name: NotificationNames.NMEA_CONNECTION_ERROR , object: err!)
-            print(err!.localizedDescription)
-        } else {
-            NotificationCenter.default.post(name: NotificationNames.NMEA_CONNECTION_ERROR , object: "Connection did disconnect")
-        }
+        delegate?.socket(received: "TCP Connection Closed: " + (err != nil ? err!.localizedDescription : "No further details"), of: .Error)
     }
 }
