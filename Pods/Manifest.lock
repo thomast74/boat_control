@@ -1,16 +1,25 @@
 PODS:
   - CocoaAsyncSocket (7.6.3)
+  - Swinject (2.4.1)
+  - SwinjectStoryboard (2.0.1):
+    - Swinject (~> 2.4)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
+  - Swinject
+  - SwinjectStoryboard
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CocoaAsyncSocket
+    - Swinject
+    - SwinjectStoryboard
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  Swinject: f7f15a9672e99328c1f07f277091087917215700
+  SwinjectStoryboard: ad2529218a1504cc888040ee56c13d7cb1cc7998
 
-PODFILE CHECKSUM: 2b6928d76edf7480230e2a703d960ad83e5dd09b
+PODFILE CHECKSUM: 2d60fda9f429015ba8c00326b7404a2704f8aaf3
 
 COCOAPODS: 1.5.3

@@ -13,8 +13,7 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
     @IBOutlet weak var txtErrorMessage: UILabel!
     @IBOutlet weak var txtSentences: UITextView!
     
-    private var _modelManager: ModelManager?
-    
+    var modelManager: ModelManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,7 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
         
         print("NmeaLogViewController: viewWillAppear")
         
-        _modelManager?.setDelegate(self)
+        modelManager?.setDelegate(self)
         txtSentences.text = ""
     }
     
@@ -40,7 +39,7 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
         
         print("NmeaLogViewController: viewWillDisappear")
         
-        _modelManager?.removeDelegate()
+        modelManager?.removeDelegate()
     }
     
     @IBAction func btnSettingsTownDown(_ sender: Any) {

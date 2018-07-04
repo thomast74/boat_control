@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwinjectStoryboard
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print("Application Initialization")
         
-        modelManager = ModelManager()
-
-        nmeaReceiver = NMEAReceiverManager()
+        modelManager = SwinjectStoryboard.defaultContainer.resolve(ModelManager.self)
+        nmeaReceiver = SwinjectStoryboard.defaultContainer.resolve(NMEAReceiverManager.self)
+        
         nmeaReceiver?.setDelegate(modelManager!)
         
         return true
