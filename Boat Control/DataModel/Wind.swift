@@ -106,7 +106,7 @@ public class Wind {
             twd -= 360.0
         }
         
-        print("A1=\(270 - (_hdg + AWA)); A2=\((90 - _cog)); Tv=\(tv); Tu=\(tu); atan2=\(atan2(tv, tu)) => \(twd)")
+        //print("A1=\(270 - (_hdg + AWA)); A2=\((90 - _cog)); Tv=\(tv); Tu=\(tu); atan2=\(atan2(tv, tu)) => \(twd)")
         
         return twd.rounded(toPlaces: 2)
     }

@@ -16,6 +16,8 @@
 		D33D0B8C20ED549D0073527D /* WindHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B8B20ED549D0073527D /* WindHistoryViewController.swift */; };
 		D33D0B8F20ED59070073527D /* NumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33D0B8E20ED59070073527D /* NumberView.xib */; };
 		D33D0B9120ED5E770073527D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9020ED5E770073527D /* NumberView.swift */; };
+		D33D0B9720EE5B010073527D /* GeoMagneticField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9620EE5B010073527D /* GeoMagneticField.swift */; };
+		D33D0B9920EE5B1F0073527D /* GeoMagneticFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */; };
 		D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7220DED757004CBB9D /* AppDelegate.swift */; };
 		D3B3EC7C20DED758004CBB9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7A20DED758004CBB9D /* Main.storyboard */; };
 		D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		D33D0B8B20ED549D0073527D /* WindHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindHistoryViewController.swift; sourceTree = "<group>"; };
 		D33D0B8E20ED59070073527D /* NumberView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberView.xib; sourceTree = "<group>"; };
 		D33D0B9020ED5E770073527D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
+		D33D0B9620EE5B010073527D /* GeoMagneticField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoMagneticField.swift; sourceTree = "<group>"; };
+		D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoMagneticFieldTests.swift; sourceTree = "<group>"; };
 		D3B3EC6F20DED757004CBB9D /* Boat Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boat Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B3EC7220DED757004CBB9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B3EC7B20DED758004CBB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 				D33D0B8520EC03240073527D /* Navigation.swift */,
 				D3B3ECC420E8235C004CBB9D /* Wind.swift */,
 				D3B3ECC620E8244A004CBB9D /* WindHistory.swift */,
+				D33D0B9620EE5B010073527D /* GeoMagneticField.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				D3B3ECD120E95972004CBB9D /* WindTWSTests.swift */,
 				D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */,
 				D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */,
+				D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -466,12 +472,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Boat Control/Pods-Boat Control-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
@@ -496,6 +504,7 @@
 				D33D0B8A20ED44640073527D /* SwinjectStoryboard.swift in Sources */,
 				D33D0B8C20ED549D0073527D /* WindHistoryViewController.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
+				D33D0B9720EE5B010073527D /* GeoMagneticField.swift in Sources */,
 				D3B3ECBE20E56B97004CBB9D /* GPSQualityIndicator.swift in Sources */,
 				D3B3EC9C20DFD4C2004CBB9D /* Queue.swift in Sources */,
 				D3B3ECC520E8235C004CBB9D /* Wind.swift in Sources */,
@@ -527,6 +536,7 @@
 				D3B3ECD620E95C93004CBB9D /* WindTWDTests.swift in Sources */,
 				D3B3ECCE20E95728004CBB9D /* WindAWSTests.swift in Sources */,
 				D3B3ECD020E95789004CBB9D /* WindAWDTests.swift in Sources */,
+				D33D0B9920EE5B1F0073527D /* GeoMagneticFieldTests.swift in Sources */,
 				D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */,
 				D3B3ECD220E95972004CBB9D /* WindTWSTests.swift in Sources */,
 				D3B3ECD820E95FBD004CBB9D /* WindTWATests.swift in Sources */,

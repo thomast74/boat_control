@@ -181,7 +181,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             
             // parse sentence and store into dedicated object
             let nmeaObj = NMEAParser.convert(sentence: sentence)
-            //print(nmeaObj.toString())
+            print(nmeaObj.toString())
             
             // send notification about type with dedicated object to dedicated Notiication Area
             delegate?.nmeaReceived(data: nmeaObj)

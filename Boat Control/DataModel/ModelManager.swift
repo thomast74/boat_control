@@ -40,6 +40,7 @@ class ModelManager: NMEAReceiverDelegate {
     private var _wind: Wind
     private let _windHistory: WindHistory
     private let _navigation: Navigation
+    private var _geoMagneticField: GeomagneticField?
     
     // object should be singleton so when notificaton is received it is easy to get the data
     // must be thread safe sooo!!!!!!
@@ -63,6 +64,14 @@ class ModelManager: NMEAReceiverDelegate {
     
     public func removeDelegate() {
         _delegate = nil
+    }
+    
+    public var geomagneticField: GeomagneticField? {
+        var geoMF: GeomagneticField? = nil
+        concurrentGPSQueue.sync {
+            geoMF = _geoMagneticField
+        }
+        return geoMF
     }
     
     public func nmeaReceived(data: NMEA_BASE) {
@@ -186,10 +195,6 @@ class ModelManager: NMEAReceiverDelegate {
                 self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
                 self._navigation.courseOverGround = self._lastRMC!.CourseOverGround
             }
-            
-            let (headingMagnetic, headingTrue) = self.getLatestHeading()
-            self._navigation.headingMagnetic = headingMagnetic
-            self._navigation.headingTrue = headingTrue
 
             let (latitude, latitudeDirection, longitude, longitudeDirection, timeUTC) = self.getLatestGPSCoordinates()
             self._navigation.latitude = latitude
@@ -197,6 +202,13 @@ class ModelManager: NMEAReceiverDelegate {
             self._navigation.longitude = longitude
             self._navigation.longitudeDirection = longitudeDirection
             self._navigation.gpsTimeStamp = timeUTC
+
+            self.setGeomagneticField(latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection)
+            
+            let (headingMagnetic, headingTrue) = self.getLatestHeading()
+            self._navigation.headingMagnetic = headingMagnetic
+            self._navigation.headingTrue = headingTrue
+
 
             self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
         }
@@ -228,7 +240,7 @@ class ModelManager: NMEAReceiverDelegate {
             headingMagnetic = _lastVHW!.MagneticHeading
         }
         
-        let headingTrue = headingMagnetic // TODO: Convert from Magnetic to True North
+        let headingTrue = _geoMagneticField?.magneticToTrue(magneticDegree: headingMagnetic) ?? headingMagnetic
         
         return (headingMagnetic, headingTrue)
     }
@@ -289,6 +301,19 @@ class ModelManager: NMEAReceiverDelegate {
         }
     }
     
-    
+    private func setGeomagneticField(latitude: Double, latitudeDirection: String, longitude: Double, longitudeDirection: String) {
+        var geoLatitude = latitude/100
+        var geoLongitude = longitude/100
+        
+        if latitudeDirection == "S" && geoLatitude > 0 {
+            geoLatitude *= -1
+        }
+        
+        if longitudeDirection == "W" && geoLongitude > 0 {
+            geoLongitude *= -1
+        }
+        
+        self._geoMagneticField = GeomagneticField(gdLatitudeDeg: geoLatitude, gdLongitudeDeg: geoLongitude)
+    }
     
 }

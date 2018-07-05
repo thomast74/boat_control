@@ -61,10 +61,10 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         DispatchQueue.main.async {
             self.aparentWindAngle.value = wind.AWA
             self.aparentWindSpeed.value = wind.AWS
-            self.aparentWindDirection.value = wind.AWD
+            self.aparentWindDirection.value = self.modelManager?.geomagneticField?.trueToMagnetic(trueDegree: wind.AWD) ?? wind.AWD
             self.trueWindAngle.value = wind.TWA
             self.trueWindSpeed.value = wind.TWS
-            self.trueWindDirection.value =  wind.TWD
+            self.trueWindDirection.value =  self.modelManager?.geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ??  wind.TWD
         }
     }
     
