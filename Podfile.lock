@@ -1,25 +1,31 @@
 PODS:
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - CocoaAsyncSocket (7.6.3)
   - Swinject (2.4.1)
   - SwinjectStoryboard (2.0.1):
     - Swinject (~> 2.4)
 
 DEPENDENCIES:
+  - Charts
   - CocoaAsyncSocket
   - Swinject
   - SwinjectStoryboard
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Charts
     - CocoaAsyncSocket
     - Swinject
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Swinject: f7f15a9672e99328c1f07f277091087917215700
   SwinjectStoryboard: ad2529218a1504cc888040ee56c13d7cb1cc7998
 
-PODFILE CHECKSUM: 2d60fda9f429015ba8c00326b7404a2704f8aaf3
+PODFILE CHECKSUM: 6799e6a8c7dacb6347fd37671f984b2839060bda
 
 COCOAPODS: 1.5.3

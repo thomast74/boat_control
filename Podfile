@@ -6,6 +6,9 @@ target 'Boat Control' do
   pod 'CocoaAsyncSocket'
   pod 'Swinject'
   pod 'SwinjectStoryboard'
+  pod 'Charts'
+  pod 'GeoMagnetism'
+  
 
   target 'Boat ControlTests' do
     inherit! :search_paths
