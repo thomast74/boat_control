@@ -256,6 +256,13 @@
                                     <constraint firstAttribute="width" constant="240" id="5Ne-tE-Xr1"/>
                                     <constraint firstAttribute="height" constant="110" id="sov-8J-9bk"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="AWA"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="°"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfg-RU-mPk" userLabel="Apparent Wind Direction" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="10" y="309" width="240" height="110"/>
@@ -264,6 +271,13 @@
                                     <constraint firstAttribute="height" constant="110" id="tOP-45-vsd"/>
                                     <constraint firstAttribute="width" constant="240" id="uLc-aV-YBa"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="AWD"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="°M"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h58-Gn-nFf" userLabel="True Wind Angle" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="10" y="424" width="240" height="110"/>
@@ -272,6 +286,13 @@
                                     <constraint firstAttribute="width" constant="240" id="X3a-ZI-HYh"/>
                                     <constraint firstAttribute="height" constant="110" id="lub-wV-PXe"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="TWA"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="°"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPe-fi-l61" userLabel="True Wind Speed" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="10" y="539" width="240" height="110"/>
@@ -280,6 +301,13 @@
                                     <constraint firstAttribute="height" constant="110" id="PJD-ZB-c1Y"/>
                                     <constraint firstAttribute="width" constant="240" id="XgW-t4-uMB"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="TWS"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="kn"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UbI-xG-joy" userLabel="True Wind Direction" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="10" y="654" width="240" height="110"/>
@@ -288,6 +316,13 @@
                                     <constraint firstAttribute="width" constant="240" id="aEj-Ew-dRL"/>
                                     <constraint firstAttribute="height" constant="110" id="px2-jb-PUm"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="TWD"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="°M"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSl-0f-flP" userLabel="Aparent Wind Speed" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="10" y="194" width="240" height="110"/>
@@ -296,6 +331,13 @@
                                     <constraint firstAttribute="height" constant="110" id="Mvn-Ed-U8A"/>
                                     <constraint firstAttribute="width" constant="240" id="r2w-Or-cDq"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="AWS"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="kn"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -332,20 +374,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdR-hh-zwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042" y="1139"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Pbg-sD-WvD">
-            <objects>
-                <viewController id="cSd-Py-wH0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JhQ-eA-eey">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="xMV-ZF-F6V"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dfz-yr-dYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

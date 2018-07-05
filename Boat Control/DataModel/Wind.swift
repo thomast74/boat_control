@@ -89,7 +89,7 @@ public class Wind {
     
     // calculation from SOG, COG and HDG and AWx data
     public var TWS: Double {
-        return sqrt(tu*tu+tv*tv).rounded(toPlaces: 1)
+        return sqrt(tu*tu+tv*tv).rounded(toPlaces: 2)
     }
     
     // calculation from SOG, COG and HDG and AWx data
