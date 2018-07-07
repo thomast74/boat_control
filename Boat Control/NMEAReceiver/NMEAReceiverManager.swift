@@ -141,9 +141,14 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     }
     
     func readSettings() {
-        connectionType = Int(UserDefaults.standard.value(forKey: "nmea_connection_type") as? String ?? "0")!
-        ipAddress = UserDefaults.standard.value(forKey: "nmea_ip_address") as! String
-        port = UInt16(UserDefaults.standard.value(forKey: "nmea_port") as? String ?? "0")!
+        let udConnectionType = UserDefaults.standard.value(forKey: "nmea_connection_type") as? String
+        let udIpAddress = UserDefaults.standard.value(forKey: "nmea_ip_address") as? String
+        let udPort = UserDefaults.standard.value(forKey: "nmea_port") as? String
+        
+        
+        connectionType = Int(udConnectionType ?? "0")!
+        ipAddress = udIpAddress ?? "0.0.0.0"
+        port = UInt16(udPort ?? "0")!
     }
     
     public func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
@@ -179,9 +184,13 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
                 continue
             }
             
+            if (sentence.first != "!" && sentence.first != "$") || sentence.index(of: "*") == nil {
+                continue
+            }
+            
             // parse sentence and store into dedicated object
             let nmeaObj = NMEAParser.convert(sentence: sentence)
-            print(nmeaObj.toString())
+            //print(nmeaObj.toString())
             
             // send notification about type with dedicated object to dedicated Notiication Area
             delegate?.nmeaReceived(data: nmeaObj)

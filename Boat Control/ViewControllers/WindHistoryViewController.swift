@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Charts
 
-class WindHistoryViewController: UIViewController, ModelManagerDelegate {
+class WindHistoryViewController: UIViewController, ModelManagerDelegate, ChartViewDelegate {
     
     var modelManager: ModelManager?
     
@@ -18,12 +19,16 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     @IBOutlet weak var trueWindAngle: NumberView!
     @IBOutlet weak var trueWindSpeed: NumberView!
     @IBOutlet weak var trueWindDirection: NumberView!
+    @IBOutlet weak var twdHistoryChart: ScatterChartView!
+    @IBOutlet weak var twsHistoryChart: ScatterChartView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("WindHistoryViewController: viewDidLoad")
+        configureTWDHistoryChart()
+        configureTWSHistoryChart()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,6 +49,60 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         print("WindHistoryViewController: viewWillDisappear")
     }
     
+    
+    func configureTWDHistoryChart() {
+        twdHistoryChart.delegate = self
+        twdHistoryChart.chartDescription?.enabled = false
+        twdHistoryChart.dragEnabled = true
+        twdHistoryChart.setScaleEnabled(true)
+        twdHistoryChart.pinchZoomEnabled = false
+        twdHistoryChart.rightAxis.enabled = false
+        twdHistoryChart.legend.enabled = false
+
+        let leftAxis = twdHistoryChart.leftAxis
+        leftAxis.inverted = true
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.drawBottomYLabelEntryEnabled = false
+        leftAxis.axisMinimum = 0
+        leftAxis.axisMaximum = 10
+        leftAxis.drawGridLinesEnabled = true
+        leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
+        leftAxis.labelTextColor = .lightGray
+        
+        let xAxis = twdHistoryChart.xAxis
+        xAxis.labelPosition = .top
+        xAxis.drawGridLinesEnabled = false
+        xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
+        xAxis.labelTextColor = .lightGray
+    }
+
+    func configureTWSHistoryChart() {
+        twsHistoryChart.delegate = self
+        twsHistoryChart.chartDescription?.enabled = false
+        twsHistoryChart.dragEnabled = true
+        twsHistoryChart.setScaleEnabled(true)
+        twsHistoryChart.pinchZoomEnabled = false
+        twsHistoryChart.rightAxis.enabled = false
+        twsHistoryChart.legend.enabled = false
+        
+        let leftAxis = twsHistoryChart.leftAxis
+        leftAxis.maxWidth = 0
+        leftAxis.inverted = true
+        leftAxis.labelPosition = .insideChart
+        leftAxis.axisMinimum = 0
+        leftAxis.axisMaximum = 10
+        leftAxis.drawGridLinesEnabled = true
+        leftAxis.labelFont = .systemFont(ofSize: 1, weight: .light)
+        leftAxis.labelTextColor = .black
+        
+        let xAxis = twsHistoryChart.xAxis
+        xAxis.labelPosition = .top
+        xAxis.axisMinimum = 0.0
+        xAxis.drawGridLinesEnabled = false
+        xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
+        xAxis.labelTextColor = .lightGray
+    }
+
     @IBAction func btnSettingsTownDown(_ sender: Any) {
         print("Settings page requested")
         let settingsVC = self.storyboard!.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
@@ -69,6 +128,39 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     }
     
     func modelManager(didReceiveWindHistory windHistory: [Wind]) {
+        var valuesTWD: [ChartDataEntry] = []
+        var valuesTWS: [ChartDataEntry] = []
+        let geomagneticField = self.modelManager?.geomagneticField
+        
+        for wind in windHistory {
+            let twdMag = (geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ?? wind.TWD).rounded(toPlaces: 0)
+            valuesTWD.append(ChartDataEntry(x: twdMag, y: wind.hoursSince))
+            valuesTWS.append(ChartDataEntry(x: wind.TWS, y: wind.hoursSince))
+        }
+        
+        let twdDataSet = ScatterChartDataSet(values: valuesTWD, label: "TWD")
+        twdDataSet.setScatterShape(.circle)
+        twdDataSet.scatterShapeSize = 5
+        twdDataSet.setColor(.white)
+
+        let twsDataSet = ScatterChartDataSet(values: valuesTWS, label: "TWS")
+        twsDataSet.setScatterShape(.circle)
+        twsDataSet.scatterShapeSize = 5
+        twsDataSet.setColor(.white)
+        
+        let twdData = ScatterChartData(dataSet: twdDataSet)
+        twdData.setDrawValues(false)
+
+        let twsData = ScatterChartData(dataSet: twsDataSet)
+        twsData.setDrawValues(false)
+
+        DispatchQueue.main.async {
+            self.twdHistoryChart.data = twdData
+            self.twdHistoryChart.notifyDataSetChanged()
+            
+            self.twsHistoryChart.data = twsData
+            self.twsHistoryChart.notifyDataSetChanged()
+        }
     }
     
     func modelManager(didReceiveNavigation navigation: Navigation) {

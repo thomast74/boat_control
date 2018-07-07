@@ -19,7 +19,7 @@ public class NMEA_GGA: NMEA_BASE {
     }
     
     public var Latitude: Double {
-        return Double(_data[1])!
+        return Double(_data[1]) ?? 0.0
     }
     
     public var LatitudeDirection: String {
@@ -27,7 +27,7 @@ public class NMEA_GGA: NMEA_BASE {
     }
     
     public var Longitude: Double {
-        return Double(_data[3])!
+        return Double(_data[3]) ?? 0.0
     }
     
     public var LongitudeDirection: String {
@@ -51,15 +51,15 @@ public class NMEA_GGA: NMEA_BASE {
     }
 
     public var NumberOfSatalites: Int {
-        return Int(_data[6])!
+        return Int(_data[6]) ?? 0
     }
     
     public var HorizontalDilution: Double {
-        return Double(_data[7])!
+        return Double(_data[7]) ?? 0
     }
     
     public var AntennaAltitude: Double {
-        return Double(_data[8])!
+        return Double(_data[8]) ?? 0
     }
     
     public var UnitsOfAntennaAltitude: String {
@@ -67,7 +67,7 @@ public class NMEA_GGA: NMEA_BASE {
     }
 
     public var GeoidalSeparation: Double {
-        return Double(_data[10])!
+        return Double(_data[10]) ?? 0
     }
     
     public var UnitsOfGeoidalSeparation: String {

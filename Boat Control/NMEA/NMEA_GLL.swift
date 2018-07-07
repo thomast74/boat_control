@@ -16,7 +16,7 @@ public class NMEA_GLL: NMEA_BASE {
     }
     
     public var Latitude: Double {
-        return Double(_data[0])!
+        return Double(_data[0]) ?? 0.0
     }
     
     public var LatitudeDirection: String {
@@ -24,7 +24,7 @@ public class NMEA_GLL: NMEA_BASE {
     }
     
     public var Longitude: Double {
-        return Double(_data[2])!
+        return Double(_data[2]) ?? 0.0
     }
     
     public var LongitudeDirection: String {

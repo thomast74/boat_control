@@ -13,7 +13,7 @@ public class WindHistory {
     fileprivate let concurrentWindHistoryQueue = DispatchQueue(label: "com.arohanui.boat_control.WindHistory", attributes: .concurrent)
 
     private var _windArray: [Wind]
-    
+
     public init() {
         _windArray = []
     }
@@ -23,8 +23,16 @@ public class WindHistory {
     
     public func add(_ wind: Wind) {
         concurrentWindHistoryQueue.async(flags: .barrier) {
-            self._windArray.append(wind)
-            self._windArray.sort(by: { $0.timeStamp > $1.timeStamp} )
+            let lastWind = self._windArray.last
+            if lastWind != nil {
+                if wind.timeStamp.timeIntervalSince(lastWind!.timeStamp) > 60 {
+                    self._windArray.append(wind)
+                }
+            } else {
+                self._windArray.append(wind)
+            }
+
+            //self._windArray.sort(by: { $0.timeStamp > $1.timeStamp} )
         }
     }
     

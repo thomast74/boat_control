@@ -12,21 +12,24 @@ import Foundation
 public class Wind {
 
     private var _timeStamp: Date
-    private var _awa: Double
-    private var _aws: Double
-    private var _cog: Double
-    private var _sog: Double
-    private var _hdg: Double
+    private var _awa: Double = 0.0
+    private var _aws: Double = 0.0
+    private var _awd: Double = 0.0
+    private var _twa: Double = 0.0
+    private var _tws: Double = 0.0
+    private var _twd: Double = 0.0
     
     public init(windAngle: Double, windSpeed: Double, reference: String, cog: Double, sog: Double, hdg: Double) {
         _timeStamp = Date()
         
-        
         _aws = windSpeed
-        _cog = cog
-        _sog = sog
-        _hdg = hdg
         
+        calcAWA(windAngle: windAngle, hdg: hdg, reference: reference)
+        calcAWD(hdg: hdg)
+        calcTrueWind(hdg: hdg, cog: cog, sog: sog)
+    }
+    
+    private func calcAWA(windAngle: Double, hdg: Double, reference: String) {
         if reference == "R" {
             if windAngle <= 180.0 {
                 _awa = windAngle
@@ -34,7 +37,7 @@ public class Wind {
                 _awa = windAngle - 360.0
             }
         } else {
-            _awa = windAngle - _hdg
+            _awa = windAngle - hdg
             if _awa > 360.0 {
                 _awa -= 360.0
             }
@@ -44,8 +47,57 @@ public class Wind {
         }
     }
     
+    private func calcAWD(hdg: Double) {
+        _awd = hdg + _awa
+        if _awd > 360.0 {
+            _awd -= 360.0
+        } else if _awd < 0.0 {
+            _awd += 360
+        }
+        
+        if _awd == 0.0 && _aws > 0.0 {
+            _awd = 360.00
+        }
+    }
+    
+    private func calcTrueWind(hdg: Double, cog: Double, sog: Double) {
+        let _tu = tu(hdg: hdg, cog: cog, awa: _awa, sog: sog, aws: _aws)
+        let _tv = tv(hdg: hdg, cog: cog, awa: _awa, sog: sog, aws: _aws)
+        
+        _tws = sqrt(_tu*_tu + _tv*_tv).rounded(toPlaces: 2)
+        
+        if AWA == 0 && AWS == sog && hdg == cog {
+            _twd = 0
+        } else {
+            _twd = _tu == 0 ? AWD : (270 - fromRadiant(radiant: atan2(_tv, _tu)))
+        }
+        
+        if _twd > 360.0 {
+            _twd -= 360.0
+        }
+        if _twd < 0 {
+            _twd += 360
+        }
+        _twd = _twd.rounded(toPlaces: 2)
+        
+        print("sog=\(sog); cog=\(cog); AWS=\(AWS); A1=\(270 - (hdg + AWA)); A2=\((90 - cog)); Tv=\(_tv); Tu=\(_tu); atan2=\(atan2(_tv, _tu)) => \(_tws);\(_twd)")
+        
+        _twa = _twd - hdg
+        if _twa > 360.0 {
+            _twa -= 360.0
+        }
+        if (_twa > 180.0) {
+            _twa -= 360.0
+        }
+        _twa = _twa.rounded(toPlaces: 2)
+    }
+    
     public var timeStamp: Date {
         return _timeStamp
+    }
+    
+    public var hoursSince: Double {
+        return timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)
     }
     
     // get from NMEA MWV sentence
@@ -60,79 +112,51 @@ public class Wind {
 
     // get from NMEA HDG and MWV sentence
     public var AWD: Double {
-        var awd = _hdg + _awa
-        if awd > 360.0 {
-            awd -= 360.0
-        } else if awd < 0.0 {
-            awd += 360
-        }
-        
-        if awd == 0.0 && AWS > 0.0 {
-            awd = 360.00
-        }
-        
-        return awd
+        return _awd
     }
     
     // calculation from SOG, COG and HDG and AWx data
     public var TWA: Double {
-        var twa = TWD - _hdg
-        if twa > 360.0 {
-            twa -= 360.0
-        }
-        if (twa > 180.0) {
-            twa -= 360.0
-        }
-        
-        return twa.rounded(toPlaces: 2)
+        return _twa
     }
     
     // calculation from SOG, COG and HDG and AWx data
     public var TWS: Double {
-        return sqrt(tu*tu+tv*tv).rounded(toPlaces: 2)
+        return _tws
     }
     
     // calculation from SOG, COG and HDG and AWx data
     public var TWD: Double {
-        var twd: Double
-        
-        if AWA == 0 && AWS == _sog && _hdg == _cog {
-            twd = 0
-        } else {
-            twd = (270.0 - (tu == 0 ? 270 : fromRadiant(radiant: atan2(tv, tu))))
-        }
-        
-        if twd > 360.0 {
-            twd -= 360.0
-        }
-        
-        //print("A1=\(270 - (_hdg + AWA)); A2=\((90 - _cog)); Tv=\(tv); Tu=\(tu); atan2=\(atan2(tv, tu)) => \(twd)")
-        
-        return twd.rounded(toPlaces: 2)
+        return _twd
     }
     
     public func clone() -> Wind {
-        let clone = Wind(windAngle: 0.0, windSpeed: _aws, reference: "R", cog: _cog, sog: _sog, hdg: _hdg)
-        clone._awa = _awa
+        let clone = Wind(windAngle: 0.0, windSpeed: _aws, reference: "R", cog: 0.0, sog: 0.0, hdg: 0.0)
         clone._timeStamp = _timeStamp
-        
+        clone._awa = _awa
+        clone._aws = _aws
+        clone._awd = _awd
+        clone._twa = _twa
+        clone._tws = _tws
+        clone._twd = _twd
+
         return clone
     }
     
-    private var tu: Double {
-        return _sog * cos(cogRadiant) + AWS * cos(awdRadiant)
+    private func tu(hdg: Double, cog: Double, awa: Double, sog: Double, aws: Double) -> Double {
+        return sog * cos(cogRadiant(cog: cog)) + aws * cos(awdRadiant(hdg: hdg, awa: awa))
     }
     
-    private var tv: Double {
-        return _sog * sin(cogRadiant) + AWS * sin(awdRadiant)
+    private func tv(hdg: Double, cog: Double, awa: Double, sog: Double, aws: Double) -> Double {
+        return sog * sin(cogRadiant(cog: cog)) + aws * sin(awdRadiant(hdg: hdg, awa: awa))
     }
     
-    private var cogRadiant: Double {
-        return radiantAngle(angle: (90 - _cog))
+    private func cogRadiant(cog: Double) -> Double {
+        return radiantAngle(angle: (90 - cog))
     }
 
-    private var awdRadiant: Double {
-        return radiantAngle(angle: (270 - (_hdg + AWA)))
+    private func awdRadiant(hdg: Double, awa: Double) -> Double {
+        return radiantAngle(angle: (270 - (hdg + awa)))
     }
 
     private func radiantAngle(angle: Double) -> Double {

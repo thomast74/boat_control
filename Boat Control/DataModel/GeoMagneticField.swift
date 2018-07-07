@@ -410,11 +410,31 @@ fileprivate extension FloatingPoint {
 extension GeomagneticField {
     
     func magneticToTrue(magneticDegree: Double) -> Double {
-        return magneticDegree + self.declination
+        var trueDegree = magneticDegree + self.declination
+        
+        if trueDegree > 360 {
+            trueDegree -= 360
+        }
+        
+        if trueDegree < 0 {
+            trueDegree += 360
+        }
+        
+        return trueDegree
     }
     
     func trueToMagnetic(trueDegree: Double) -> Double {
-        return trueDegree - self.declination
+        var magDegree = trueDegree - self.declination
+
+        if magDegree > 360 {
+            magDegree -= 360
+        }
+        
+        if magDegree < 0 {
+            magDegree += 360
+        }
+        
+        return magDegree
     }
     
 }

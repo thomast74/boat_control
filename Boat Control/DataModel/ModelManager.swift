@@ -49,7 +49,6 @@ class ModelManager: NMEAReceiverDelegate {
         _windHistory = WindHistory()
 
         _wind = Wind(windAngle: 0.0, windSpeed: 0.0, reference: "R", cog: 0.0, sog: 0.0, hdg: 0.0)
-        _windHistory.add(_wind)
         _navigation = Navigation(speedOverWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGround: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
         
         _lastMWVDate = Date()

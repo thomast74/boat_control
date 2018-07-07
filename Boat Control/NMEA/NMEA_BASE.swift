@@ -66,7 +66,7 @@ public class NMEA_BASE {
         
         let stringDate = currentFormatter.string(from: Date()) + " " + utcTime
         
-        return dataFormatter.date(from: stringDate)!
+        return dataFormatter.date(from: stringDate) ?? Date(timeIntervalSince1970: TimeInterval(exactly: 0)!)
     }
 
 }

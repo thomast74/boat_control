@@ -23,7 +23,7 @@ public class NMEA_RMC: NMEA_BASE {
     }
     
     public var Latitude: Double {
-        return Double(_data[2])!
+        return Double(_data[2]) ?? 0.0
     }
     
     public var LatitudeDirection: String {
@@ -31,7 +31,7 @@ public class NMEA_RMC: NMEA_BASE {
     }
     
     public var Longitude: Double {
-        return Double(_data[4])!
+        return Double(_data[4]) ?? 0.0
     }
     
     public var LongitudeDirection: String {
