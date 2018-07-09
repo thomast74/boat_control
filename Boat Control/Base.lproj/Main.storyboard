@@ -396,7 +396,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWS History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC7-RD-Ld7" userLabel="lblTWSHistory">
-                                <rect key="frame" x="625" y="89" width="197" height="17"/>
+                                <rect key="frame" x="645" y="89" width="197" height="17"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -443,9 +443,9 @@
                             <constraint firstItem="gbi-UP-gaQ" firstAttribute="top" secondItem="bC7-RD-Ld7" secondAttribute="top" id="htr-XN-DLA"/>
                             <constraint firstItem="fpP-Pc-x7X" firstAttribute="top" secondItem="8YJ-py-ed8" secondAttribute="top" id="i7g-um-A2A"/>
                             <constraint firstItem="EPe-fi-l61" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="l7f-1f-whL"/>
-                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="leading" secondItem="bC7-RD-Ld7" secondAttribute="trailing" constant="139" id="ldc-L1-tlj"/>
+                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="leading" secondItem="bC7-RD-Ld7" secondAttribute="trailing" constant="119" id="ldc-L1-tlj"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="15" id="mGv-pY-HRy"/>
-                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="leading" secondItem="ihP-FT-xFg" secondAttribute="leading" id="otT-xB-D5O"/>
+                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="leading" secondItem="ihP-FT-xFg" secondAttribute="leading" constant="20" id="otT-xB-D5O"/>
                             <constraint firstItem="0ak-5S-IPO" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-15" id="pXO-01-HHB"/>
                             <constraint firstItem="fCV-EA-jme" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="10" id="pmH-mB-d7Y"/>
                             <constraint firstItem="h58-Gn-nFf" firstAttribute="top" secondItem="Qfg-RU-mPk" secondAttribute="bottom" constant="5" id="pns-d4-og4"/>
