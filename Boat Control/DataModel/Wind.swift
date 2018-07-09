@@ -80,7 +80,7 @@ public class Wind {
         }
         _twd = _twd.rounded(toPlaces: 2)
         
-        print("sog=\(sog); cog=\(cog); AWS=\(AWS); A1=\(270 - (hdg + AWA)); A2=\((90 - cog)); Tv=\(_tv); Tu=\(_tu); atan2=\(atan2(_tv, _tu)) => \(_tws);\(_twd)")
+        //print("sog=\(sog); cog=\(cog); AWS=\(AWS); A1=\(270 - (hdg + AWA)); A2=\((90 - cog)); Tv=\(_tv); Tu=\(_tu); atan2=\(atan2(_tv, _tu)) => \(_tws);\(_twd)")
         
         _twa = _twd - hdg
         if _twa > 360.0 {

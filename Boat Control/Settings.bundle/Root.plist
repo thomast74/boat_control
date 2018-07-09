@@ -10,6 +10,42 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
+			<string>Application</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>History Interval (sec)</string>
+			<key>Key</key>
+			<string>app_history_interval</string>
+			<key>DefaultValue</key>
+			<string>60</string>
+			<key>Titles</key>
+			<array>
+				<string>15</string>
+				<string>30</string>
+				<string>60</string>
+				<string>120</string>
+				<string>180</string>
+				<string>240</string>
+				<string>360</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>15</string>
+				<string>30</string>
+				<string>60</string>
+				<string>120</string>
+				<string>180</string>
+				<string>240</string>
+				<string>360</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
 			<string>NMEA Server</string>
 		</dict>
 		<dict>

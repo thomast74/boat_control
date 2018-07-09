@@ -54,6 +54,8 @@ class ModelManager: NMEAReceiverDelegate {
         _lastMWVDate = Date()
         _lastHDGDate = Date()
         _lastVHWDate = Date()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated), name: NotificationNames.SETTINGS_UPDATED, object: nil)
     }
     
     public func setDelegate(_ delegate: ModelManagerDelegate) {
@@ -71,6 +73,12 @@ class ModelManager: NMEAReceiverDelegate {
             geoMF = _geoMagneticField
         }
         return geoMF
+    }
+    
+    @objc func settingsUpdated() {
+        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String)!) ?? 60.0
+        
+        _windHistory.windHistoryInterval = historyInterval
     }
     
     public func nmeaReceived(data: NMEA_BASE) {

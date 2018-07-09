@@ -12,6 +12,7 @@ public class WindHistory {
     
     fileprivate let concurrentWindHistoryQueue = DispatchQueue(label: "com.arohanui.boat_control.WindHistory", attributes: .concurrent)
 
+    private var _windHistoryInterval: Double = 60.0
     private var _windArray: [Wind]
 
     public init() {
@@ -25,7 +26,7 @@ public class WindHistory {
         concurrentWindHistoryQueue.async(flags: .barrier) {
             let lastWind = self._windArray.last
             if lastWind != nil {
-                if wind.timeStamp.timeIntervalSince(lastWind!.timeStamp) > 60 {
+                if wind.timeStamp.timeIntervalSince(lastWind!.timeStamp) >= self._windHistoryInterval {
                     self._windArray.append(wind)
                 }
             } else {
@@ -33,6 +34,21 @@ public class WindHistory {
             }
 
             //self._windArray.sort(by: { $0.timeStamp > $1.timeStamp} )
+        }
+    }
+    
+    public var windHistoryInterval: Double {
+        get {
+            var windHistoryIntervalCopy: Double = 60.0
+            concurrentWindHistoryQueue.sync {
+                windHistoryIntervalCopy = Double(self._windHistoryInterval)
+            }
+            return windHistoryIntervalCopy
+        }
+        set(newInterval) {
+            concurrentWindHistoryQueue.sync {
+                self._windHistoryInterval = newInterval
+            }
         }
     }
     

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Boat Control/ViewControllers/WindHistoryViewController.swift"
-            timestampString = "552831297.35348"
+            timestampString = "552852143.312863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "modelManager(didReceiveWindHistory:)"
             landmarkType = "7">
          </BreakpointContent>
