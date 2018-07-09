@@ -64,7 +64,6 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate, ChartVi
         leftAxis.labelPosition = .outsideChart
         leftAxis.drawBottomYLabelEntryEnabled = false
         leftAxis.axisMinimum = 0
-        leftAxis.axisMaximum = 10
         leftAxis.drawGridLinesEnabled = true
         leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         leftAxis.labelTextColor = .lightGray
@@ -86,14 +85,13 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate, ChartVi
         twsHistoryChart.legend.enabled = false
         
         let leftAxis = twsHistoryChart.leftAxis
-        leftAxis.maxWidth = 0
         leftAxis.inverted = true
-        leftAxis.labelPosition = .insideChart
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.drawBottomYLabelEntryEnabled = false
         leftAxis.axisMinimum = 0
-        leftAxis.axisMaximum = 10
         leftAxis.drawGridLinesEnabled = true
-        leftAxis.labelFont = .systemFont(ofSize: 1, weight: .light)
-        leftAxis.labelTextColor = .black
+        leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
+        leftAxis.labelTextColor = .lightGray
         
         let xAxis = twsHistoryChart.xAxis
         xAxis.labelPosition = .top
@@ -137,11 +135,15 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate, ChartVi
             valuesTWD.append(ChartDataEntry(x: twdMag, y: wind.hoursSince))
             valuesTWS.append(ChartDataEntry(x: wind.TWS, y: wind.hoursSince))
         }
-        
+
+        let twdMaxLeftAxis = ceil(valuesTWD.first?.y ?? 0.0)
+        let twsMaxLeftAxis = ceil(valuesTWS.first?.y ?? 0.0)
+
         let twdDataSet = ScatterChartDataSet(values: valuesTWD, label: "TWD")
         twdDataSet.setScatterShape(.circle)
         twdDataSet.scatterShapeSize = 5
         twdDataSet.setColor(.white)
+        
 
         let twsDataSet = ScatterChartDataSet(values: valuesTWS, label: "TWS")
         twsDataSet.setScatterShape(.circle)
@@ -155,9 +157,11 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate, ChartVi
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {
+            self.twdHistoryChart.leftAxis.axisMaximum = twdMaxLeftAxis
             self.twdHistoryChart.data = twdData
             self.twdHistoryChart.notifyDataSetChanged()
             
+            self.twsHistoryChart.leftAxis.axisMaximum = twsMaxLeftAxis
             self.twsHistoryChart.data = twsData
             self.twsHistoryChart.notifyDataSetChanged()
         }
