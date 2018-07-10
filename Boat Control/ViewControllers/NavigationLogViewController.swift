@@ -24,9 +24,10 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         super.viewDidLoad()
         
         print("LogViewController: viewDidLoad")
-        configureCOGHistoryChart()
-        configureHDGHistoryChart()
-        configureSOGHistoryChart()
+        configure(chart: cogChart)
+        configure(chart: hdgChart)
+        configure(chart: sogChart)
+        configure(chart: brpChart)
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,72 +54,28 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         self.present(settingsVC, animated: true, completion: nil)
     }
     
-    func configureCOGHistoryChart() {
-        cogChart.chartDescription?.enabled = false
-        cogChart.dragEnabled = true
-        cogChart.setScaleEnabled(true)
-        cogChart.pinchZoomEnabled = false
-        cogChart.rightAxis.enabled = false
-        cogChart.legend.enabled = false
+    func configure(chart: LineChartView) {
+        chart.chartDescription?.enabled = false
+        chart.dragEnabled = true
+        chart.setScaleEnabled(true)
+        chart.pinchZoomEnabled = false
+        chart.rightAxis.enabled = false
+        chart.legend.enabled = false
         
-        let leftAxis = cogChart.leftAxis
+        let leftAxis = chart.leftAxis
         leftAxis.labelPosition = .outsideChart
         leftAxis.drawBottomYLabelEntryEnabled = false
-        leftAxis.drawGridLinesEnabled = false
+        leftAxis.drawGridLinesEnabled = true
         leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         leftAxis.labelTextColor = .lightGray
         
-        let xAxis = cogChart.xAxis
-        xAxis.labelPosition = .bottom
-        xAxis.drawGridLinesEnabled = true
-        xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        xAxis.labelTextColor = .lightGray
-    }
-    
-    func configureHDGHistoryChart() {
-        hdgChart.chartDescription?.enabled = false
-        hdgChart.dragEnabled = true
-        hdgChart.setScaleEnabled(true)
-        hdgChart.pinchZoomEnabled = false
-        hdgChart.rightAxis.enabled = false
-        hdgChart.legend.enabled = false
-        
-        let leftAxis = hdgChart.leftAxis
-        leftAxis.labelPosition = .outsideChart
-        leftAxis.drawBottomYLabelEntryEnabled = false
-        leftAxis.drawGridLinesEnabled = false
-        leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        leftAxis.labelTextColor = .lightGray
-        
-        let xAxis = hdgChart.xAxis
+        let xAxis = chart.xAxis
         xAxis.labelPosition = .bottom
         xAxis.drawGridLinesEnabled = true
         xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         xAxis.labelTextColor = .lightGray
     }
 
-    func configureSOGHistoryChart() {
-        sogChart.chartDescription?.enabled = false
-        sogChart.dragEnabled = true
-        sogChart.setScaleEnabled(true)
-        sogChart.pinchZoomEnabled = false
-        sogChart.rightAxis.enabled = false
-        sogChart.legend.enabled = false
-        
-        let leftAxis = sogChart.leftAxis
-        leftAxis.axisMinimum = 0
-        leftAxis.labelPosition = .outsideChart
-        leftAxis.drawBottomYLabelEntryEnabled = false
-        leftAxis.drawGridLinesEnabled = false
-        leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        leftAxis.labelTextColor = .lightGray
-        
-        let xAxis = sogChart.xAxis
-        xAxis.labelPosition = .bottom
-        xAxis.drawGridLinesEnabled = true
-        xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        xAxis.labelTextColor = .lightGray
-    }
     func modelManager(didReceiveSentence nmeaObj: NMEA_BASE) {
     }
     
@@ -139,11 +96,13 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         var valuesCOG: [ChartDataEntry] = []
         var valuesHDG: [ChartDataEntry] = []
         var valuesSOG: [ChartDataEntry] = []
-        
+        var valuesBPR: [ChartDataEntry] = []
+
         for nav in navigationHistory {
             valuesCOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.COG))
             valuesHDG.append(ChartDataEntry(x: nav.hoursSince, y: nav.HDG))
             valuesSOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.SOG))
+            valuesBPR.append(ChartDataEntry(x: nav.hoursSince, y: nav.BPR))
         }
         
         var xAxisMax =  ceil(valuesCOG.last?.x ?? 1.0)
@@ -151,48 +110,40 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
             xAxisMax = 1.0
         }
 
-        let cogDataSet = LineChartDataSet(values: valuesCOG, label: "COG")
-        cogDataSet.drawCirclesEnabled = false
-        cogDataSet.lineWidth = 2
-        cogDataSet.setColor(.white)
-
-        let hdgDataSet = LineChartDataSet(values: valuesHDG, label: "HDG")
-        hdgDataSet.drawCirclesEnabled = false
-        hdgDataSet.lineWidth = 2
-        hdgDataSet.setColor(.white)
-
-        let sogDataSet = LineChartDataSet(values: valuesSOG, label: "SOG")
-        sogDataSet.drawCirclesEnabled = false
-        sogDataSet.lineWidth = 2
-        sogDataSet.setColor(.white)
-
-
-        let cogData = LineChartData(dataSet: cogDataSet)
-        //cogData.setDrawValues(false)
-
-        let hdgData = LineChartData(dataSet: hdgDataSet)
-        hdgData.setDrawValues(false)
-
-        let sogData = LineChartData(dataSet: sogDataSet)
-        sogData.setDrawValues(false)
-
+        let cogData = getLineChartData(data: valuesHDG, label: "COG")
+        let hdgData = getLineChartData(data: valuesHDG, label: "HDG")
+        let sogData = getLineChartData(data: valuesSOG, label: "SOG")
+        let bprData = getLineChartData(data: valuesBPR, label: "BPR")
         
         DispatchQueue.main.async {
-            self.cogChart.xAxis.axisMinimum = 0
-            self.cogChart.xAxis.axisMaximum = xAxisMax
-            self.cogChart.data = cogData
-            self.cogChart.notifyDataSetChanged()
-
-            self.hdgChart.xAxis.axisMinimum = 0
-            self.hdgChart.xAxis.axisMaximum = xAxisMax
-            self.hdgChart.data = hdgData
-            self.hdgChart.notifyDataSetChanged()
-
-            self.sogChart.xAxis.axisMinimum = 0
-            self.sogChart.xAxis.axisMaximum = xAxisMax
-            self.sogChart.data = sogData
-            self.sogChart.notifyDataSetChanged()
+            self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: xAxisMax, leftAxisMin: nil)
+            self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: xAxisMax, leftAxisMin: nil)
+            self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: xAxisMax, leftAxisMin: 0)
+            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: xAxisMax, leftAxisMin: nil)
         }
+    }
+    
+    private func getLineChartData(data: [ChartDataEntry], label: String) -> LineChartData {
+        let dataSet = LineChartDataSet(values: data, label: label)
+        dataSet.drawCirclesEnabled = false
+        dataSet.lineWidth = 2
+        dataSet.setColor(.white)
+    
+        let lineChartData = LineChartData(dataSet: dataSet)
+        lineChartData.setDrawValues(false)
+
+        return lineChartData
+    }
+    
+    private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?) {
+        if leftAxisMin != nil {
+            chart.leftAxis.axisMinimum = leftAxisMin!
+        }
+        
+        chart.xAxis.axisMinimum = 0
+        chart.xAxis.axisMaximum = xAxisMax
+        chart.data = data
+        chart.notifyDataSetChanged()
     }
 
 }

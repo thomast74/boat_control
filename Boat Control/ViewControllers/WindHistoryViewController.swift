@@ -27,8 +27,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         super.viewDidLoad()
         
         print("WindHistoryViewController: viewDidLoad")
-        configureTWDHistoryChart()
-        configureTWSHistoryChart()
+        configure(chart: twdHistoryChart)
+        configure(chart: twsHistoryChart)
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,16 +49,15 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         print("WindHistoryViewController: viewWillDisappear")
     }
     
-    
-    func configureTWDHistoryChart() {
-        twdHistoryChart.chartDescription?.enabled = false
-        twdHistoryChart.dragEnabled = true
-        twdHistoryChart.setScaleEnabled(true)
-        twdHistoryChart.pinchZoomEnabled = false
-        twdHistoryChart.rightAxis.enabled = false
-        twdHistoryChart.legend.enabled = false
+    func configure(chart: ScatterChartView) {
+        chart.chartDescription?.enabled = false
+        chart.dragEnabled = true
+        chart.setScaleEnabled(true)
+        chart.pinchZoomEnabled = false
+        chart.rightAxis.enabled = false
+        chart.legend.enabled = false
 
-        let leftAxis = twdHistoryChart.leftAxis
+        let leftAxis = chart.leftAxis
         leftAxis.inverted = true
         leftAxis.labelPosition = .outsideChart
         leftAxis.drawBottomYLabelEntryEnabled = false
@@ -67,34 +66,9 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         leftAxis.labelTextColor = .lightGray
         
-        let xAxis = twdHistoryChart.xAxis
+        let xAxis = chart.xAxis
         xAxis.labelPosition = .top
-        xAxis.drawGridLinesEnabled = false
-        xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        xAxis.labelTextColor = .lightGray
-    }
-
-    func configureTWSHistoryChart() {
-        twsHistoryChart.chartDescription?.enabled = false
-        twsHistoryChart.dragEnabled = true
-        twsHistoryChart.setScaleEnabled(true)
-        twsHistoryChart.pinchZoomEnabled = false
-        twsHistoryChart.rightAxis.enabled = false
-        twsHistoryChart.legend.enabled = false
-        
-        let leftAxis = twsHistoryChart.leftAxis
-        leftAxis.inverted = true
-        leftAxis.labelPosition = .outsideChart
-        leftAxis.drawBottomYLabelEntryEnabled = false
-        leftAxis.axisMinimum = 0
-        leftAxis.drawGridLinesEnabled = true
-        leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
-        leftAxis.labelTextColor = .lightGray
-        
-        let xAxis = twsHistoryChart.xAxis
-        xAxis.labelPosition = .top
-        xAxis.axisMinimum = 0.0
-        xAxis.drawGridLinesEnabled = false
+        xAxis.drawGridLinesEnabled = true
         xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         xAxis.labelTextColor = .lightGray
     }
@@ -136,13 +110,9 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
             valuesMaxTWS.append(ChartDataEntry(x: wind.maxTWS, y: wind.hoursSince))
         }
 
-        var twdMaxLeftAxis = ceil(valuesTWD.first?.y ?? 1.0)
-        if twdMaxLeftAxis == 0.0 {
-            twdMaxLeftAxis = 1.0
-        }
-        var twsMaxLeftAxis = ceil(valuesTWS.first?.y ?? 0.0)
-        if twsMaxLeftAxis == 0.0 {
-            twsMaxLeftAxis = 1.0
+        var leftAxisMax = ceil(valuesTWD.first?.y ?? 1.0)
+        if leftAxisMax == 0.0 {
+            leftAxisMax = 1.0
         }
 
         let twdDataSet = ScatterChartDataSet(values: valuesTWD, label: "TWD")
@@ -168,13 +138,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {
-            self.twdHistoryChart.leftAxis.axisMaximum = twdMaxLeftAxis
-            self.twdHistoryChart.data = twdData
-            self.twdHistoryChart.notifyDataSetChanged()
-            
-            self.twsHistoryChart.leftAxis.axisMaximum = twsMaxLeftAxis
-            self.twsHistoryChart.data = twsData
-            self.twsHistoryChart.notifyDataSetChanged()
+            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, leftAxisMax: leftAxisMax, leftAxisMin: nil)
+            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, leftAxisMax: leftAxisMax, leftAxisMin: 0)
         }
     }
     
@@ -183,5 +148,16 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     
     func modelManager(didReceiveNavigationHistory navigationHistory: [NavigationAggregate]) {
     }
+    
+    private func setNewChartData(chart: ScatterChartView, data: ScatterChartData, leftAxisMax: Double, leftAxisMin: Double?) {
+        if leftAxisMin != nil {
+            chart.leftAxis.axisMinimum = leftAxisMin!
+        }
+        
+        chart.leftAxis.axisMaximum = leftAxisMax
+        chart.data = data
+        chart.notifyDataSetChanged()
+    }
+
 
 }

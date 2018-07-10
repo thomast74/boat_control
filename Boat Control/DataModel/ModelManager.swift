@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreMotion
 
 class ModelManager: NMEAReceiverDelegate {
     
@@ -36,7 +37,8 @@ class ModelManager: NMEAReceiverDelegate {
     //private var lastDBT: NMEA_DBT?
     //private var lastMTW: NMEA_MTW?
     //private var lastVLW: NMEA_VLW?
-     
+    
+    private var altimeter: CMAltimeter?
     private var _wind: Wind
     private let _windHistory: WindHistory
     private let _navigation: Navigation
@@ -62,7 +64,24 @@ class ModelManager: NMEAReceiverDelegate {
         _lastHDGDate = Date()
         _lastVHWDate = Date()
         
+        initBaromaterRrading()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated), name: NotificationNames.SETTINGS_UPDATED, object: nil)
+    }
+    
+    private func initBaromaterRrading() {
+        if CMAltimeter.isRelativeAltitudeAvailable() {
+            if altimeter == nil {
+                altimeter = CMAltimeter()
+            }
+            altimeter?.startRelativeAltitudeUpdates(to: OperationQueue.init(), withHandler: { (altimeterData, error) in
+                if error == nil {
+                    self.concurrentGPSQueue.async(flags: .barrier) {
+                        self._navigation.baromericPressure = Double(truncating: altimeterData?.pressure ?? 0.0)
+                    }
+                }
+            })
+        }
     }
     
     public func setDelegate(_ delegate: ModelManagerDelegate) {

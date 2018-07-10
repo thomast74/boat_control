@@ -73,17 +73,18 @@ public class NavigationHistory {
             for nav in _navArray {
                 let hoursSince = round(nav.hoursSince.rounded(toPlaces: 3)*denominator)/denominator
 
-                before.append(NavigationAggregate(hoursSince: hoursSince, COG: nav.courseOverGroundMagnetic, HDG: nav.headingMagnetic, SOG: nav.speedOverGround))
+                before.append(NavigationAggregate(hoursSince: hoursSince, COG: nav.courseOverGroundMagnetic, HDG: nav.headingMagnetic, SOG: nav.speedOverGround, BPR: nav.baromericPressure))
             }
         }
         
-        let allHoursSince = Set<Double>(before.map{$0.hoursSince})
+        let allHoursSince = Set<Double>(before.map{$0.hoursSince}).sorted()
         for hourSince in allHoursSince {
             let filter = before.filter({$0.hoursSince == hourSince})
             let avgCOG = (filter.map{$0.COG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 0)
             let avgHDG = (filter.map{$0.HDG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 0)
             let avgSOG = (filter.map{$0.SOG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 1)
-            aggregate.append(NavigationAggregate(hoursSince: hourSince, COG: avgCOG, HDG: avgHDG, SOG: avgSOG))
+            let avgBPR = (filter.map{$0.BPR}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 1)
+            aggregate.append(NavigationAggregate(hoursSince: hourSince, COG: avgCOG, HDG: avgHDG, SOG: avgSOG, BPR: avgBPR))
         }
         
         return aggregate
