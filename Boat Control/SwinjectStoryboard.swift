@@ -16,11 +16,14 @@ extension SwinjectStoryboard {
         print("SwinjectStoryboard.setup")
 
         defaultContainer.register(NMEAReceiverManager.self) { _ in NMEAReceiverManager() }
-            .inObjectScope(.container)
+                        .inObjectScope(.container)
 
         defaultContainer.register(ModelManager.self) { _ in ModelManager() }
                         .inObjectScope(.container)
 
+        defaultContainer.storyboardInitCompleted(NavigationLogViewController.self) { r, c in
+            c.modelManager = r.resolve(ModelManager.self)
+        }
         defaultContainer.storyboardInitCompleted(WindHistoryViewController.self) { r, c in
             c.modelManager = r.resolve(ModelManager.self)
         }

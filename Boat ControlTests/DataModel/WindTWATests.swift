@@ -37,5 +37,19 @@ class WindTWATests: XCTestCase {
         
         XCTAssertEqual(wind.TWA, 116.8)
     }
+    
+    func testRoundToHalf() {
+        let denominator = 20.0
+        var value = 0.06
+        var roundedValue = round(value*denominator)/denominator
+        
+        XCTAssertEqual(roundedValue, 0.05)
+        
+        value = 0.12
+        roundedValue = round(value*denominator)/denominator
+
+        XCTAssertEqual(roundedValue, 0.10)
+
+    }
 
 }

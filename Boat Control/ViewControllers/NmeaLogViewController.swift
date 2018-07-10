@@ -85,9 +85,13 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
     func modelManager(didReceiveWind wind: Wind) {
     }
     
-    func modelManager(didReceiveWindHistory windHistory: [Wind]) {
+    func modelManager(didReceiveWindHistory windHistory: [WindAggregate]) {
     }
     
     func modelManager(didReceiveNavigation navigation: Navigation) {
     }
+    
+    func modelManager(didReceiveNavigationHistory navigationHistory: [NavigationAggregate]) {
+    }
+
 }

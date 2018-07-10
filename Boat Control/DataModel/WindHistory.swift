@@ -23,7 +23,7 @@ public class WindHistory {
     // everything that is older then x hours (from settings) will be deleted
     
     public func add(_ wind: Wind) {
-        concurrentWindHistoryQueue.async(flags: .barrier) {
+        concurrentWindHistoryQueue.sync {
             let lastWind = self._windArray.last
             if lastWind != nil {
                 if wind.timeStamp.timeIntervalSince(lastWind!.timeStamp) >= self._windHistoryInterval {
@@ -32,9 +32,15 @@ public class WindHistory {
             } else {
                 self._windArray.append(wind)
             }
-
-            //self._windArray.sort(by: { $0.timeStamp > $1.timeStamp} )
         }
+    }
+    
+    public var count: Int {
+        var windHistoryCount: Int = 0
+        concurrentWindHistoryQueue.sync {
+            windHistoryCount = _windArray.count
+        }
+        return windHistoryCount
     }
     
     public var windHistoryInterval: Double {
@@ -53,13 +59,40 @@ public class WindHistory {
     }
     
     public var history: [Wind] {
-        var windArrayyCopy: [Wind]!
+        var windArrayCopy: [Wind]!
         concurrentWindHistoryQueue.sync {
-            windArrayyCopy = _windArray
+            windArrayCopy = _windArray
         }
-        return windArrayyCopy
+        return windArrayCopy
     }
-    
+
+    public var historyAggregate: [WindAggregate] {
+        var before: [WindAggregate] = []
+        var aggregate: [WindAggregate] = []
+        let denominator = 50.0
+        
+        concurrentWindHistoryQueue.sync {
+            for wind in _windArray {
+                let hoursSince = round(wind.hoursSince.rounded(toPlaces: 3)*denominator)/denominator
+                
+                before.append(WindAggregate(hoursSince: hoursSince, TWS: wind.TWS, maxTWS: 0.0, TWD: wind.TWD))
+            }
+        }
+        
+        let allHoursSince = Set<Double>(before.map{$0.hoursSince})
+        for hourSince in allHoursSince {
+            let filter = before.filter({$0.hoursSince == hourSince})
+            let avgTWS = filter.map{$0.TWS}.reduce(0, +) / Double(filter.count)
+            let maxTWS = filter.max { (w1, w2) -> Bool in
+                return w1.TWS < w2.TWS
+            }?.TWS ?? 0.0
+            let avgTWD = filter.map{$0.TWD}.reduce(0, +) / Double(filter.count)
+            aggregate.append(WindAggregate(hoursSince: hourSince, TWS: avgTWS.rounded(toPlaces: 1), maxTWS: maxTWS.rounded(toPlaces: 1), TWD: avgTWD.rounded(toPlaces: 0)))
+        }
+        
+        return aggregate
+    }
+   
     public func clear() {
         concurrentWindHistoryQueue.async(flags: .barrier) {
             self._windArray.removeAll()

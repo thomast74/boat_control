@@ -40,16 +40,23 @@ class ModelManager: NMEAReceiverDelegate {
     private var _wind: Wind
     private let _windHistory: WindHistory
     private let _navigation: Navigation
+    private let _navigationHistory: NavigationHistory
     private var _geoMagneticField: GeomagneticField?
     
     // object should be singleton so when notificaton is received it is easy to get the data
     // must be thread safe sooo!!!!!!
     
     init() {
-        _windHistory = WindHistory()
+        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String) ?? "60") ?? 60.0
 
+        _windHistory = WindHistory()
+        _windHistory.windHistoryInterval = historyInterval
+        
+        _navigationHistory = NavigationHistory()
+        _navigationHistory.navHistoryInterval = historyInterval
+        
         _wind = Wind(windAngle: 0.0, windSpeed: 0.0, reference: "R", cog: 0.0, sog: 0.0, hdg: 0.0)
-        _navigation = Navigation(speedOverWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGround: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
+        _navigation = Navigation(speedOverWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGround: 0.0, courseOverGroundMagnetic: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
         
         _lastMWVDate = Date()
         _lastHDGDate = Date()
@@ -76,9 +83,10 @@ class ModelManager: NMEAReceiverDelegate {
     }
     
     @objc func settingsUpdated() {
-        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String)!) ?? 60.0
+        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String ?? "60")) ?? 60.0
         
         _windHistory.windHistoryInterval = historyInterval
+        _navigationHistory.navHistoryInterval = historyInterval
     }
     
     public func nmeaReceived(data: NMEA_BASE) {
@@ -184,25 +192,21 @@ class ModelManager: NMEAReceiverDelegate {
             let (_, hdgTrue) = self.getLatestHeading()
             
             self._wind = Wind(windAngle: self._lastMWV!.WindAngle, windSpeed: self._lastMWV!.WindSpeed, reference: self._lastMWV!.Reference, cog: cog, sog: sog, hdg: hdgTrue)
+            
+            let countBefore = self._windHistory.count
             self._windHistory.add(self._wind)
+            let countAfter = self._windHistory.count
             
             self._delegate?.modelManager(didReceiveWind: self._wind.clone())
-            self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.history)
+            if countBefore < countAfter {
+                self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
+            }
         }
     }
     
     private func updateNavigation() {
         concurrentGPSQueue.async(flags: .barrier) {
             
-            if self._lastVHW != nil {
-                    self._navigation.speedOverWater = self._lastVHW!.BoatSpeedKnots
-            }
-            
-            if self._lastRMC != nil {
-                self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
-                self._navigation.courseOverGround = self._lastRMC!.CourseOverGround
-            }
-
             let (latitude, latitudeDirection, longitude, longitudeDirection, timeUTC) = self.getLatestGPSCoordinates()
             self._navigation.latitude = latitude
             self._navigation.latitudeDirection = latitudeDirection
@@ -212,12 +216,32 @@ class ModelManager: NMEAReceiverDelegate {
 
             self.setGeomagneticField(latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection)
             
+            if self._lastVHW != nil {
+                self._navigation.speedOverWater = self._lastVHW!.BoatSpeedKnots
+            }
+            
+            if self._lastRMC != nil {
+                self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
+                self._navigation.courseOverGround = self._lastRMC!.CourseOverGround
+                self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._lastRMC!.CourseOverGround) ?? self._lastRMC!.CourseOverGround
+            }
+
             let (headingMagnetic, headingTrue) = self.getLatestHeading()
+            //print("\(headingMagnetic) => \(headingTrue); \(self._navigation.courseOverGroundMagnetic) => \(self._navigation.courseOverGround)")
+            
             self._navigation.headingMagnetic = headingMagnetic
             self._navigation.headingTrue = headingTrue
 
+            self._navigation.timeStamp = Date()
+            
+            let countBefore = self._navigationHistory.count
+            self._navigationHistory.add(self._navigation.clone())
+            let countAfter = self._navigationHistory.count
 
             self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
+            if countBefore < countAfter {
+                self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
+            }
         }
     }
     
@@ -225,7 +249,7 @@ class ModelManager: NMEAReceiverDelegate {
 
         if _lastHDG == nil && _lastVHW == nil {
             if _lastRMC != nil {
-                return (_lastRMC!.CourseOverGround, _lastRMC!.CourseOverGround)
+                return (self._geoMagneticField?.trueToMagnetic(trueDegree: self._lastRMC!.CourseOverGround) ?? _lastRMC!.CourseOverGround, _lastRMC!.CourseOverGround)
             } else {
                 return (0.0, 0.0)
             }

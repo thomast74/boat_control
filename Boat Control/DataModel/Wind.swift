@@ -97,7 +97,7 @@ public class Wind {
     }
     
     public var hoursSince: Double {
-        return timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)
+        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2)
     }
     
     // get from NMEA MWV sentence
@@ -166,4 +166,11 @@ public class Wind {
     private func fromRadiant(radiant: Double) -> Double {
         return radiant/(Double.pi/180)
     }
+}
+
+public struct WindAggregate {
+    public var hoursSince: Double
+    public var TWS: Double
+    public var maxTWS: Double
+    public var TWD: Double
 }

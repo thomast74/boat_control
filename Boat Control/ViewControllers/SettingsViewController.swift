@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let connectionType = UserDefaults.standard.value(forKey: "nmea_connection_type") as? String
-        let historyInterval = Int((UserDefaults.standard.value(forKey: "app_history_interval") as? String)!) ?? 60
+        let historyInterval = Int((UserDefaults.standard.value(forKey: "app_history_interval") as? String ?? "60")) ?? 60
         
         fldConnectionType.selectedSegmentIndex = Int(connectionType ?? "0")!
         fldIPAddress.text = UserDefaults.standard.value(forKey: "nmea_ip_address") as? String
