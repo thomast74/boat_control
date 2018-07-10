@@ -41,6 +41,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         print("WindHistoryViewController: viewWillAppear")
         
         modelManager?.setDelegate(self)
+        modelManager?.sendCurrentData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

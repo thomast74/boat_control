@@ -93,6 +93,17 @@ class ModelManager: NMEAReceiverDelegate {
         _delegate = nil
     }
     
+    public func sendCurrentData() {
+        concurrentWindQueue.async {
+            self._delegate?.modelManager(didReceiveWind: self._wind.clone())
+            self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
+        }
+        concurrentGPSQueue.async {
+            self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
+            self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
+        }
+    }
+    
     public var geomagneticField: GeomagneticField? {
         var geoMF: GeomagneticField? = nil
         concurrentGPSQueue.sync {

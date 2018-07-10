@@ -23,7 +23,7 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("LogViewController: viewDidLoad")
+        print("NavigationLogViewController: viewDidLoad")
         configure(chart: cogChart)
         configure(chart: hdgChart)
         configure(chart: sogChart)
@@ -37,15 +37,16 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("LogViewController: viewWillAppear")
+        print("NavigationLogViewController: viewWillAppear")
         
         modelManager?.setDelegate(self)
+        modelManager?.sendCurrentData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        print("LogViewController: viewWillDisappear")
+        print("NavigationLogViewController: viewWillDisappear")
     }
     
     @IBAction func btnSettingsTouchDown(_ sender: Any) {
