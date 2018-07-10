@@ -508,10 +508,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSu-g7-1Rb" userLabel="COG History Chart" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="116" width="492" height="300"/>
+                                <rect key="frame" x="10" y="116" width="492" height="290"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="E2N-hs-zcL"/>
+                                    <constraint firstAttribute="height" constant="290" id="E2N-hs-zcL"/>
                                     <constraint firstAttribute="width" constant="492" id="vIg-5S-ryh"/>
                                 </constraints>
                             </view>
@@ -528,11 +528,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjy-cS-4Hc" userLabel="HDG History Chart" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="522" y="116" width="492" height="300"/>
+                                <rect key="frame" x="522" y="116" width="492" height="290"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="492" id="4mO-Q2-HJb"/>
-                                    <constraint firstAttribute="height" constant="300" id="XVp-zV-9sG"/>
+                                    <constraint firstAttribute="height" constant="290" id="XVp-zV-9sG"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="SOG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRJ-ne-G4q" userLabel="lblSOGHistory">
@@ -601,7 +601,7 @@
                             <constraint firstItem="Mw6-Sv-Oo3" firstAttribute="top" secondItem="YCo-2s-elO" secondAttribute="bottom" constant="30" id="gVa-gv-qMu"/>
                             <constraint firstItem="YCo-2s-elO" firstAttribute="leading" secondItem="y1Y-gf-WHD" secondAttribute="leading" constant="15" id="h94-cd-I5j"/>
                             <constraint firstItem="C3I-xy-LMh" firstAttribute="trailing" secondItem="Qjy-cS-4Hc" secondAttribute="trailing" id="k7j-eP-OIY"/>
-                            <constraint firstItem="sRJ-ne-G4q" firstAttribute="top" secondItem="WSu-g7-1Rb" secondAttribute="bottom" constant="20" id="lof-E4-SVZ"/>
+                            <constraint firstItem="sRJ-ne-G4q" firstAttribute="top" secondItem="WSu-g7-1Rb" secondAttribute="bottom" constant="30" id="lof-E4-SVZ"/>
                             <constraint firstItem="Mw6-Sv-Oo3" firstAttribute="trailing" secondItem="rCs-Zg-WRw" secondAttribute="leading" id="ozR-9s-kyh"/>
                             <constraint firstItem="YCo-2s-elO" firstAttribute="top" secondItem="y1Y-gf-WHD" secondAttribute="top" constant="15" id="qsX-z1-RTU"/>
                             <constraint firstItem="WSu-g7-1Rb" firstAttribute="top" secondItem="Mw6-Sv-Oo3" secondAttribute="bottom" constant="10" id="uSA-IM-tbp"/>
