@@ -103,7 +103,9 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
             valuesCOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.COG))
             valuesHDG.append(ChartDataEntry(x: nav.hoursSince, y: nav.HDG))
             valuesSOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.SOG))
-            valuesBPR.append(ChartDataEntry(x: nav.hoursSince, y: nav.BPR))
+            if nav.BPR > 0 {
+                valuesBPR.append(ChartDataEntry(x: nav.hoursSince, y: nav.BPR))
+            }
         }
         
         var xAxisMax =  ceil(valuesCOG.last?.x ?? 1.0)
@@ -117,15 +119,16 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         let bprData = getLineChartData(data: valuesBPR, label: "BPR")
         
         DispatchQueue.main.async {
-            self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: xAxisMax, leftAxisMin: nil)
-            self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: xAxisMax, leftAxisMin: nil)
-            self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: xAxisMax, leftAxisMin: 0)
-            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: xAxisMax, leftAxisMin: nil)
+            self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: xAxisMax, leftAxisMin: 0, leftAxisMax: nil)
+            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
         }
     }
     
     private func getLineChartData(data: [ChartDataEntry], label: String) -> LineChartData {
         let dataSet = LineChartDataSet(values: data, label: label)
+        dataSet.mode = .cubicBezier
         dataSet.drawCirclesEnabled = false
         dataSet.lineWidth = 2
         dataSet.setColor(.white)
@@ -136,11 +139,15 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         return lineChartData
     }
     
-    private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?) {
+    private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?, leftAxisMax: Double?) {
         if leftAxisMin != nil {
             chart.leftAxis.axisMinimum = leftAxisMin!
         }
-        
+        if leftAxisMax != nil {
+            chart.leftAxis.axisMaximum = leftAxisMax!
+        }
+
+        chart.clearValues()
         chart.xAxis.axisMinimum = 0
         chart.xAxis.axisMaximum = xAxisMax
         chart.data = data
