@@ -383,73 +383,74 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpP-Pc-x7X" userLabel="lblTWDHistoryMT">
-                                <rect key="frame" x="570.5" y="89" width="34.5" height="17"/>
+                                <rect key="frame" x="979.5" y="89" width="34.5" height="17"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoZ-Be-34D" userLabel="TWD History Chart" customClass="ScatterChartView" customModule="Charts">
-                                <rect key="frame" x="230" y="116" width="375" height="642"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoZ-Be-34D" userLabel="TWD History Chart" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="230" y="116" width="784" height="280"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="4AL-dD-Zuy"/>
+                                    <constraint firstAttribute="height" constant="280" id="NIa-La-8tk"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWS History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC7-RD-Ld7" userLabel="lblTWSHistory">
-                                <rect key="frame" x="645" y="89" width="197" height="17"/>
+                                <rect key="frame" x="250" y="426" width="197" height="17"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbi-UP-gaQ" userLabel="lblTWSHistoryMT">
-                                <rect key="frame" x="961" y="89" width="39" height="17"/>
+                                <rect key="frame" x="975" y="426" width="39" height="17"/>
                                 <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihP-FT-xFg" userLabel="TWS History Chart" customClass="ScatterChartView" customModule="Charts">
-                                <rect key="frame" x="625" y="116" width="375" height="642"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihP-FT-xFg" userLabel="TWS History Chart" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="230" y="453" width="784" height="280"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="Mf6-a2-iTQ"/>
+                                    <constraint firstAttribute="height" constant="280" id="7Rl-2f-Ncw"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ihP-FT-xFg" firstAttribute="leading" secondItem="GoZ-Be-34D" secondAttribute="leading" id="0HL-3r-g8Y"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8YJ-py-ed8" secondAttribute="trailing" constant="20" symbolic="YES" id="2P1-i6-zY7"/>
                             <constraint firstItem="0ak-5S-IPO" firstAttribute="centerY" secondItem="WSS-Xm-Tvd" secondAttribute="centerY" id="2Ti-zn-KYG"/>
                             <constraint firstItem="fCV-EA-jme" firstAttribute="top" secondItem="WSS-Xm-Tvd" secondAttribute="bottom" constant="20" id="32G-gH-2Qu"/>
+                            <constraint firstItem="ihP-FT-xFg" firstAttribute="top" secondItem="bC7-RD-Ld7" secondAttribute="bottom" constant="10" id="4PD-c0-7Vf"/>
+                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="leading" secondItem="8YJ-py-ed8" secondAttribute="leading" id="9e5-Hn-Xtb"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="top" secondItem="F7o-eV-m83" secondAttribute="top" constant="15" id="Drz-6l-Bej"/>
-                            <constraint firstItem="ihP-FT-xFg" firstAttribute="leading" secondItem="GoZ-Be-34D" secondAttribute="trailing" constant="20" id="Hwd-nY-87R"/>
                             <constraint firstItem="8YJ-py-ed8" firstAttribute="top" secondItem="fCV-EA-jme" secondAttribute="top" constant="10" id="I7k-fG-cmO"/>
                             <constraint firstItem="kSl-0f-flP" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="J85-Cp-MR9"/>
                             <constraint firstItem="Qfg-RU-mPk" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="JcA-Gm-A9m"/>
                             <constraint firstItem="EPe-fi-l61" firstAttribute="top" secondItem="h58-Gn-nFf" secondAttribute="bottom" constant="5" id="KgB-DC-sXC"/>
-                            <constraint firstItem="ihP-FT-xFg" firstAttribute="top" secondItem="GoZ-Be-34D" secondAttribute="top" id="Nj7-Wk-DgZ"/>
+                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="top" secondItem="GoZ-Be-34D" secondAttribute="bottom" constant="30" id="Kgz-Lc-J1T"/>
                             <constraint firstItem="8YJ-py-ed8" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="trailing" constant="40" id="Oed-EF-SFS"/>
-                            <constraint firstItem="GoZ-Be-34D" firstAttribute="bottom" secondItem="F7o-eV-m83" secondAttribute="bottom" constant="-10" id="Oyp-He-Dho"/>
                             <constraint firstItem="Qfg-RU-mPk" firstAttribute="top" secondItem="kSl-0f-flP" secondAttribute="bottom" constant="5" id="RHd-aH-990"/>
-                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="top" secondItem="8YJ-py-ed8" secondAttribute="top" id="Rya-oW-miH"/>
                             <constraint firstItem="fpP-Pc-x7X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YtA-z8-iOu" secondAttribute="leading" constant="20" symbolic="YES" id="TUE-MG-0Nk"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="trailing" secondItem="0ak-5S-IPO" secondAttribute="leading" constant="-15" id="W1z-KC-t9w"/>
                             <constraint firstItem="kSl-0f-flP" firstAttribute="top" secondItem="fCV-EA-jme" secondAttribute="bottom" constant="5" id="WQc-Lb-191"/>
                             <constraint firstItem="h58-Gn-nFf" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="XTo-xc-m2j"/>
                             <constraint firstItem="UbI-xG-joy" firstAttribute="top" secondItem="EPe-fi-l61" secondAttribute="bottom" constant="5" id="YEc-b1-mNn"/>
                             <constraint firstItem="GoZ-Be-34D" firstAttribute="top" secondItem="8YJ-py-ed8" secondAttribute="bottom" constant="10" id="Zm5-Wc-j3A"/>
-                            <constraint firstItem="GoZ-Be-34D" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="trailing" constant="20" id="cdp-Eb-ngq"/>
-                            <constraint firstItem="ihP-FT-xFg" firstAttribute="bottom" secondItem="F7o-eV-m83" secondAttribute="bottom" constant="-10" id="cnl-qz-I37"/>
-                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="trailing" secondItem="ihP-FT-xFg" secondAttribute="trailing" id="g20-rv-dLe"/>
-                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="top" secondItem="bC7-RD-Ld7" secondAttribute="top" id="htr-XN-DLA"/>
+                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="trailing" secondItem="ihP-FT-xFg" secondAttribute="trailing" id="bTH-CO-xsd"/>
+                            <constraint firstItem="GoZ-Be-34D" firstAttribute="leading" secondItem="8YJ-py-ed8" secondAttribute="trailing" constant="-217.5" id="cdp-Eb-ngq"/>
+                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="top" secondItem="bC7-RD-Ld7" secondAttribute="top" id="eTt-xd-u8T"/>
+                            <constraint firstItem="GoZ-Be-34D" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-10" id="etW-mW-9xA"/>
                             <constraint firstItem="fpP-Pc-x7X" firstAttribute="top" secondItem="8YJ-py-ed8" secondAttribute="top" id="i7g-um-A2A"/>
                             <constraint firstItem="EPe-fi-l61" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="l7f-1f-whL"/>
-                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="leading" secondItem="bC7-RD-Ld7" secondAttribute="trailing" constant="119" id="ldc-L1-tlj"/>
                             <constraint firstItem="WSS-Xm-Tvd" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="15" id="mGv-pY-HRy"/>
-                            <constraint firstItem="bC7-RD-Ld7" firstAttribute="leading" secondItem="ihP-FT-xFg" secondAttribute="leading" constant="20" id="otT-xB-D5O"/>
                             <constraint firstItem="0ak-5S-IPO" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-15" id="pXO-01-HHB"/>
                             <constraint firstItem="fCV-EA-jme" firstAttribute="leading" secondItem="F7o-eV-m83" secondAttribute="leading" constant="10" id="pmH-mB-d7Y"/>
                             <constraint firstItem="h58-Gn-nFf" firstAttribute="top" secondItem="Qfg-RU-mPk" secondAttribute="bottom" constant="5" id="pns-d4-og4"/>
                             <constraint firstItem="fpP-Pc-x7X" firstAttribute="trailing" secondItem="GoZ-Be-34D" secondAttribute="trailing" id="qFF-Jw-Zer"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bC7-RD-Ld7" secondAttribute="trailing" constant="20" symbolic="YES" id="s9Q-4N-7H8"/>
+                            <constraint firstItem="ihP-FT-xFg" firstAttribute="trailing" secondItem="F7o-eV-m83" secondAttribute="trailing" constant="-10" id="sqq-k8-6e9"/>
+                            <constraint firstItem="gbi-UP-gaQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YtA-z8-iOu" secondAttribute="leading" constant="20" symbolic="YES" id="uta-ry-ghd"/>
                             <constraint firstItem="UbI-xG-joy" firstAttribute="leading" secondItem="fCV-EA-jme" secondAttribute="leading" id="y5V-tR-9dI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="F7o-eV-m83"/>

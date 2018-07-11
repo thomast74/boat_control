@@ -19,8 +19,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     @IBOutlet weak var trueWindAngle: NumberView!
     @IBOutlet weak var trueWindSpeed: NumberView!
     @IBOutlet weak var trueWindDirection: NumberView!
-    @IBOutlet weak var twdHistoryChart: ScatterChartView!
-    @IBOutlet weak var twsHistoryChart: ScatterChartView!
+    @IBOutlet weak var twdHistoryChart: LineChartView!
+    @IBOutlet weak var twsHistoryChart: LineChartView!
     
     
     override func viewDidLoad() {
@@ -50,25 +50,23 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         print("WindHistoryViewController: viewWillDisappear")
     }
     
-    func configure(chart: ScatterChartView) {
+    func configure(chart: LineChartView) {
         chart.chartDescription?.enabled = false
         chart.dragEnabled = true
         chart.setScaleEnabled(true)
         chart.pinchZoomEnabled = false
         chart.rightAxis.enabled = false
         chart.legend.enabled = false
-
+        
         let leftAxis = chart.leftAxis
-        leftAxis.inverted = true
         leftAxis.labelPosition = .outsideChart
         leftAxis.drawBottomYLabelEntryEnabled = false
-        leftAxis.axisMinimum = 0
         leftAxis.drawGridLinesEnabled = true
         leftAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         leftAxis.labelTextColor = .lightGray
         
         let xAxis = chart.xAxis
-        xAxis.labelPosition = .top
+        xAxis.labelPosition = .bottom
         xAxis.drawGridLinesEnabled = true
         xAxis.labelFont = .systemFont(ofSize: 16, weight: .light)
         xAxis.labelTextColor = .lightGray
@@ -106,41 +104,29 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         
         for wind in windHistory {
             let twdMag = (geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ?? wind.TWD).rounded(toPlaces: 0)
-            valuesTWD.append(ChartDataEntry(x: twdMag, y: wind.hoursSince))
-            valuesTWS.append(ChartDataEntry(x: wind.TWS, y: wind.hoursSince))
-            valuesMaxTWS.append(ChartDataEntry(x: wind.maxTWS, y: wind.hoursSince))
+            valuesTWD.append(ChartDataEntry(x: wind.hoursSince, y: twdMag))
+            valuesTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.TWS))
+            valuesMaxTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.maxTWS))
         }
 
-        var leftAxisMax = ceil(valuesTWD.last?.y ?? 1.0)
-        if leftAxisMax == 0.0 {
-            leftAxisMax = 1.0
+        var xAxisMax = ceil(valuesTWD.last?.x ?? 1.0)
+        if xAxisMax == 0.0 {
+            xAxisMax = 1.0
         }
-
-        let twdDataSet = ScatterChartDataSet(values: valuesTWD, label: "TWD")
-        twdDataSet.setScatterShape(.circle)
-        twdDataSet.scatterShapeSize = 5
-        twdDataSet.setColor(.white)
         
-        let twsDataSet = ScatterChartDataSet(values: valuesTWS, label: "TWS")
-        twsDataSet.setScatterShape(.circle)
-        twsDataSet.scatterShapeSize = 5
-        twsDataSet.setColor(.white)
+        let twdDataSet = getLineChartDataSet(data: valuesTWD, label: "TWD", color: .white)
+        let twsDataSet = getLineChartDataSet(data: valuesTWS, label: "TWS", color: .white)
+        let twsMaxDataSet = getLineChartDataSet(data: valuesMaxTWS, label: "TWSMAX", color: .red)
 
-        let maxTwsDataSet = ScatterChartDataSet(values: valuesMaxTWS, label: "MAXTWS")
-        maxTwsDataSet.setScatterShape(.circle)
-        maxTwsDataSet.scatterShapeSize = 5
-        maxTwsDataSet.setColor(.red)
-
-        
-        let twdData = ScatterChartData(dataSet: twdDataSet)
+        let twdData = LineChartData(dataSet: twdDataSet)
         twdData.setDrawValues(false)
 
-        let twsData = ScatterChartData(dataSets: [twsDataSet, maxTwsDataSet])
+        let twsData = LineChartData(dataSets: [twsDataSet, twsMaxDataSet])
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {
-            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, leftAxisMax: leftAxisMax, leftAxisMin: nil)
-            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, leftAxisMax: leftAxisMax, leftAxisMin: 0)
+            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, xAxisMax: xAxisMax, leftAxisMin: 0, leftAxisMax: nil)
         }
     }
     
@@ -150,12 +136,28 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     func modelManager(didReceiveNavigationHistory navigationHistory: [NavigationAggregate]) {
     }
     
-    private func setNewChartData(chart: ScatterChartView, data: ScatterChartData, leftAxisMax: Double, leftAxisMin: Double?) {
+    private func getLineChartDataSet(data: [ChartDataEntry], label: String, color: NSUIColor) -> LineChartDataSet {
+        let dataSet = LineChartDataSet(values: data, label: label)
+        dataSet.mode = .cubicBezier
+        dataSet.drawCirclesEnabled = false
+        dataSet.lineWidth = 2
+        dataSet.setColor(color)
+        
+        return dataSet
+    }
+
+    
+    private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?, leftAxisMax: Double?) {
         if leftAxisMin != nil {
             chart.leftAxis.axisMinimum = leftAxisMin!
         }
+        if leftAxisMax != nil {
+            chart.leftAxis.axisMaximum = leftAxisMax!
+        }
         
-        chart.leftAxis.axisMaximum = leftAxisMax
+        chart.clearValues()
+        chart.xAxis.axisMinimum = 0
+        chart.xAxis.axisMaximum = xAxisMax
         chart.data = data
         chart.notifyDataSetChanged()
     }
