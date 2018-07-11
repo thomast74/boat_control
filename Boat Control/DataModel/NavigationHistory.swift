@@ -77,7 +77,10 @@ public class NavigationHistory {
             }
         }
         
-        let allHoursSince = Set<Double>(before.map{$0.hoursSince}).sorted()
+        let allHoursSince = Set<Double>(before.map{$0.hoursSince}).sorted { (d1, d2) -> Bool in
+            return d1 > d2
+        }
+
         for hourSince in allHoursSince {
             let filter = before.filter({$0.hoursSince == hourSince})
             let avgCOG = (filter.map{$0.COG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 0)

@@ -99,30 +99,29 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         var valuesSOG: [ChartDataEntry] = []
         var valuesBPR: [ChartDataEntry] = []
 
+        let hoursSinceMax = navigationHistory.max { (w1, w2) -> Bool in
+            return w1.hoursSince < w2.hoursSince
+            }?.hoursSince ?? 1.0
+
         for nav in navigationHistory {
-            valuesCOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.COG))
-            valuesHDG.append(ChartDataEntry(x: nav.hoursSince, y: nav.HDG))
-            valuesSOG.append(ChartDataEntry(x: nav.hoursSince, y: nav.SOG))
+            valuesCOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.COG))
+            valuesHDG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.HDG))
+            valuesSOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.SOG))
             if nav.BPR > 0 {
                 valuesBPR.append(ChartDataEntry(x: nav.hoursSince, y: nav.BPR))
             }
         }
         
-        var xAxisMax =  ceil(valuesCOG.last?.x ?? 1.0)
-        if xAxisMax == 0.0 {
-            xAxisMax = 1.0
-        }
-
         let cogData = getLineChartData(data: valuesHDG, label: "COG")
         let hdgData = getLineChartData(data: valuesHDG, label: "HDG")
         let sogData = getLineChartData(data: valuesSOG, label: "SOG")
         let bprData = getLineChartData(data: valuesBPR, label: "BPR")
         
         DispatchQueue.main.async {
-            self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
-            self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
-            self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: xAxisMax, leftAxisMin: 0, leftAxisMax: nil)
-            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: hoursSinceMax, leftAxisMin: 0, leftAxisMax: nil)
+            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
         }
     }
     
@@ -149,7 +148,7 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
 
         chart.clearValues()
         chart.xAxis.axisMinimum = 0
-        chart.xAxis.axisMaximum = xAxisMax
+        chart.xAxis.valueFormatter = ReverseValueFormatter(maxValue: xAxisMax)
         chart.data = data
         chart.notifyDataSetChanged()
     }

@@ -102,16 +102,15 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         var valuesMaxTWS: [ChartDataEntry] = []
         let geomagneticField = self.modelManager?.geomagneticField
         
+        let hoursSinceMax = windHistory.max { (w1, w2) -> Bool in
+            return w1.hoursSince < w2.hoursSince
+        }?.hoursSince ?? 1.0
+        
         for wind in windHistory {
             let twdMag = (geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ?? wind.TWD).rounded(toPlaces: 0)
-            valuesTWD.append(ChartDataEntry(x: wind.hoursSince, y: twdMag))
-            valuesTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.TWS))
-            valuesMaxTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.maxTWS))
-        }
-
-        var xAxisMax = ceil(valuesTWD.last?.x ?? 1.0)
-        if xAxisMax == 0.0 {
-            xAxisMax = 1.0
+            valuesTWD.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: twdMag))
+            valuesTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.TWS))
+            valuesMaxTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.maxTWS))
         }
         
         let twdDataSet = getLineChartDataSet(data: valuesTWD, label: "TWD", color: .white)
@@ -125,8 +124,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {
-            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, xAxisMax: xAxisMax, leftAxisMin: nil, leftAxisMax: nil)
-            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, xAxisMax: xAxisMax, leftAxisMin: 0, leftAxisMax: nil)
+            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, xAxisMax: hoursSinceMax, leftAxisMin: 0, leftAxisMax: nil)
         }
     }
     
@@ -157,7 +156,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         
         chart.clearValues()
         chart.xAxis.axisMinimum = 0
-        chart.xAxis.axisMaximum = xAxisMax
+        chart.xAxis.valueFormatter = ReverseValueFormatter(maxValue: xAxisMax)
         chart.data = data
         chart.notifyDataSetChanged()
     }

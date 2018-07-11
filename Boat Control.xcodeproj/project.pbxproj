@@ -20,6 +20,7 @@
 		D33D0B9920EE5B1F0073527D /* GeoMagneticFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */; };
 		D3A4396420F3F75E00D348D8 /* NavigationLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */; };
 		D3A4396620F4071700D348D8 /* NavigationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396520F4071700D348D8 /* NavigationHistory.swift */; };
+		D3A4396820F6A75A00D348D8 /* ReverseValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */; };
 		D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B3EC7220DED757004CBB9D /* AppDelegate.swift */; };
 		D3B3EC7C20DED758004CBB9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7A20DED758004CBB9D /* Main.storyboard */; };
 		D3B3EC7E20DED75B004CBB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B3EC7D20DED75B004CBB9D /* Assets.xcassets */; };
@@ -86,6 +87,7 @@
 		D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoMagneticFieldTests.swift; sourceTree = "<group>"; };
 		D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLogViewController.swift; sourceTree = "<group>"; };
 		D3A4396520F4071700D348D8 /* NavigationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHistory.swift; sourceTree = "<group>"; };
+		D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseValueFormatter.swift; sourceTree = "<group>"; };
 		D3B3EC6F20DED757004CBB9D /* Boat Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boat Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B3EC7220DED757004CBB9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B3EC7B20DED758004CBB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				D3B3EC9B20DFD4C2004CBB9D /* Queue.swift */,
 				D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */,
 				D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */,
+				D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
 				D33D0B8420EAC8680073527D /* NMEAReceiverDelegate.swift in Sources */,
 				D3B3ECB220E2C824004CBB9D /* NMEAParser.swift in Sources */,
+				D3A4396820F6A75A00D348D8 /* ReverseValueFormatter.swift in Sources */,
 				D33D0B8620EC03240073527D /* Navigation.swift in Sources */,
 				D3B3ECAB20E23FCE004CBB9D /* NMEAReceiverManager.swift in Sources */,
 				D33D0B8A20ED44640073527D /* SwinjectStoryboard.swift in Sources */,
