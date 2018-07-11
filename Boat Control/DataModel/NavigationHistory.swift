@@ -83,7 +83,7 @@ public class NavigationHistory {
             let avgCOG = (filter.map{$0.COG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 0)
             let avgHDG = (filter.map{$0.HDG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 0)
             let avgSOG = (filter.map{$0.SOG}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 1)
-            let avgBPR = (filter.map{$0.BPR}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 1)
+            let avgBPR = (filter.map{$0.BPR}.reduce(0, +) / Double(filter.count)).rounded(toPlaces: 2) * 10.0
             aggregate.append(NavigationAggregate(hoursSince: hourSince, COG: avgCOG, HDG: avgHDG, SOG: avgSOG, BPR: avgBPR))
         }
         
