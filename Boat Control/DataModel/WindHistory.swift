@@ -79,7 +79,7 @@ public class WindHistory {
             }
         }
         
-        let allHoursSince = Set<Double>(before.map{$0.hoursSince})
+        let allHoursSince = Set<Double>(before.map{$0.hoursSince}).sorted()
         for hourSince in allHoursSince {
             let filter = before.filter({$0.hoursSince == hourSince})
             let avgTWS = filter.map{$0.TWS}.reduce(0, +) / Double(filter.count)

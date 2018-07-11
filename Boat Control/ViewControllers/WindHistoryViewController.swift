@@ -111,7 +111,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
             valuesMaxTWS.append(ChartDataEntry(x: wind.maxTWS, y: wind.hoursSince))
         }
 
-        var leftAxisMax = ceil(valuesTWD.first?.y ?? 1.0)
+        var leftAxisMax = ceil(valuesTWD.last?.y ?? 1.0)
         if leftAxisMax == 0.0 {
             leftAxisMax = 1.0
         }
