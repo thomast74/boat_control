@@ -186,50 +186,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgq-5T-8hW" userLabel="lblApplication">
-                                <rect key="frame" x="115" y="326.5" width="729" height="16"/>
-                                <fontDescription key="fontDescription" name="StereoGothic-800" family="Stereo Gothic" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Interval (sec)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDi-h8-trH" userLabel="lblHistoryInterval">
-                                <rect key="frame" x="115" y="362.5" width="200" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="XZn-fD-ZLe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tMh-J6-83q" userLabel="fldHistoryInterval">
-                                <rect key="frame" x="315" y="362.5" width="279" height="29"/>
-                                <segments>
-                                    <segment title="15"/>
-                                    <segment title="30"/>
-                                    <segment title="60"/>
-                                    <segment title="120"/>
-                                    <segment title="180"/>
-                                    <segment title="240"/>
-                                    <segment title="360"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="F8w-Ug-rMj" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="7Rb-jY-PzT"/>
                             <constraint firstItem="3y1-YE-WKL" firstAttribute="centerY" secondItem="F8w-Ug-rMj" secondAttribute="centerY" id="94o-cB-2fI"/>
                             <constraint firstItem="Etu-eM-3qP" firstAttribute="top" secondItem="F8w-Ug-rMj" secondAttribute="bottom" constant="20" id="C9I-Qo-Nk7"/>
-                            <constraint firstItem="NDi-h8-trH" firstAttribute="top" secondItem="Jgq-5T-8hW" secondAttribute="bottom" constant="20" id="CtO-R5-Lnx"/>
                             <constraint firstItem="uum-Ru-F9K" firstAttribute="centerY" secondItem="Etu-eM-3qP" secondAttribute="centerY" id="GeF-ap-gEU"/>
                             <constraint firstItem="C7i-uP-qgY" firstAttribute="trailing" secondItem="BxG-DK-Sgr" secondAttribute="trailing" constant="-75" id="HEu-9v-zF9"/>
                             <constraint firstItem="uum-Ru-F9K" firstAttribute="leading" secondItem="Etu-eM-3qP" secondAttribute="trailing" id="Hgb-oD-oLi"/>
-                            <constraint firstItem="NDi-h8-trH" firstAttribute="leading" secondItem="Jgq-5T-8hW" secondAttribute="leading" id="HoO-DQ-5Cw"/>
                             <constraint firstItem="3y1-YE-WKL" firstAttribute="leading" secondItem="F8w-Ug-rMj" secondAttribute="trailing" id="J5l-jB-Al1"/>
                             <constraint firstItem="BxG-DK-Sgr" firstAttribute="top" secondItem="I4c-bs-pyU" secondAttribute="top" constant="15" id="Jvb-mf-rh9"/>
-                            <constraint firstItem="tMh-J6-83q" firstAttribute="leading" secondItem="NDi-h8-trH" secondAttribute="trailing" id="OHb-Lb-DRr"/>
-                            <constraint firstItem="Jgq-5T-8hW" firstAttribute="trailing" secondItem="C7i-uP-qgY" secondAttribute="trailing" id="QLb-pK-Q6V"/>
-                            <constraint firstItem="tMh-J6-83q" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="u5W-Aq-ZsJ" secondAttribute="trailing" constant="20" symbolic="YES" id="SHV-RR-j7s"/>
                             <constraint firstItem="C7i-uP-qgY" firstAttribute="leading" secondItem="BxG-DK-Sgr" secondAttribute="leading" constant="100" id="TxI-iF-Pht"/>
                             <constraint firstItem="ZzT-Ay-gAo" firstAttribute="centerY" secondItem="fcB-ah-DXe" secondAttribute="centerY" id="Ufd-0K-8DG"/>
                             <constraint firstItem="Etu-eM-3qP" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="VT3-2T-617"/>
@@ -239,11 +206,8 @@
                             <constraint firstItem="fcB-ah-DXe" firstAttribute="top" secondItem="Etu-eM-3qP" secondAttribute="bottom" constant="20" id="bzW-8s-eM4"/>
                             <constraint firstItem="BxG-DK-Sgr" firstAttribute="leading" secondItem="I4c-bs-pyU" secondAttribute="leading" constant="15" id="eYT-Mv-yQr"/>
                             <constraint firstItem="ZzT-Ay-gAo" firstAttribute="leading" secondItem="fcB-ah-DXe" secondAttribute="trailing" id="eyl-dd-B1E"/>
-                            <constraint firstItem="Jgq-5T-8hW" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="mSH-q4-1fC"/>
                             <constraint firstItem="fcB-ah-DXe" firstAttribute="leading" secondItem="C7i-uP-qgY" secondAttribute="leading" id="ngD-Vl-Npw"/>
-                            <constraint firstItem="tMh-J6-83q" firstAttribute="top" secondItem="NDi-h8-trH" secondAttribute="top" id="ras-jl-PY0"/>
                             <constraint firstItem="C7i-uP-qgY" firstAttribute="top" secondItem="BxG-DK-Sgr" secondAttribute="bottom" constant="75" id="teM-a1-iSo"/>
-                            <constraint firstItem="Jgq-5T-8hW" firstAttribute="top" secondItem="ZzT-Ay-gAo" secondAttribute="bottom" constant="50" id="w6d-jf-7ju"/>
                             <constraint firstItem="HnA-mL-Tmb" firstAttribute="centerY" secondItem="BxG-DK-Sgr" secondAttribute="centerY" id="wbe-KH-UjP"/>
                             <constraint firstItem="F8w-Ug-rMj" firstAttribute="top" secondItem="C7i-uP-qgY" secondAttribute="bottom" constant="20" id="yYh-JY-YpM"/>
                         </constraints>
@@ -251,7 +215,6 @@
                     </view>
                     <connections>
                         <outlet property="fldConnectionType" destination="3y1-YE-WKL" id="ckB-ed-cFH"/>
-                        <outlet property="fldHistoryInterval" destination="tMh-J6-83q" id="01f-MF-BR8"/>
                         <outlet property="fldIPAddress" destination="uum-Ru-F9K" id="xe0-yG-mI5"/>
                         <outlet property="fldPort" destination="ZzT-Ay-gAo" id="rPd-qB-xMb"/>
                     </connections>

@@ -13,9 +13,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var fldConnectionType: UISegmentedControl!
     @IBOutlet weak var fldIPAddress: UITextField!
     @IBOutlet weak var fldPort: UITextField!
-    @IBOutlet weak var fldHistoryInterval: UISegmentedControl!
-    
-    private let historyIntervalSegments = [15,30,60,120,180,240,360]
     
     
     override func viewDidLoad() {
@@ -31,13 +28,10 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let connectionType = UserDefaults.standard.value(forKey: "nmea_connection_type") as? String
-        let historyInterval = Int((UserDefaults.standard.value(forKey: "app_history_interval") as? String ?? "60")) ?? 60
         
         fldConnectionType.selectedSegmentIndex = Int(connectionType ?? "0")!
         fldIPAddress.text = UserDefaults.standard.value(forKey: "nmea_ip_address") as? String
         fldPort.text = UserDefaults.standard.value(forKey: "nmea_port") as? String
-        
-        fldHistoryInterval.selectedSegmentIndex = historyIntervalSegments.index(of: (historyInterval )) ?? 2 // default is 60 seconds
         
         setStateOfFldIpAddress()
     }
@@ -74,8 +68,6 @@ class SettingsViewController: UIViewController {
         UserDefaults.standard.set(String(fldConnectionType.selectedSegmentIndex), forKey: "nmea_connection_type")
         UserDefaults.standard.set(fldIPAddress.text!, forKey: "nmea_ip_address")
         UserDefaults.standard.set(fldPort.text!, forKey: "nmea_port")
-
-        UserDefaults.standard.set(fldHistoryInterval.titleForSegment(at: fldHistoryInterval.selectedSegmentIndex) ?? "60", forKey: "app_history_interval")
         
         NotificationCenter.default.post(name: NotificationNames.SETTINGS_UPDATED, object: nil)
         
