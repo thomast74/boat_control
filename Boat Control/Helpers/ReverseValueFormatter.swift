@@ -19,7 +19,15 @@ public class ReverseValueFormatter: IAxisValueFormatter {
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let labelValue = (maxValue - value)
-        return String(labelValue.rounded(toPlaces: 2))
+        
+        let hour = Int(labelValue)
+        
+        var minute = Int((labelValue * 60.0).remainder(dividingBy: 60.0))
+        if minute < 0 {
+            minute *= -1
+        }
+        
+        return String("\(value < 0 ? "-" : "")\(hour):\(minute < 10 ? "0" : "")\(minute)")
     }
 
 }
