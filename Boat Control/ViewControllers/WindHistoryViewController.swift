@@ -48,6 +48,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         super.viewWillDisappear(animated)
         
         print("WindHistoryViewController: viewWillDisappear")
+        twdHistoryChart.clearValues()
+        twsHistoryChart.clearValues()
     }
     
     func configure(chart: LineChartView) {

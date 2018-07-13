@@ -47,6 +47,10 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         super.viewWillDisappear(animated)
         
         print("NavigationLogViewController: viewWillDisappear")
+        cogChart.clearValues()
+        hdgChart.clearValues()
+        sogChart.clearValues()
+        brpChart.clearValues()
     }
     
     @IBAction func btnSettingsTouchDown(_ sender: Any) {

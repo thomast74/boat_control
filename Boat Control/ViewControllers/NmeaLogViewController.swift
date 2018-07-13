@@ -31,13 +31,13 @@ class NmeaLogViewController: UIViewController, ModelManagerDelegate {
         print("NmeaLogViewController: viewWillAppear")
         
         modelManager?.setDelegate(self)
-        txtSentences.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         print("NmeaLogViewController: viewWillDisappear")
+        txtSentences.text = ""
     }
     
     @IBAction func btnSettingsTownDown(_ sender: Any) {
