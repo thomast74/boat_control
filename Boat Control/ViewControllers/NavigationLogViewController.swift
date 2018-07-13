@@ -96,7 +96,9 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
     func modelManager(didReceiveNavigationHistory navigationHistory: [NavigationAggregate]) {
         var valuesCOG: [ChartDataEntry] = []
         var valuesHDG: [ChartDataEntry] = []
-        var valuesSOG: [ChartDataEntry] = []
+        var valuesAvgSOG: [ChartDataEntry] = []
+        var valuesMaxSOG: [ChartDataEntry] = []
+        var valuesMinSOG: [ChartDataEntry] = []
         var valuesBPR: [ChartDataEntry] = []
 
         let hoursSinceMax = navigationHistory.max { (w1, w2) -> Bool in
@@ -106,36 +108,53 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         for nav in navigationHistory {
             valuesCOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.COG))
             valuesHDG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.HDG))
-            valuesSOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.SOG))
+            valuesAvgSOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.avgSOG))
+            valuesMaxSOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.maxSOG))
+            valuesMinSOG.append(ChartDataEntry(x: hoursSinceMax - nav.hoursSince, y: nav.minSOG))
             if nav.BPR > 0 {
                 valuesBPR.append(ChartDataEntry(x: nav.hoursSince, y: nav.BPR))
             }
         }
         
+        let avgSOGDataSet = getLineChartDataSet(data: valuesAvgSOG, label: "AVGSOG", color: .white)
+        let maxSOGDataSet = getLineChartDataSet(data: valuesMaxSOG, label: "MAXSOG", color: .red)
+        let minSOGDataSet = getLineChartDataSet(data: valuesMinSOG, label: "MINSOG", color: .green)
+
         let cogData = getLineChartData(data: valuesHDG, label: "COG")
         let hdgData = getLineChartData(data: valuesHDG, label: "HDG")
-        let sogData = getLineChartData(data: valuesSOG, label: "SOG")
         let bprData = getLineChartData(data: valuesBPR, label: "BPR")
-        
+
+        let sogData = LineChartData(dataSets: [avgSOGDataSet, maxSOGDataSet, minSOGDataSet])
+        sogData.setDrawValues(false)
+
         DispatchQueue.main.async {
             self.setNewChartData(chart: self.cogChart, data: cogData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
             self.setNewChartData(chart: self.hdgChart, data: hdgData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
             self.setNewChartData(chart: self.sogChart, data: sogData, xAxisMax: hoursSinceMax, leftAxisMin: 0, leftAxisMax: nil)
-            self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
+            if valuesBPR.count > 0 {
+                self.setNewChartData(chart: self.brpChart, data: bprData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
+            }
         }
     }
-    
-    private func getLineChartData(data: [ChartDataEntry], label: String) -> LineChartData {
+
+    private func getLineChartDataSet(data: [ChartDataEntry], label: String, color: NSUIColor) -> LineChartDataSet {
+        
         let dataSet = LineChartDataSet(values: data, label: label)
         dataSet.mode = .cubicBezier
         dataSet.drawCirclesEnabled = false
         dataSet.lineWidth = 2
-        dataSet.setColor(.white)
-    
-        let lineChartData = LineChartData(dataSet: dataSet)
-        lineChartData.setDrawValues(false)
+        dataSet.setColor(color)
+        
+        return dataSet
+    }
 
-        return lineChartData
+    private func getLineChartData(data: [ChartDataEntry], label: String) -> LineChartData {
+        let dataSet = getLineChartDataSet(data: data, label: label, color: .white)
+        
+        let chartData = LineChartData(dataSet: dataSet)
+        chartData.setDrawValues(false)
+
+        return chartData
     }
     
     private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?, leftAxisMax: Double?) {

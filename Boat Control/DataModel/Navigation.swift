@@ -56,9 +56,15 @@ public class Navigation {
 }
 
 public struct NavigationAggregate {
-    public var hoursSince: Double
+    public var timeStamp: Date
     public var COG: Double
     public var HDG: Double
-    public var SOG: Double
+    public var avgSOG: Double
+    public var maxSOG: Double
+    public var minSOG: Double
     public var BPR: Double
+    
+    public var hoursSince: Double {
+        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2)
+    }
 }

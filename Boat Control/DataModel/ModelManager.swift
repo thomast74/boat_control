@@ -49,13 +49,8 @@ class ModelManager: NMEAReceiverDelegate {
     // must be thread safe sooo!!!!!!
     
     init() {
-        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String) ?? "60") ?? 60.0
-
         _windHistory = WindHistory()
-        _windHistory.windHistoryInterval = historyInterval
-        
         _navigationHistory = NavigationHistory()
-        _navigationHistory.navHistoryInterval = historyInterval
         
         _wind = Wind(windAngle: 0.0, windSpeed: 0.0, reference: "R", cog: 0.0, sog: 0.0, hdg: 0.0)
         _navigation = Navigation(speedOverWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGround: 0.0, courseOverGroundMagnetic: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
@@ -65,8 +60,6 @@ class ModelManager: NMEAReceiverDelegate {
         _lastVHWDate = Date()
         
         initBaromaterRrading()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated), name: NotificationNames.SETTINGS_UPDATED, object: nil)
     }
     
     private func initBaromaterRrading() {
@@ -110,13 +103,6 @@ class ModelManager: NMEAReceiverDelegate {
             geoMF = _geoMagneticField
         }
         return geoMF
-    }
-    
-    @objc func settingsUpdated() {
-        let historyInterval = Double((UserDefaults.standard.value(forKey: "app_history_interval") as? String ?? "60")) ?? 60.0
-        
-        _windHistory.windHistoryInterval = historyInterval
-        _navigationHistory.navHistoryInterval = historyInterval
     }
     
     public func nmeaReceived(data: NMEA_BASE) {
@@ -223,14 +209,10 @@ class ModelManager: NMEAReceiverDelegate {
             
             self._wind = Wind(windAngle: self._lastMWV!.WindAngle, windSpeed: self._lastMWV!.WindSpeed, reference: self._lastMWV!.Reference, cog: cog, sog: sog, hdg: hdgTrue)
             
-            let countBefore = self._windHistory.count
             self._windHistory.add(self._wind)
-            let countAfter = self._windHistory.count
             
             self._delegate?.modelManager(didReceiveWind: self._wind.clone())
-            if countBefore < countAfter {
-                self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
-            }
+            self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
         }
     }
     
@@ -264,14 +246,10 @@ class ModelManager: NMEAReceiverDelegate {
 
             self._navigation.timeStamp = Date()
             
-            let countBefore = self._navigationHistory.count
             self._navigationHistory.add(self._navigation.clone())
-            let countAfter = self._navigationHistory.count
 
             self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
-            if countBefore < countAfter {
-                self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
-            }
+            self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
         }
     }
     

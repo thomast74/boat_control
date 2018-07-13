@@ -98,8 +98,9 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     
     func modelManager(didReceiveWindHistory windHistory: [WindAggregate]) {
         var valuesTWD: [ChartDataEntry] = []
-        var valuesTWS: [ChartDataEntry] = []
+        var valuesAvgTWS: [ChartDataEntry] = []
         var valuesMaxTWS: [ChartDataEntry] = []
+        var valuesMinTWS: [ChartDataEntry] = []
         let geomagneticField = self.modelManager?.geomagneticField
         
         let hoursSinceMax = windHistory.max { (w1, w2) -> Bool in
@@ -109,18 +110,20 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         for wind in windHistory {
             let twdMag = (geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ?? wind.TWD).rounded(toPlaces: 0)
             valuesTWD.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: twdMag))
-            valuesTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.TWS))
+            valuesAvgTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.avgTWS))
             valuesMaxTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.maxTWS))
+            valuesMinTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.minTWS))
         }
         
         let twdDataSet = getLineChartDataSet(data: valuesTWD, label: "TWD", color: .white)
-        let twsDataSet = getLineChartDataSet(data: valuesTWS, label: "TWS", color: .white)
+        let twsAvgDataSet = getLineChartDataSet(data: valuesAvgTWS, label: "TWSAVG", color: .white)
         let twsMaxDataSet = getLineChartDataSet(data: valuesMaxTWS, label: "TWSMAX", color: .red)
+        let twsMinDataSet = getLineChartDataSet(data: valuesMinTWS, label: "TWSMIN", color: .green)
 
         let twdData = LineChartData(dataSet: twdDataSet)
         twdData.setDrawValues(false)
 
-        let twsData = LineChartData(dataSets: [twsDataSet, twsMaxDataSet])
+        let twsData = LineChartData(dataSets: [twsAvgDataSet, twsMaxDataSet, twsMinDataSet])
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {

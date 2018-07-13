@@ -95,11 +95,7 @@ public class Wind {
     public var timeStamp: Date {
         return _timeStamp
     }
-    
-    public var hoursSince: Double {
-        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2)
-    }
-    
+        
     // get from NMEA MWV sentence
     public var AWA: Double {
         return _awa
@@ -169,8 +165,13 @@ public class Wind {
 }
 
 public struct WindAggregate {
-    public var hoursSince: Double
-    public var TWS: Double
+    public var timeStamp: Date
+    public var avgTWS: Double
     public var maxTWS: Double
+    public var minTWS: Double
     public var TWD: Double
+    
+    public var hoursSince: Double {
+        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2)
+    }
 }
