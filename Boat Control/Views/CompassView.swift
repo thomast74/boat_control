@@ -103,19 +103,19 @@ import UIKit
     }
     
     private func drawBoatShape(_ viewCenter: CGPoint, _ compassRingRadius: CGFloat) {
-        
-        let offset = CGFloat(0.0)
-        let width = (compassRingRadius - (2 * offset))
-        let height = (compassRingRadius + 240)
 
+        let compassRingOffset = CGFloat(50)
+        let outsidePoint = CGFloat(100)
+        let lowerYPoints = CGFloat(150)
+        
         let shape = UIBezierPath()
-        shape.move(to: CGPoint(x: viewCenter.x-100, y: viewCenter.y+150))
-        shape.addCurve(to: CGPoint(x: viewCenter.x, y: viewCenter.y-compassRingRadius+50),
-                       controlPoint1: CGPoint(x: viewCenter.x-100, y: viewCenter.y),
-                       controlPoint2: CGPoint(x: viewCenter.x-100, y: viewCenter.y-compassRingRadius+150))
-        shape.addCurve(to: CGPoint(x: viewCenter.x+100, y: viewCenter.y+150),
-                       controlPoint1: CGPoint(x: viewCenter.x+100, y: viewCenter.y-compassRingRadius+150),
-                       controlPoint2: CGPoint(x: viewCenter.x+100, y: viewCenter.y))
+        shape.move(to: CGPoint(x: viewCenter.x-outsidePoint, y: viewCenter.y+lowerYPoints))
+        shape.addCurve(to: CGPoint(x: viewCenter.x, y: viewCenter.y-compassRingRadius+compassRingOffset),
+                       controlPoint1: CGPoint(x: viewCenter.x-outsidePoint, y: viewCenter.y),
+                       controlPoint2: CGPoint(x: viewCenter.x-outsidePoint, y: viewCenter.y-compassRingRadius+lowerYPoints))
+        shape.addCurve(to: CGPoint(x: viewCenter.x+outsidePoint, y: viewCenter.y+lowerYPoints),
+                       controlPoint1: CGPoint(x: viewCenter.x+outsidePoint, y: viewCenter.y-compassRingRadius+lowerYPoints),
+                       controlPoint2: CGPoint(x: viewCenter.x+outsidePoint, y: viewCenter.y))
         shape.close()
 
         let shapeLayer = CAShapeLayer()
