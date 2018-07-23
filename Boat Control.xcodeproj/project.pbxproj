@@ -18,6 +18,13 @@
 		D33D0B9120ED5E770073527D /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9020ED5E770073527D /* NumberView.swift */; };
 		D33D0B9720EE5B010073527D /* GeoMagneticField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9620EE5B010073527D /* GeoMagneticField.swift */; };
 		D33D0B9920EE5B1F0073527D /* GeoMagneticFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */; };
+		D348332E20FFE7E3005D28BE /* LCTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348332D20FFE7E3005D28BE /* LCTextLayer.swift */; };
+		D369E1DA20FA8D8200925678 /* OnTheWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1D920FA8D8200925678 /* OnTheWayViewController.swift */; };
+		D369E1DC20FA94C600925678 /* PositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1DB20FA94C600925678 /* PositionView.swift */; };
+		D369E1DE20FA955100925678 /* PositionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D369E1DD20FA955100925678 /* PositionView.xib */; };
+		D369E1E020FB531300925678 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1DF20FB531300925678 /* CompassView.swift */; };
+		D369E1E220FB532700925678 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D369E1E120FB532700925678 /* CompassView.xib */; };
+		D369E1E420FB5B1500925678 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1E320FB5B1500925678 /* FloatExtensions.swift */; };
 		D3A4396420F3F75E00D348D8 /* NavigationLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */; };
 		D3A4396620F4071700D348D8 /* NavigationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396520F4071700D348D8 /* NavigationHistory.swift */; };
 		D3A4396820F6A75A00D348D8 /* ReverseValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */; };
@@ -85,6 +92,13 @@
 		D33D0B9020ED5E770073527D /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		D33D0B9620EE5B010073527D /* GeoMagneticField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoMagneticField.swift; sourceTree = "<group>"; };
 		D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoMagneticFieldTests.swift; sourceTree = "<group>"; };
+		D348332D20FFE7E3005D28BE /* LCTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCTextLayer.swift; sourceTree = "<group>"; };
+		D369E1D920FA8D8200925678 /* OnTheWayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheWayViewController.swift; sourceTree = "<group>"; };
+		D369E1DB20FA94C600925678 /* PositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionView.swift; sourceTree = "<group>"; };
+		D369E1DD20FA955100925678 /* PositionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionView.xib; sourceTree = "<group>"; };
+		D369E1DF20FB531300925678 /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		D369E1E120FB532700925678 /* CompassView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
+		D369E1E320FB5B1500925678 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
 		D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLogViewController.swift; sourceTree = "<group>"; };
 		D3A4396520F4071700D348D8 /* NavigationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHistory.swift; sourceTree = "<group>"; };
 		D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseValueFormatter.swift; sourceTree = "<group>"; };
@@ -164,8 +178,12 @@
 		D33D0B8D20ED58C90073527D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D33D0B8E20ED59070073527D /* NumberView.xib */,
 				D33D0B9020ED5E770073527D /* NumberView.swift */,
+				D33D0B8E20ED59070073527D /* NumberView.xib */,
+				D369E1DB20FA94C600925678 /* PositionView.swift */,
+				D369E1DD20FA955100925678 /* PositionView.xib */,
+				D369E1DF20FB531300925678 /* CompassView.swift */,
+				D369E1E120FB532700925678 /* CompassView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +263,8 @@
 				D3B3ECAE20E2BD8C004CBB9D /* NotificationNames.swift */,
 				D3B3ECD320E95AF4004CBB9D /* DoubleExtensions.swift */,
 				D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */,
+				D369E1E320FB5B1500925678 /* FloatExtensions.swift */,
+				D348332D20FFE7E3005D28BE /* LCTextLayer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -265,6 +285,7 @@
 				D3B3ECA720E03733004CBB9D /* SettingsViewController.swift */,
 				D33D0B8B20ED549D0073527D /* WindHistoryViewController.swift */,
 				D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */,
+				D369E1D920FA8D8200925678 /* OnTheWayViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -419,6 +440,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D369E1DE20FA955100925678 /* PositionView.xib in Resources */,
+				D369E1E220FB532700925678 /* CompassView.xib in Resources */,
 				D3B3ECA620DFDF65004CBB9D /* Settings.bundle in Resources */,
 				D33D0B8F20ED59070073527D /* NumberView.xib in Resources */,
 				D3B3EC9920DED841004CBB9D /* Flat-it - StereoGothic-800.otf in Resources */,
@@ -507,11 +530,13 @@
 			files = (
 				D3B3ECA420DFDC53004CBB9D /* NmeaLogViewController.swift in Sources */,
 				D33D0B8420EAC8680073527D /* NMEAReceiverDelegate.swift in Sources */,
+				D369E1E420FB5B1500925678 /* FloatExtensions.swift in Sources */,
 				D3B3ECB220E2C824004CBB9D /* NMEAParser.swift in Sources */,
 				D3A4396820F6A75A00D348D8 /* ReverseValueFormatter.swift in Sources */,
 				D33D0B8620EC03240073527D /* Navigation.swift in Sources */,
 				D3B3ECAB20E23FCE004CBB9D /* NMEAReceiverManager.swift in Sources */,
 				D33D0B8A20ED44640073527D /* SwinjectStoryboard.swift in Sources */,
+				D369E1E020FB531300925678 /* CompassView.swift in Sources */,
 				D33D0B8C20ED549D0073527D /* WindHistoryViewController.swift in Sources */,
 				D3B3EC7320DED758004CBB9D /* AppDelegate.swift in Sources */,
 				D33D0B9720EE5B010073527D /* GeoMagneticField.swift in Sources */,
@@ -524,9 +549,12 @@
 				D3B3ECAF20E2BD8C004CBB9D /* NotificationNames.swift in Sources */,
 				D3B3ECA820E03734004CBB9D /* SettingsViewController.swift in Sources */,
 				D3B3ECDC20EAC4A1004CBB9D /* NMEA_VHW.swift in Sources */,
+				D369E1DA20FA8D8200925678 /* OnTheWayViewController.swift in Sources */,
+				D348332E20FFE7E3005D28BE /* LCTextLayer.swift in Sources */,
 				D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */,
 				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,
 				D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */,
+				D369E1DC20FA94C600925678 /* PositionView.swift in Sources */,
 				D3A4396420F3F75E00D348D8 /* NavigationLogViewController.swift in Sources */,
 				D3B3ECA220DFDA25004CBB9D /* RootViewController.swift in Sources */,
 				D3B3ECC720E8244A004CBB9D /* WindHistory.swift in Sources */,

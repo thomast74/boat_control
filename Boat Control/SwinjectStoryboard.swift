@@ -21,6 +21,9 @@ extension SwinjectStoryboard {
         defaultContainer.register(ModelManager.self) { _ in ModelManager() }
                         .inObjectScope(.container)
 
+        defaultContainer.storyboardInitCompleted(OnTheWayViewController.self) { r, c in
+            c.modelManager = r.resolve(ModelManager.self)
+        }
         defaultContainer.storyboardInitCompleted(NavigationLogViewController.self) { r, c in
             c.modelManager = r.resolve(ModelManager.self)
         }

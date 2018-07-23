@@ -172,6 +172,6 @@ public struct WindAggregate {
     public var TWD: Double
     
     public var hoursSince: Double {
-        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2)
+        return (timeStamp.timeIntervalSinceNow / 60 / 60 * (-1)).rounded(toPlaces: 2) * (-1)
     }
 }

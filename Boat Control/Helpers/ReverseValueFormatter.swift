@@ -11,18 +11,13 @@ import Charts
 
 public class ReverseValueFormatter: IAxisValueFormatter {
     
-    private let maxValue: Double
-    
-    public init(maxValue: Double) {
-        self.maxValue = maxValue
+    public init() {
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let labelValue = (maxValue - value)
+        let hour = Int(value)
         
-        let hour = Int(labelValue)
-        
-        var minute = Int((labelValue * 60.0).remainder(dividingBy: 60.0))
+        var minute = Int((value * 60.0).remainder(dividingBy: 60.0))
         if minute < 0 {
             minute *= -1
         }

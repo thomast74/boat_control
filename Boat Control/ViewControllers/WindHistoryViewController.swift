@@ -104,17 +104,13 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         var valuesMaxTWS: [ChartDataEntry] = []
         var valuesMinTWS: [ChartDataEntry] = []
         let geomagneticField = self.modelManager?.geomagneticField
-        
-        let hoursSinceMax = windHistory.max { (w1, w2) -> Bool in
-            return w1.hoursSince < w2.hoursSince
-        }?.hoursSince ?? 1.0
-        
+                
         for wind in windHistory {
             let twdMag = (geomagneticField?.trueToMagnetic(trueDegree: wind.TWD) ?? wind.TWD).rounded(toPlaces: 0)
-            valuesTWD.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: twdMag))
-            valuesAvgTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.avgTWS))
-            valuesMaxTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.maxTWS))
-            valuesMinTWS.append(ChartDataEntry(x: hoursSinceMax - wind.hoursSince, y: wind.minTWS))
+            valuesTWD.append(ChartDataEntry(x: wind.hoursSince, y: twdMag))
+            valuesAvgTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.avgTWS))
+            valuesMaxTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.maxTWS))
+            valuesMinTWS.append(ChartDataEntry(x: wind.hoursSince, y: wind.minTWS))
         }
         
         let twdDataSet = getLineChartDataSet(data: valuesTWD, label: "TWD", color: .white)
@@ -129,8 +125,8 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         twsData.setDrawValues(false)
 
         DispatchQueue.main.async {
-            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, xAxisMax: hoursSinceMax, leftAxisMin: nil, leftAxisMax: nil)
-            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, xAxisMax: hoursSinceMax, leftAxisMin: 0, leftAxisMax: nil)
+            self.setNewChartData(chart: self.twdHistoryChart, data: twdData, leftAxisMin: nil, leftAxisMax: nil)
+            self.setNewChartData(chart: self.twsHistoryChart, data: twsData, leftAxisMin: 0, leftAxisMax: nil)
         }
     }
     
@@ -142,7 +138,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     
     private func getLineChartDataSet(data: [ChartDataEntry], label: String, color: NSUIColor) -> LineChartDataSet {
         let dataSet = LineChartDataSet(values: data, label: label)
-        dataSet.mode = .cubicBezier
+        //dataSet.mode = .cubicBezier
         dataSet.drawCirclesEnabled = false
         dataSet.lineWidth = 2
         dataSet.setColor(color)
@@ -151,7 +147,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
     }
 
     
-    private func setNewChartData(chart: LineChartView, data: LineChartData, xAxisMax: Double, leftAxisMin: Double?, leftAxisMax: Double?) {
+    private func setNewChartData(chart: LineChartView, data: LineChartData, leftAxisMin: Double?, leftAxisMax: Double?) {
         if leftAxisMin != nil {
             chart.leftAxis.axisMinimum = leftAxisMin!
         }
@@ -160,8 +156,7 @@ class WindHistoryViewController: UIViewController, ModelManagerDelegate {
         }
         
         chart.clearValues()
-        chart.xAxis.axisMinimum = 0
-        chart.xAxis.valueFormatter = ReverseValueFormatter(maxValue: xAxisMax)
+        chart.xAxis.valueFormatter = ReverseValueFormatter()
         chart.data = data
         chart.notifyDataSetChanged()
     }
