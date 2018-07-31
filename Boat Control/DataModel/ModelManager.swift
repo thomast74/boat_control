@@ -53,7 +53,7 @@ class ModelManager: NMEAReceiverDelegate {
         _navigationHistory = NavigationHistory()
         
         _wind = Wind(windAngle: 0.0, windSpeed: 0.0, reference: "R", cog: 0.0, sog: 0.0, hdg: 0.0)
-        _navigation = Navigation(speedThroughWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGround: 0.0, courseOverGroundMagnetic: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
+        _navigation = Navigation(speedThroughWater: 0.0, speedOverGround: 0.0, headingMagnetic: 0.0, headingTrue: 0.0, courseOverGroundTrue: 0.0, courseOverGroundMagnetic: 0.0, latitude: 0.0, latitudeDirection: "N", longitude: 0.0, longitudeDirection: "E", gpsTimeStamp: Date(timeIntervalSince1970: TimeInterval(exactly: 0)!))
         
         _lastMWVDate = Date()
         _lastHDGDate = Date()
@@ -234,7 +234,7 @@ class ModelManager: NMEAReceiverDelegate {
             
             if self._lastRMC != nil {
                 self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
-                self._navigation.courseOverGround = self._lastRMC!.CourseOverGround
+                self._navigation.courseOverGroundTrue = self._lastRMC!.CourseOverGround
                 self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._lastRMC!.CourseOverGround) ?? self._lastRMC!.CourseOverGround
             }
 
