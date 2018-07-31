@@ -717,14 +717,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOR-hU-vcK" userLabel="SOW" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOR-hU-vcK" userLabel="STW" customClass="NumberView" customModule="Boat_Control" customModuleProvider="target">
                                 <rect key="frame" x="839" y="339" width="180" height="110"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="H1z-Hc-I18"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="SOW"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="STW"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="measurementShortCut" value="kn"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="roundingPlaces">
                                         <integer key="value" value="1"/>
@@ -810,7 +810,7 @@
                         <outlet property="depth" destination="yCd-6E-Ez4" id="Tom-Be-ttb"/>
                         <outlet property="position" destination="8ou-p3-FPk" id="qwK-0Z-UL3"/>
                         <outlet property="sog" destination="Mct-3f-fIV" id="uha-7d-G4e"/>
-                        <outlet property="sow" destination="HOR-hU-vcK" id="qPI-gi-EbG"/>
+                        <outlet property="stw" destination="HOR-hU-vcK" id="gts-86-AAk"/>
                         <outlet property="twa" destination="UtH-jM-E46" id="ilr-KT-kbp"/>
                         <outlet property="twd" destination="jj6-s8-ZhL" id="fjm-V7-NDf"/>
                         <outlet property="tws" destination="FD7-6x-3HW" id="Dt0-q7-PKR"/>

@@ -20,7 +20,7 @@ class OnTheWayViewController: UIViewController, ModelManagerDelegate {
     @IBOutlet weak var compass: CompassView!
     @IBOutlet weak var position: PositionView!
     @IBOutlet weak var sog: NumberView!
-    @IBOutlet weak var sow: NumberView!
+    @IBOutlet weak var stw: NumberView!
     @IBOutlet weak var cog: NumberView!
     @IBOutlet weak var depth: NumberView!
     
@@ -80,7 +80,7 @@ class OnTheWayViewController: UIViewController, ModelManagerDelegate {
             self.position.set(longitude: navigation.longitude, direction: navigation.longitudeDirection)
             
             self.sog.value = navigation.speedOverGround
-            self.sow.value = navigation.speedOverWater
+            self.stw.value = navigation.speedThroughWater
             self.cog.value = navigation.courseOverGroundMagnetic
             self.depth.value = -1.0
             self.compass.headingMagnetic = navigation.headingMagnetic

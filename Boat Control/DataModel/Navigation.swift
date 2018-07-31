@@ -10,7 +10,7 @@ import Foundation
 
 public class Navigation {
     
-    public var speedOverWater: Double
+    public var speedThroughWater: Double
     public var speedOverGround: Double
     public var headingMagnetic: Double
     public var headingTrue: Double
@@ -24,8 +24,8 @@ public class Navigation {
     public var baromericPressure: Double
     public var timeStamp: Date
     
-    public init(speedOverWater: Double, speedOverGround: Double, headingMagnetic: Double, headingTrue: Double, courseOverGround: Double, courseOverGroundMagnetic: Double, latitude: Double, latitudeDirection: String, longitude: Double, longitudeDirection: String, gpsTimeStamp: Date) {
-        self.speedOverWater = speedOverWater
+    public init(speedThroughWater: Double, speedOverGround: Double, headingMagnetic: Double, headingTrue: Double, courseOverGround: Double, courseOverGroundMagnetic: Double, latitude: Double, latitudeDirection: String, longitude: Double, longitudeDirection: String, gpsTimeStamp: Date) {
+        self.speedThroughWater = speedThroughWater
         self.speedOverGround = speedOverGround
         self.headingMagnetic = headingMagnetic
         self.headingTrue = headingTrue
@@ -45,7 +45,7 @@ public class Navigation {
     }
     
     public func clone() -> Navigation {
-        let navigation = Navigation(speedOverWater: speedOverWater, speedOverGround: speedOverGround, headingMagnetic: headingMagnetic, headingTrue: headingTrue, courseOverGround: courseOverGround, courseOverGroundMagnetic: courseOverGroundMagnetic, latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection, gpsTimeStamp: gpsTimeStamp)
+        let navigation = Navigation(speedThroughWater: speedThroughWater, speedOverGround: speedOverGround, headingMagnetic: headingMagnetic, headingTrue: headingTrue, courseOverGround: courseOverGround, courseOverGroundMagnetic: courseOverGroundMagnetic, latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection, gpsTimeStamp: gpsTimeStamp)
         
         navigation.baromericPressure = self.baromericPressure
         navigation.timeStamp = self.timeStamp
