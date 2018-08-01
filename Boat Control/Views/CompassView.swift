@@ -351,15 +351,16 @@ import UIKit
         linePath.addLine(to: CGPoint(x: x3, y: y3))
         linePath.close()
         
-        let lightBlue = UIColor(red: 0.4, green: 0.4, blue: 1.0, alpha: 1.0)
-        let darkBlue = UIColor(red: 0.4, green: 0.4, blue: 0.7, alpha: 1.0)
-        let darkGreen = UIColor(red: 0.0, green: 0.7, blue: 0.0, alpha: 1.0)
+        let lightBlue = UIColor(red: 0.6, green: 0.6, blue: 1.0, alpha: 1.0)
+        let lightGreen = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+        let darkBlue = UIColor(red: 0.36, green: 0.36, blue: 0.6, alpha: 1.0)
+        let darkGreen = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0)
 
         let lineLayer = CAShapeLayer()
         lineLayer.path = linePath.cgPath
         lineLayer.lineWidth = 2.0
         lineLayer.strokeColor = isIntoWind ? darkBlue.cgColor : darkGreen.cgColor
-        lineLayer.fillColor = isIntoWind ? lightBlue.cgColor : UIColor.green.cgColor
+        lineLayer.fillColor = isIntoWind ? lightBlue.cgColor : lightGreen.cgColor
         _view?.layer.addSublayer(lineLayer)
     }
 
@@ -384,8 +385,8 @@ import UIKit
         linePath.addLine(to: CGPoint(x: x3, y: y3))
         linePath.close()
         
-        let lightBlue = UIColor(red: 0.4, green: 0.4, blue: 1.0, alpha: 1.0)
-        let darkBlue = UIColor(red: 0.4, green: 0.4, blue: 0.7, alpha: 1.0)
+        let lightBlue = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let darkBlue = UIColor(red: 0.0, green: 0.6, blue: 0.6, alpha: 1.0)
 
         let lineLayer = CAShapeLayer()
         lineLayer.path = linePath.cgPath
