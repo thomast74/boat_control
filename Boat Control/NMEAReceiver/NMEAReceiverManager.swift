@@ -65,7 +65,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             }
             
             print("TCP Socket initialising")
-            socketTcp = GCDAsyncSocket.init(delegate: self, delegateQueue: DispatchQueue.global(qos: .default))
+            socketTcp = GCDAsyncSocket.init(delegate: self, delegateQueue: DispatchQueue.global(qos: .userInteractive))
             do {
                 try socketTcp!.connect(toHost: ipAddress, onPort: port)
                 socketTcp!.readData(to: String("\r\n").data(using: .utf8)!, withTimeout: -1, tag: 0)
@@ -83,7 +83,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
             }
             
             print("UDP Socket initialising")
-            socketUdp = GCDAsyncUdpSocket.init(delegate: self, delegateQueue: DispatchQueue.global(qos: .default))
+            socketUdp = GCDAsyncUdpSocket.init(delegate: self, delegateQueue: DispatchQueue.global(qos: .userInitiated))
             do {
                 socketUdp!.setIPv4Enabled(true)
                 socketUdp!.setIPv6Enabled(false)
