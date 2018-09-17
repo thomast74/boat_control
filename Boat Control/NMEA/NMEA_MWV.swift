@@ -26,7 +26,9 @@ public class NMEA_MWV: NMEA_BASE {
     }
     
     public var WindSpeed: Double {
-        return (Double(_data[2])?.rounded(toPlaces: 1))!
+        return _data[2].isEmpty
+            ? -1.0
+            : (Double(_data[2])?.rounded(toPlaces: 1))!
     }
     
     public var SpeedUnits: WindSpeedUnits {

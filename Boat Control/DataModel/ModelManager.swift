@@ -150,6 +150,10 @@ class ModelManager: NMEAReceiverDelegate {
 
     private func processNmea(data: NMEA_MWV) {
         concurrentNMEA_MWVQueue.async(flags: .barrier) {
+            if data._talker == "II" && data.WindSpeed == -1.0 {
+                return
+            }
+
             self._lastMWV = data
             self._lastMWVDate = Date()
             
@@ -401,9 +405,14 @@ class ModelManager: NMEAReceiverDelegate {
         let currentSpeed = sqrt(pow(speedOverGround, 2) + pow(speedThroughWater, 2) - (2*speedOverGround*speedThroughWater*cos(alpha)))
         
         // calculate current direction
-        let ceta = acos((pow(currentSpeed, 2) + pow(speedThroughWater, 2) - pow(speedOverGround, 2))/(2*currentSpeed*speedThroughWater))
+        var ceta = acos((pow(currentSpeed, 2) + pow(speedThroughWater, 2) - pow(speedOverGround, 2))/(2*currentSpeed*speedThroughWater))
+        if ceta.isNaN {
+           ceta = 0.0
+        }
+        
         let currentDirection = sign == 1 ? ceta : 360 - ceta
 
+        
         return (currentSpeed, currentDirection)
     }
 

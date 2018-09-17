@@ -128,7 +128,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     }
     
     func filterNmeaData(_ sentence: String) -> Bool {
-        if sentence.starts(with: "!AI")  || sentence.starts(with: "$STALK") {
+        if sentence.starts(with: "AI")  || sentence.starts(with: "STALK") || sentence.isEmpty || !sentence.contains("*") {
             return true
         } else {
             return false
@@ -173,18 +173,16 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     
     func sentenceReceived(_ data: Data) {
         let rawData = String.init(data: data, encoding: .utf8) ?? "?"
-        let sentencesSeq = rawData.split(separator: "\r\n")
+        //print(rawData)
+        let sentencesSeq = rawData.split(whereSeparator: { $0 == "!" || $0 == "$"} )
         for sentenceSeq in sentencesSeq {
             var sentence = String(sentenceSeq)
             if sentence.starts(with: "*HELLO*") {
                 sentence = sentence.replacingOccurrences(of: "*HELLO*", with: "")
             }
+            sentence = sentence.replacingOccurrences(of: "\r\n", with: "")
 
             if filterNmeaData(sentence) {
-                continue
-            }
-            
-            if (sentence.first != "!" && sentence.first != "$") || sentence.index(of: "*") == nil {
                 continue
             }
             

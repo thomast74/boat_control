@@ -13,7 +13,7 @@ class NMEAParser {
     
     static func convert(sentence: String) -> NMEA_BASE {
         // get identifier
-        let identifierRange = sentence.index(sentence.startIndex, offsetBy: 3)..<sentence.index(sentence.startIndex, offsetBy: 6)
+        let identifierRange = sentence.index(sentence.startIndex, offsetBy: 2)..<sentence.index(sentence.startIndex, offsetBy: 5)
         let identifier = String(sentence[identifierRange])
         
         if NMEASentences.ALL.contains(identifier) {

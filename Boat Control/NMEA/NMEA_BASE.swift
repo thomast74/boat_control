@@ -21,10 +21,10 @@ public class NMEA_BASE {
     public required init(sentence: String) {
         _sentence = sentence
         
-        let talkerRange = _sentence.index(_sentence.startIndex, offsetBy: 1)..._sentence.index(_sentence.startIndex, offsetBy: 2)
-        let identifierRange = _sentence.index(_sentence.startIndex, offsetBy: 3)..._sentence.index(_sentence.startIndex, offsetBy: 5)
+        let talkerRange = _sentence.index(_sentence.startIndex, offsetBy: 0)..._sentence.index(_sentence.startIndex, offsetBy: 1)
+        let identifierRange = _sentence.index(_sentence.startIndex, offsetBy: 2)..._sentence.index(_sentence.startIndex, offsetBy: 4)
         let endOfDataIndex = _sentence.index(of: "*")!
-        let dataRange = _sentence.index(_sentence.startIndex, offsetBy: 7)..<endOfDataIndex
+        let dataRange = _sentence.index(_sentence.startIndex, offsetBy: 6)..<endOfDataIndex
         let checksumRange = _sentence.index(_sentence.endIndex, offsetBy: -2)..._sentence.index(_sentence.endIndex, offsetBy: -1)
 
         _talker = String(_sentence[talkerRange])

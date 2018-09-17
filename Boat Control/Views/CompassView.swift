@@ -52,6 +52,13 @@ import UIKit
             setNeedsDisplay()
         }
     }
+    
+    private var currentDirectionRelative: Double {
+        return currentDirection < 0
+            ? (360.0 + currentDirection)
+            : currentDirection
+    }
+
 
     public var awa: Double = 0.0 {
         didSet {
@@ -112,7 +119,7 @@ import UIKit
         drawTWDMarker(viewCenter, compassRingRadius, outerGreyRingRadius)
         //drawLaylines(viewCenter, compassRingRadius)
         drawHDGField(viewCenter, self.contentScaleFactor, compassRingRadius)
-        drawCurrent(viewCenter)
+        drawCurrent(viewCenter, self.contentScaleFactor)
     }
     
     private func drawBoatShape(_ viewCenter: CGPoint, _ compassRingRadius: CGFloat) {
@@ -449,10 +456,58 @@ import UIKit
         _view?.layer.addSublayer(lineLayer)
     }
     
-    private func drawCurrent(_ viewCenter: CGPoint) {
+    private func drawCurrent(_ viewCenter: CGPoint, _ scale: CGFloat) {
         // draw arrow in blue
         // rotate arrow in accordance to direction
+
+        let bottom = CGFloat(40)
+        let top = CGFloat(30)
+        let arrowWidth = CGFloat(20)
+
+        let angle = degreeConvert(self.currentDirectionRelative)
+        let theta = Double.pi * Double(angle) / 180.0
+        
+        let shape = UIBezierPath()
+        shape.move(to: CGPoint(x: viewCenter.x-arrowWidth, y: viewCenter.y+bottom))
+        shape.addLine(to: CGPoint(x: viewCenter.x+arrowWidth, y: viewCenter.y+bottom))
+        shape.addLine(to: CGPoint(x: viewCenter.x+arrowWidth, y: viewCenter.y-top))
+        shape.addLine(to: CGPoint(x: viewCenter.x+arrowWidth+20, y: viewCenter.y-top))
+        shape.addLine(to: CGPoint(x: viewCenter.x, y: viewCenter.y-top-35))
+        shape.addLine(to: CGPoint(x: viewCenter.x-arrowWidth-20, y: viewCenter.y-top))
+        shape.addLine(to: CGPoint(x: viewCenter.x-arrowWidth, y: viewCenter.y-top))
+        shape.addLine(to: CGPoint(x: viewCenter.x-arrowWidth, y: viewCenter.y+bottom))
+        shape.close()
+        
+        let bounds = shape.cgPath.boundingBox
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+
+        let toOrigin = CGAffineTransform(translationX: -center.x, y: -center.y)
+        shape.apply(toOrigin)
+        let rotation = CGAffineTransform(rotationAngle: CGFloat(theta))
+        shape.apply(rotation)
+        let fromOrigin = CGAffineTransform(translationX: center.x, y: center.y)
+        shape.apply(fromOrigin)
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = shape.cgPath
+        shapeLayer.fillColor = UIColor.blue.cgColor
+        shapeLayer.strokeColor = UIColor.blue.cgColor
+        shapeLayer.lineWidth = CGFloat(1)
+        _view?.layer.addSublayer(shapeLayer)
+        
         // write speed in center in white
+        let textLayer = LCTextLayer()
+        textLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 65.0, height: 40.0)
+        textLayer.position = CGPoint(x: viewCenter.x , y: viewCenter.y)
+        textLayer.contentsScale = scale
+        textLayer.font = UIFont.systemFont(ofSize: 17)
+        textLayer.fontSize = 17
+        textLayer.foregroundColor = UIColor.white.cgColor
+        textLayer.string = "\(self.currentSpeed.rounded(toPlaces: 1))"
+        textLayer.backgroundColor = UIColor.clear.cgColor
+        textLayer.borderWidth = 0.0
+        
+        _view?.layer.addSublayer(textLayer)
     }
 
 }
