@@ -16,7 +16,9 @@ public class NMEA_MWV: NMEA_BASE {
     }
     
     public var WindAngle: Double {
-        return Double(_data[0])!
+        return _data[0].isEmpty
+            ? 0.0
+            : Double(_data[0])!
     }
     
     public var Reference: String {

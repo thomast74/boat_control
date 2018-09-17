@@ -25,7 +25,9 @@ public class NMEA_VHW: NMEA_BASE {
     }
     
     public var TrueHeading: Double {
-        return Double(_data[0])!
+        return _data[0].isEmpty
+            ? -1.0
+            : Double(_data[0])!
     }
 
     public var TrueHeadingDesc: String {
@@ -33,7 +35,9 @@ public class NMEA_VHW: NMEA_BASE {
     }
 
     public var MagneticHeading: Double {
-        return Double(_data[2])!
+        return _data[2].isEmpty
+            ? -1.0
+            : Double(_data[2])!
     }
 
     public var MagneticHeadingDesc: String {
@@ -41,7 +45,9 @@ public class NMEA_VHW: NMEA_BASE {
     }
 
     public var BoatSpeedKnots: Double {
-        return Double(_data[4])!
+        return _data[4].isEmpty
+            ? 0.0
+            : Double(_data[4])!
     }
     
     public var BoatSpeedKnotsDesc: String {
@@ -49,14 +55,15 @@ public class NMEA_VHW: NMEA_BASE {
     }
 
     public var BoatSpeedKm: Double {
-        return Double(_data[6])!
+        return _data[6].isEmpty
+            ? 0.0
+            : Double(_data[6])!
     }
     
     public var BoatSpeedKmDesc: String {
         return String(_data[7])
     }
 
-    
     override public func toString() -> String {
         return super.toString() + "TrueHeading: \(TrueHeading)\(TrueHeadingDesc); MagneticHeading: \(MagneticHeading)\(MagneticHeadingDesc); BoatSpeedKnots: \(BoatSpeedKnots)\(BoatSpeedKnotsDesc); BoatSpeedKm: \(BoatSpeedKm)\(BoatSpeedKmDesc)"
     }

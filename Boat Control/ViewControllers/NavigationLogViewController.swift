@@ -120,7 +120,7 @@ class NavigationLogViewController: UIViewController, ModelManagerDelegate {
         let maxSOGDataSet = getLineChartDataSet(data: valuesMaxSOG, label: "MAXSOG", color: .red)
         let minSOGDataSet = getLineChartDataSet(data: valuesMinSOG, label: "MINSOG", color: .green)
 
-        let cogData = getLineChartData(data: valuesHDG, label: "COG")
+        let cogData = getLineChartData(data: valuesCOG, label: "COG")
         let hdgData = getLineChartData(data: valuesHDG, label: "HDG")
         let bprData = getLineChartData(data: valuesBPR, label: "BPR")
 

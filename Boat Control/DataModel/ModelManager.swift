@@ -29,7 +29,9 @@ class ModelManager: NMEAReceiverDelegate {
     private var _lastMWVDate: Date
     private var _lastRMC: NMEA_RMC?
 
+    private var _lastDBT: NMEA_DBT?
     private var _lastHDG: NMEA_HDG?
+    private var _lastHDM: NMEA_HDM?
     private var _lastHDGDate: Date
     private var _lastVHW: NMEA_VHW?
     private var _lastVHWDate: Date
@@ -122,11 +124,20 @@ class ModelManager: NMEAReceiverDelegate {
         case "HDG":
             processNmea(data: data as! NMEA_HDG)
             break
+        case "HDM":
+            processNmea(data: data as! NMEA_HDM)
+            break
         case "VHW":
             processNmea(data: data as! NMEA_VHW)
             break
+        case "DBT":
+            processNmea(data: data as! NMEA_DBT)
+            break
+        case "MTW":
+            //processNmea(data: data as! NMEA_MTW)
+            break
         default:
-            print("Not known data object received")
+            print("Not known data object received; \(data.identifier)")
         }
         
         _delegate?.modelManager(didReceiveSentence: data)
@@ -164,6 +175,10 @@ class ModelManager: NMEAReceiverDelegate {
     
     private func processNmea(data: NMEA_RMC) {
         concurrentNMEA_RMCQueue.async(flags: .barrier) {
+            if data._talker == "II" && data.Latitude == 0.0 && data.Longitude == 0.0 {
+                return
+            }
+            
             self._lastRMC = data
         
             self.createWind()
@@ -177,35 +192,56 @@ class ModelManager: NMEAReceiverDelegate {
             self._lastMWVDate = Date()
             
             self.createWind()
+            self.updateNavigation()
         }
     }
-    
+
+    private func processNmea(data: NMEA_HDM) {
+        concurrentNMEA_HDGQueue.async(flags: .barrier) {
+            self._lastHDM = data
+            self._lastMWVDate = Date()
+            
+            self.createWind()
+            self.updateNavigation()
+        }
+    }
+
     private func processNmea(data: NMEA_VHW) {
         concurrentNMEA_VHWQueue.async(flags: .barrier) {
             self._lastVHW = data
             self._lastVHWDate = Date()
             
             self.createWind()
+            self.updateNavigation()
         }
     }
-    
+
+    private func processNmea(data: NMEA_DBT) {
+        concurrentNMEA_HDGQueue.async(flags: .barrier) {
+            self._lastDBT = data
+            
+            self.updateNavigation()
+        }
+    }
+
     private func createWind() {
         concurrentWindQueue.async(flags: .barrier) {
             if self._lastMWV == nil {
                 return
             }
             
-            let cog, sog: Double
-            
+            var cog: Double  = -1.0
+            var sog: Double  = 0.0
+            let (_, hdgTrue) = self.getLatestHeading()
+
             if self._lastRMC != nil {
                 cog = self._lastRMC!.CourseOverGround
                 sog = self._lastRMC!.SpeedOverGround
-            } else {
-                cog = 0.0
-                sog = 0.0
             }
             
-            let (_, hdgTrue) = self.getLatestHeading()
+            if cog == -1.0 {
+                cog = hdgTrue
+            }
             
             self._wind = Wind(windAngle: self._lastMWV!.WindAngle, windSpeed: self._lastMWV!.WindSpeed, reference: self._lastMWV!.Reference, cog: cog, sog: sog, hdg: hdgTrue)
             
@@ -231,19 +267,39 @@ class ModelManager: NMEAReceiverDelegate {
             if self._lastVHW != nil {
                 self._navigation.speedThroughWater = self._lastVHW!.BoatSpeedKnots
             }
-            
-            if self._lastRMC != nil {
-                self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
-                self._navigation.courseOverGroundTrue = self._lastRMC!.CourseOverGround
-                self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._lastRMC!.CourseOverGround) ?? self._lastRMC!.CourseOverGround
+
+            if self._lastDBT != nil {
+                if self._lastDBT!.DepthMeters >= 0.0 {
+                    self._navigation.depth = self._lastDBT!.DepthMeters
+                } else {
+                    self._navigation.depth = self._lastDBT!.DepthFeet * 0.3048
+                }
             }
 
             let (headingMagnetic, headingTrue) = self.getLatestHeading()
-            //print("\(headingMagnetic) => \(headingTrue); \(self._navigation.courseOverGroundMagnetic) => \(self._navigation.courseOverGround)")
-            
             self._navigation.headingMagnetic = headingMagnetic
             self._navigation.headingTrue = headingTrue
 
+            if self._lastRMC != nil {
+                self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
+                self._navigation.courseOverGroundTrue = self._lastRMC!.CourseOverGround
+            }
+
+            if self._navigation.courseOverGroundTrue == -1.0 {
+               self._navigation.courseOverGroundTrue = headingTrue
+            }
+
+            self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._navigation.courseOverGroundTrue) ?? headingMagnetic
+            
+            let (currentSpeed, currentDirection) = self.calculateCurrent(headingMagnetic: self._navigation.headingMagnetic,
+                                                                         courseOverGroundMagnetic: self._navigation.courseOverGroundMagnetic,
+                                                                         speedOverGround: self._navigation.speedOverGround,
+                                                                         speedThroughWater: self._navigation.speedThroughWater)
+            
+            self._navigation.currentSpeed = currentSpeed
+            self._navigation.currentDirection = currentDirection
+            
+            
             self._navigation.timeStamp = Date()
             
             self._navigationHistory.add(self._navigation.clone())
@@ -255,7 +311,7 @@ class ModelManager: NMEAReceiverDelegate {
     
     private func getLatestHeading() -> (headingMagnetic: Double, headingTrue: Double) {
 
-        if _lastHDG == nil && _lastVHW == nil {
+        if _lastHDG == nil && _lastVHW == nil && _lastHDM == nil {
             if _lastRMC != nil {
                 return (self._geoMagneticField?.trueToMagnetic(trueDegree: self._lastRMC!.CourseOverGround) ?? _lastRMC!.CourseOverGround, _lastRMC!.CourseOverGround)
             } else {
@@ -263,19 +319,13 @@ class ModelManager: NMEAReceiverDelegate {
             }
         }
 
-        var headingMagnetic: Double
+        var headingMagnetic: Double = 0.0
 
-        if _lastHDG != nil && _lastVHW == nil {
+        if _lastHDM != nil {
+            headingMagnetic = _lastHDM!.MagneticHeading
+        } else if _lastHDG != nil {
             headingMagnetic = _lastHDG!.MagneticHeading
-        }
-
-        if _lastHDG == nil && _lastVHW != nil {
-            headingMagnetic = _lastVHW!.MagneticHeading
-        }
-
-        if _lastHDGDate >= _lastVHWDate {
-            headingMagnetic = _lastHDG!.MagneticHeading
-        } else {
+        } else if _lastVHW != nil {
             headingMagnetic = _lastVHW!.MagneticHeading
         }
         
@@ -339,6 +389,24 @@ class ModelManager: NMEAReceiverDelegate {
             return (_lastGLL!.Latitude, _lastGLL!.LatitudeDirection, _lastGLL!.Longitude, _lastGLL!.LongitudeDirection, _lastGLL!.TimeUTC)
         }
     }
+    
+    private func calculateCurrent(headingMagnetic: Double, courseOverGroundMagnetic: Double, speedOverGround: Double, speedThroughWater: Double) -> (Double, Double) {
+        // get HDG and COG angle difference with direction (needed for calculating direction in sense of degree)
+        let difference = headingMagnetic - courseOverGroundMagnetic
+        let phi = abs(difference).truncatingRemainder(dividingBy: 360.0)
+        let alpha = phi > 180 ? 360 - phi : phi
+        let sign = ((difference) >= 0 && (difference) <= 180) || ((difference) <= -180 && (difference) >= 360) ? 1 : -1
+        
+        // calculate current speed
+        let currentSpeed = sqrt(pow(speedOverGround, 2) + pow(speedThroughWater, 2) - (2*speedOverGround*speedThroughWater*cos(alpha)))
+        
+        // calculate current direction
+        let ceta = acos((pow(currentSpeed, 2) + pow(speedThroughWater, 2) - pow(speedOverGround, 2))/(2*currentSpeed*speedThroughWater))
+        let currentDirection = sign == 1 ? ceta : 360 - ceta
+
+        return (currentSpeed, currentDirection)
+    }
+
     
     private func setGeomagneticField(latitude: Double, latitudeDirection: String, longitude: Double, longitudeDirection: String) {
         var geoLatitude = latitude/100

@@ -128,7 +128,7 @@ public class NMEAReceiverManager: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncS
     }
     
     func filterNmeaData(_ sentence: String) -> Bool {
-        if sentence.starts(with: "!AI") {
+        if sentence.starts(with: "!AI")  || sentence.starts(with: "$STALK") {
             return true
         } else {
             return false

@@ -40,7 +40,19 @@ import UIKit
             setNeedsDisplay()
         }
     }
+
+    public var currentSpeed: Double = 0.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
+    public var currentDirection: Double = 0.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     public var awa: Double = 0.0 {
         didSet {
             setNeedsDisplay()
@@ -94,12 +106,13 @@ import UIKit
         
         drawBoatShape(viewCenter, compassRingRadius)
         drawOuterGreyRing(rect, viewCenter, outerGreyRingRadius, outerGreyRingWidth)
-        drawCompassRing(viewCenter, compassRingRadius, compassRingWidth)
+        drawCompassRing(viewCenter, self.contentScaleFactor, compassRingRadius, compassRingWidth)
         drawCOGMarker(viewCenter, compassRingRadius)
         drawAWAMarker(viewCenter, compassRingRadius, outerGreyRingRadius)
         drawTWDMarker(viewCenter, compassRingRadius, outerGreyRingRadius)
         //drawLaylines(viewCenter, compassRingRadius)
-        drawHDGField(viewCenter, compassRingRadius)
+        drawHDGField(viewCenter, self.contentScaleFactor, compassRingRadius)
+        drawCurrent(viewCenter)
     }
     
     private func drawBoatShape(_ viewCenter: CGPoint, _ compassRingRadius: CGFloat) {
@@ -210,7 +223,7 @@ import UIKit
         }
     }
     
-    private func drawCompassRing(_ viewCenter: CGPoint, _ compassRingRadius: CGFloat, _ compassRingWidth: Double) {
+    private func drawCompassRing(_ viewCenter: CGPoint, _ scale: CGFloat, _ compassRingRadius: CGFloat, _ compassRingWidth: Double) {
         let compassRingPath = UIBezierPath(arcCenter: viewCenter, radius: compassRingRadius, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
         let compassRingShapeLayer = CAShapeLayer()
         compassRingShapeLayer.path = compassRingPath.cgPath
@@ -246,6 +259,7 @@ import UIKit
             let textLayer = LCTextLayer()
             textLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 30.0, height: 20.0)
             textLayer.position = CGPoint(x: x, y: y)
+            textLayer.contentsScale = scale
             textLayer.font = UIFont.systemFont(ofSize: 16)
             textLayer.fontSize = 16.0
             textLayer.foregroundColor = UIColor.black.cgColor
@@ -312,15 +326,16 @@ import UIKit
         _view?.layer.addSublayer(lineLayer)
     }
     
-    private func drawHDGField(_ viewCenter: CGPoint, _ compassRadius: CGFloat) {
+    private func drawHDGField(_ viewCenter: CGPoint, _ scale: CGFloat, _ compassRadius: CGFloat) {
 
         let text = "\(headingMagnetic < 100 ? " " : "")\(headingMagnetic < 10 ? " " : "")\(Int(headingMagnetic))"
         
         let textLayer = LCTextLayer()
         textLayer.bounds = CGRect(x: 0.0, y: 0.0, width: 65.0, height: 40.0)
         textLayer.position = CGPoint(x: viewCenter.x , y: (viewCenter.y - compassRadius))
-        textLayer.font = UIFont.systemFont(ofSize: 24)
-        textLayer.fontSize = 24.0
+        textLayer.contentsScale = scale
+        textLayer.font = UIFont.systemFont(ofSize: 28)
+        textLayer.fontSize = 28
         textLayer.foregroundColor = UIColor.black.cgColor
         textLayer.string = text
         textLayer.backgroundColor = UIColor.white.cgColor
@@ -432,6 +447,12 @@ import UIKit
         lineLayer.strokeColor = UIColor.green.cgColor
         lineLayer.fillColor = UIColor.green.cgColor
         _view?.layer.addSublayer(lineLayer)
+    }
+    
+    private func drawCurrent(_ viewCenter: CGPoint) {
+        // draw arrow in blue
+        // rotate arrow in accordance to direction
+        // write speed in center in white
     }
 
 }

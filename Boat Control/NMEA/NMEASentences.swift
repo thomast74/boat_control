@@ -9,7 +9,7 @@
 import Foundation
 
 class NMEASentences {
-    static public let ALL: [String] = ["GGA","GLL","MWV","RMC"]
+    static public let ALL: [String] = ["GGA","GLL","MWV","RMC","HDG","HDM","VHW","DBT","MTW"]
     static public let GPS = ["GGA", "GLL", "RMC"]
     public static let WIND = ["MWV"]
 }

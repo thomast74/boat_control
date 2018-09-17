@@ -23,11 +23,15 @@ public class NMEA_HDG: NMEA_BASE {
     }
     
     public var MagneticHeading: Double {
-        return Double(_data[0])!
+        return _data[0].isEmpty
+            ? -1.0
+            : Double(_data[0])!
     }
     
     public var MagneticDeviation: Double {
-        return Double(_data[1])!
+        return _data[1].isEmpty
+            ? 0.0
+            : Double(_data[1])!
     }
     
     public var MagneticDeviationDirection: String {
@@ -35,7 +39,9 @@ public class NMEA_HDG: NMEA_BASE {
     }
     
     public var MagneticVariation: Double {
-        return Double(_data[3])!
+        return _data[3].isEmpty
+            ? 0.0
+            : Double(_data[3])!
     }
     
     public var MagneticVariationDirection: String {

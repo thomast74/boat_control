@@ -82,9 +82,11 @@ class OnTheWayViewController: UIViewController, ModelManagerDelegate {
             self.sog.value = navigation.speedOverGround
             self.stw.value = navigation.speedThroughWater
             self.cog.value = navigation.courseOverGroundMagnetic
-            self.depth.value = -1.0
+            self.depth.value = navigation.depth
             self.compass.headingMagnetic = navigation.headingMagnetic
             self.compass.cogMagnetic = navigation.courseOverGroundMagnetic
+            self.compass.currentSpeed = navigation.currentSpeed
+            self.compass.currentDirection = navigation.currentDirection
         }
     }
     

@@ -44,7 +44,7 @@ public class NMEA_RMC: NMEA_BASE {
     
     public var CourseOverGround: Double {
         return _data[7].isEmpty
-            ? 0.0
+            ? -1.0
             : Double(_data[7])!
     }
 
