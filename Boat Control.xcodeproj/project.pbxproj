@@ -28,6 +28,8 @@
 		D369E1E020FB531300925678 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1DF20FB531300925678 /* CompassView.swift */; };
 		D369E1E220FB532700925678 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D369E1E120FB532700925678 /* CompassView.xib */; };
 		D369E1E420FB5B1500925678 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E1E320FB5B1500925678 /* FloatExtensions.swift */; };
+		D38A88D8215182250073B279 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38A88D7215182250073B279 /* Current.swift */; };
+		D38A88DA2151831D0073B279 /* CurrentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38A88D92151831D0073B279 /* CurrentTests.swift */; };
 		D3A4396420F3F75E00D348D8 /* NavigationLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */; };
 		D3A4396620F4071700D348D8 /* NavigationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396520F4071700D348D8 /* NavigationHistory.swift */; };
 		D3A4396820F6A75A00D348D8 /* ReverseValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */; };
@@ -105,6 +107,8 @@
 		D369E1DF20FB531300925678 /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		D369E1E120FB532700925678 /* CompassView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
 		D369E1E320FB5B1500925678 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
+		D38A88D7215182250073B279 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
+		D38A88D92151831D0073B279 /* CurrentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTests.swift; sourceTree = "<group>"; };
 		D3A4396320F3F75E00D348D8 /* NavigationLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLogViewController.swift; sourceTree = "<group>"; };
 		D3A4396520F4071700D348D8 /* NavigationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHistory.swift; sourceTree = "<group>"; };
 		D3A4396720F6A75A00D348D8 /* ReverseValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseValueFormatter.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				D3A4396520F4071700D348D8 /* NavigationHistory.swift */,
 				D3B3ECC420E8235C004CBB9D /* Wind.swift */,
 				D3B3ECC620E8244A004CBB9D /* WindHistory.swift */,
+				D38A88D7215182250073B279 /* Current.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				D3B3ECD520E95C93004CBB9D /* WindTWDTests.swift */,
 				D3B3ECD720E95FBD004CBB9D /* WindTWATests.swift */,
 				D33D0B9820EE5B1F0073527D /* GeoMagneticFieldTests.swift */,
+				D38A88D92151831D0073B279 /* CurrentTests.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				D3B3ECDC20EAC4A1004CBB9D /* NMEA_VHW.swift in Sources */,
 				D369E1DA20FA8D8200925678 /* OnTheWayViewController.swift in Sources */,
 				D348332E20FFE7E3005D28BE /* LCTextLayer.swift in Sources */,
+				D38A88D8215182250073B279 /* Current.swift in Sources */,
 				D3B3ECD420E95AF4004CBB9D /* DoubleExtensions.swift in Sources */,
 				D3B3ECC020E578B4004CBB9D /* WindSpeedUnits.swift in Sources */,
 				D3B3ECBA20E41F73004CBB9D /* NMEA_GGA.swift in Sources */,
@@ -587,6 +594,7 @@
 				D3B3EC8C20DED75B004CBB9D /* Boat_ControlTests.swift in Sources */,
 				D3B3ECD620E95C93004CBB9D /* WindTWDTests.swift in Sources */,
 				D3B3ECCE20E95728004CBB9D /* WindAWSTests.swift in Sources */,
+				D38A88DA2151831D0073B279 /* CurrentTests.swift in Sources */,
 				D3B3ECD020E95789004CBB9D /* WindAWDTests.swift in Sources */,
 				D33D0B9920EE5B1F0073527D /* GeoMagneticFieldTests.swift in Sources */,
 				D3B3EC9F20DFD567004CBB9D /* QueueTests.swift in Sources */,

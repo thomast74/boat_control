@@ -295,10 +295,10 @@ class ModelManager: NMEAReceiverDelegate {
 
             self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._navigation.courseOverGroundTrue) ?? headingMagnetic
             
-            let (currentSpeed, currentDirection) = self.calculateCurrent(headingMagnetic: self._navigation.headingMagnetic,
-                                                                         courseOverGroundMagnetic: self._navigation.courseOverGroundMagnetic,
-                                                                         speedOverGround: self._navigation.speedOverGround,
-                                                                         speedThroughWater: self._navigation.speedThroughWater)
+            let (currentSpeed, currentDirection) = Current.calculate(heading: self._navigation.headingMagnetic,
+                                                                     courseOverGround: self._navigation.courseOverGroundMagnetic,
+                                                                     speedThroughWater: self._navigation.speedThroughWater,
+                                                                     speedOverGround: self._navigation.speedOverGround)
             
             self._navigation.currentSpeed = currentSpeed
             self._navigation.currentDirection = currentDirection
@@ -393,29 +393,6 @@ class ModelManager: NMEAReceiverDelegate {
             return (_lastGLL!.Latitude, _lastGLL!.LatitudeDirection, _lastGLL!.Longitude, _lastGLL!.LongitudeDirection, _lastGLL!.TimeUTC)
         }
     }
-    
-    private func calculateCurrent(headingMagnetic: Double, courseOverGroundMagnetic: Double, speedOverGround: Double, speedThroughWater: Double) -> (Double, Double) {
-        // get HDG and COG angle difference with direction (needed for calculating direction in sense of degree)
-        let difference = headingMagnetic - courseOverGroundMagnetic
-        let phi = abs(difference).truncatingRemainder(dividingBy: 360.0)
-        let alpha = phi > 180 ? 360 - phi : phi
-        let sign = ((difference) >= 0 && (difference) <= 180) || ((difference) <= -180 && (difference) >= 360) ? 1 : -1
-        
-        // calculate current speed
-        let currentSpeed = sqrt(pow(speedOverGround, 2) + pow(speedThroughWater, 2) - (2*speedOverGround*speedThroughWater*cos(alpha)))
-        
-        // calculate current direction
-        var ceta = acos((pow(currentSpeed, 2) + pow(speedThroughWater, 2) - pow(speedOverGround, 2))/(2*currentSpeed*speedThroughWater))
-        if ceta.isNaN {
-           ceta = 0.0
-        }
-        
-        let currentDirection = sign == 1 ? ceta : 360 - ceta
-
-        
-        return (currentSpeed, currentDirection)
-    }
-
     
     private func setGeomagneticField(latitude: Double, latitudeDirection: String, longitude: Double, longitudeDirection: String) {
         var geoLatitude = latitude/100
