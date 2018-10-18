@@ -61,7 +61,7 @@ class CurrentTests: XCTestCase {
         let speedThroughWater: Double = 5.0
         let speedOverGround: Double = 6.0
         
-        let (speed, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
+        let (speed, _) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
         
         XCTAssertEqual(speed.rounded(toPlaces: 2), 3.01)
     }
@@ -72,7 +72,7 @@ class CurrentTests: XCTestCase {
         let speedThroughWater: Double = 5.0
         let speedOverGround: Double = 6.0
         
-        let (speed, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
+        let (speed, _) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
         
         XCTAssertEqual(speed.rounded(toPlaces: 2), 3.01)
     }
@@ -83,7 +83,7 @@ class CurrentTests: XCTestCase {
         let speedThroughWater: Double = 5.0
         let speedOverGround: Double = 6.0
 
-        let (speed, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
+        let (_, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
         
         XCTAssertEqual(direction.rounded(toPlaces: 2), 93.74)
     }
@@ -94,7 +94,7 @@ class CurrentTests: XCTestCase {
         let speedThroughWater: Double = 5.0
         let speedOverGround: Double = 6.0
         
-        let (speed, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
+        let (_, direction) = Current.calculate(heading: heading, courseOverGround: courseOverGround, speedThroughWater: speedThroughWater, speedOverGround: speedOverGround)
         
         XCTAssertEqual(direction.rounded(toPlaces: 2), -93.74)
     }

@@ -137,7 +137,7 @@ class ModelManager: NMEAReceiverDelegate {
             //processNmea(data: data as! NMEA_MTW)
             break
         default:
-            print("Not known data object received; \(data.identifier)")
+            print("Not known data object received: \(data.identifier) => \(data.raw)")
         }
         
         _delegate?.modelManager(didReceiveSentence: data)
@@ -230,86 +230,94 @@ class ModelManager: NMEAReceiverDelegate {
 
     private func createWind() {
         concurrentWindQueue.async(flags: .barrier) {
-            if self._lastMWV == nil {
-                return
-            }
-            
-            var cog: Double  = -1.0
-            var sog: Double  = 0.0
-            let (_, hdgTrue) = self.getLatestHeading()
+            do {
+                if self._lastMWV == nil {
+                    return
+                }
+                
+                var cog: Double  = -1.0
+                var sog: Double  = 0.0
+                let (_, hdgTrue) = self.getLatestHeading()
 
-            if self._lastRMC != nil {
-                cog = self._lastRMC!.CourseOverGround
-                sog = self._lastRMC!.SpeedOverGround
+                if self._lastRMC != nil {
+                    cog = self._lastRMC!.CourseOverGround
+                    sog = self._lastRMC!.SpeedOverGround
+                }
+                
+                if cog == -1.0 {
+                    cog = hdgTrue
+                }
+                
+                self._wind = Wind(windAngle: self._lastMWV!.WindAngle, windSpeed: self._lastMWV!.WindSpeed, reference: self._lastMWV!.Reference, cog: cog, sog: sog, hdg: hdgTrue)
+                
+                self._windHistory.add(self._wind)
+                
+                self._delegate?.modelManager(didReceiveWind: self._wind.clone())
+                self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
             }
-            
-            if cog == -1.0 {
-                cog = hdgTrue
+            catch {
+                print("\(error)")
             }
-            
-            self._wind = Wind(windAngle: self._lastMWV!.WindAngle, windSpeed: self._lastMWV!.WindSpeed, reference: self._lastMWV!.Reference, cog: cog, sog: sog, hdg: hdgTrue)
-            
-            self._windHistory.add(self._wind)
-            
-            self._delegate?.modelManager(didReceiveWind: self._wind.clone())
-            self._delegate?.modelManager(didReceiveWindHistory: self._windHistory.historyAggregate)
         }
     }
     
     private func updateNavigation() {
         concurrentGPSQueue.async(flags: .barrier) {
-            
-            let (latitude, latitudeDirection, longitude, longitudeDirection, timeUTC) = self.getLatestGPSCoordinates()
-            self._navigation.latitude = latitude
-            self._navigation.latitudeDirection = latitudeDirection
-            self._navigation.longitude = longitude
-            self._navigation.longitudeDirection = longitudeDirection
-            self._navigation.gpsTimeStamp = timeUTC
+            do {
+                let (latitude, latitudeDirection, longitude, longitudeDirection, timeUTC) = self.getLatestGPSCoordinates()
+                self._navigation.latitude = latitude
+                self._navigation.latitudeDirection = latitudeDirection
+                self._navigation.longitude = longitude
+                self._navigation.longitudeDirection = longitudeDirection
+                self._navigation.gpsTimeStamp = timeUTC
 
-            self.setGeomagneticField(latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection)
-            
-            if self._lastVHW != nil {
-                self._navigation.speedThroughWater = self._lastVHW!.BoatSpeedKnots
-            }
-
-            if self._lastDBT != nil {
-                if self._lastDBT!.DepthMeters >= 0.0 {
-                    self._navigation.depth = self._lastDBT!.DepthMeters
-                } else {
-                    self._navigation.depth = self._lastDBT!.DepthFeet * 0.3048
+                self.setGeomagneticField(latitude: latitude, latitudeDirection: latitudeDirection, longitude: longitude, longitudeDirection: longitudeDirection)
+                
+                if self._lastVHW != nil {
+                    self._navigation.speedThroughWater = self._lastVHW!.BoatSpeedKnots
                 }
+
+                if self._lastDBT != nil {
+                    if self._lastDBT!.DepthMeters >= 0.0 {
+                        self._navigation.depth = self._lastDBT!.DepthMeters
+                    } else {
+                        self._navigation.depth = self._lastDBT!.DepthFeet * 0.3048
+                    }
+                }
+
+                let (headingMagnetic, headingTrue) = self.getLatestHeading()
+                self._navigation.headingMagnetic = headingMagnetic
+                self._navigation.headingTrue = headingTrue
+
+                if self._lastRMC != nil {
+                    self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
+                    self._navigation.courseOverGroundTrue = self._lastRMC!.CourseOverGround
+                }
+
+                if self._navigation.courseOverGroundTrue == -1.0 {
+                   self._navigation.courseOverGroundTrue = headingTrue
+                }
+
+                self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._navigation.courseOverGroundTrue) ?? headingMagnetic
+                
+                let (currentSpeed, currentDirection) = Current.calculate(heading: self._navigation.headingMagnetic,
+                                                                         courseOverGround: self._navigation.courseOverGroundMagnetic,
+                                                                         speedThroughWater: self._navigation.speedThroughWater,
+                                                                         speedOverGround: self._navigation.speedOverGround)
+                
+                self._navigation.currentSpeed = currentSpeed
+                self._navigation.currentDirection = currentDirection
+                
+                
+                self._navigation.timeStamp = Date()
+                
+                self._navigationHistory.add(self._navigation.clone())
+
+                self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
+                self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
+            } catch {
+                print("\(error)")
             }
-
-            let (headingMagnetic, headingTrue) = self.getLatestHeading()
-            self._navigation.headingMagnetic = headingMagnetic
-            self._navigation.headingTrue = headingTrue
-
-            if self._lastRMC != nil {
-                self._navigation.speedOverGround = self._lastRMC!.SpeedOverGround
-                self._navigation.courseOverGroundTrue = self._lastRMC!.CourseOverGround
-            }
-
-            if self._navigation.courseOverGroundTrue == -1.0 {
-               self._navigation.courseOverGroundTrue = headingTrue
-            }
-
-            self._navigation.courseOverGroundMagnetic = self._geoMagneticField?.trueToMagnetic(trueDegree: self._navigation.courseOverGroundTrue) ?? headingMagnetic
-            
-            let (currentSpeed, currentDirection) = Current.calculate(heading: self._navigation.headingMagnetic,
-                                                                     courseOverGround: self._navigation.courseOverGroundMagnetic,
-                                                                     speedThroughWater: self._navigation.speedThroughWater,
-                                                                     speedOverGround: self._navigation.speedOverGround)
-            
-            self._navigation.currentSpeed = currentSpeed
-            self._navigation.currentDirection = currentDirection
-            
-            
-            self._navigation.timeStamp = Date()
-            
-            self._navigationHistory.add(self._navigation.clone())
-
-            self._delegate?.modelManager(didReceiveNavigation: self._navigation.clone())
-            self._delegate?.modelManager(didReceiveNavigationHistory: self._navigationHistory.historyAggregate)
         }
     }
     

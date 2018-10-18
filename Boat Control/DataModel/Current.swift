@@ -19,7 +19,11 @@ class Current {
         let speed = sqrt(pow(speedThroughWater, 2) + pow(speedOverGround, 2) - (2 * speedOverGround * speedThroughWater * cos(alphaRadiant)))
         
         var direction = acos((pow(speed, 2) + pow(speedThroughWater, 2) - pow(speedOverGround, 2)) / (2 * speed * speedThroughWater)) / (Double.pi/180)
-        direction *= sign
+        if direction.isNaN {
+            direction = 0.0
+        } else {
+            direction *= sign
+        }
         
         return (speed, direction)
     }
