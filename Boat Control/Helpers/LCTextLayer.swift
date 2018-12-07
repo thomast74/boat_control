@@ -29,7 +29,7 @@ class LCTextLayer: CATextLayer {
         let width = self.bounds.size.width
         let fontSize = self.fontSize
         let fontAttributes = [
-            NSAttributedStringKey.font: self.font as! UIFont
+            NSAttributedString.Key.font: self.font as! UIFont
         ]
         let textSize = ((self.string ?? "") as! NSString).size(withAttributes: fontAttributes)
         
